@@ -5,6 +5,8 @@
 
 *.mp4
 *.mov
+Library/
+Temp/
 
 # User-specific files
 *.rsuser
