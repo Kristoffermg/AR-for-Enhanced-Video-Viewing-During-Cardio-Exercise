@@ -1,93 +1,87 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from collections import deque
+from filterpy.kalman import UnscentedKalmanFilter as UKF, MerweScaledSigmaPoints
 
-# Load the CSV file
+# Load data
 data = pd.read_csv('Data/Elliptical_1.csv')
 time_step = 1 / 60  # Each frame is 1/60th of a second
 
-# Initialize Kalman filter parameters
-state_dim = 6  # [x, y, z, vx, vy, vz]
-measurement_dim = 3  # [x, y, z]
+# State dimensions: [x, y, z, vx, vy, vz]
+state_dim = 6
+measurement_dim = 3
 
-# State vector: [x, y, z, vx, vy, vz]
-state = np.zeros((state_dim, 1))
+# Nonlinear state transition function
+def fx(state, dt):
+    """
+    State transition function. Assumes oscillatory motion for simplicity.
+    State = [x, y, z, vx, vy, vz]
+    """
+    x, y, z, vx, vy, vz = state
+    x += vx * dt
+    y += vy * dt
+    z += vz * dt
+    return np.array([x, y, z, vx, vy, vz])
 
-# State transition matrix (A)
-A = np.eye(state_dim)
-for i in range(3):
-    A[i, i + 3] = time_step
+# Measurement function (linear, maps state to observed x, y, z)
+def hx(state):
+    """
+    Measurement function. Returns observed positions [x, y, z].
+    """
+    return state[:3]
 
-# Measurement matrix (H): Maps state to measurement space
-H = np.zeros((measurement_dim, state_dim))
-H[:3, :3] = np.eye(3)
+# Create Unscented Kalman Filter
+points = MerweScaledSigmaPoints(n=state_dim, alpha=0.1, beta=2.0, kappa=0)
+ukf = UKF(dim_x=state_dim, dim_z=measurement_dim, fx=fx, hx=hx, dt=time_step, points=points)
 
-# Process noise covariance (Q): Assumes small acceleration noise
-q = 0.01
-Q = q * np.eye(state_dim)
+# Initialize UKF parameters
+ukf.x = np.zeros(state_dim)  # Initial state
+ukf.P *= 1.0  # State covariance
+ukf.Q = np.eye(state_dim) * 0.01  # Process noise covariance
+ukf.R = np.eye(measurement_dim) * 0.05  # Measurement noise covariance
 
-# Measurement noise covariance (R): Assumes measurement noise
-r = 0.05
-R = r * np.eye(measurement_dim)
-
-# Initial estimate error covariance (P)
-P = np.eye(state_dim)
-
-# Sliding window parameters
-window_size = 10  # Number of recent measurements to keep
-sliding_window = deque(maxlen=window_size)
-
-# Function to predict the next state
-def predict(state, P):
-    state_pred = A @ state
-    P_pred = A @ P @ A.T + Q
-    return state_pred, P_pred
-
-# Function to update the state with a new measurement
-def update(state_pred, P_pred, measurement):
-    y = measurement.reshape(-1, 1) - (H @ state_pred)  # Measurement residual
-    S = H @ P_pred @ H.T + R  # Residual covariance
-    K = P_pred @ H.T @ np.linalg.inv(S)  # Kalman gain
-    state_updated = state_pred + K @ y
-    P_updated = (np.eye(state_dim) - K @ H) @ P_pred
-    return state_updated, P_updated
-
-# Function to incorporate sliding window into state updates
-def refine_with_sliding_window(window):
-    if len(window) < 2:
-        return state  # Not enough data to refine
-
-    # Calculate velocity estimates from the sliding window
-    recent_positions = np.array(window)
-    velocities = np.diff(recent_positions, axis=0) / time_step
-    avg_velocity = velocities.mean(axis=0)
-
-    # Update state directly with refined velocity
-    state[:3] = recent_positions[-1].reshape(-1, 1)  # Update position
-    state[3:] = avg_velocity.reshape(-1, 1)  # Update velocity
-    return state
-
-# Apply Kalman filter to the data
+# Apply UKF to the data
 predictions = []
 for _, row in data.iterrows():
     measurement = np.array([row['x'], row['y'], row['z']])
-    sliding_window.append(measurement)  # Add to sliding window
+    ukf.predict()
+    ukf.update(measurement)
+    predictions.append(ukf.x[:3])  # Save predicted positions
 
-    # Refine state using sliding window
-    state = refine_with_sliding_window(sliding_window)
-
-    # Predict
-    state, P = predict(state, P)
-    # Update
-    state, P = update(state, P, measurement)
-    predictions.append(state[:3].flatten())
-
-# Save results to CSV
+# Convert predictions to DataFrame
 predicted_df = pd.DataFrame(predictions, columns=['x_pred', 'y_pred', 'z_pred'])
 predicted_df.to_csv('predictions.csv', index=False)
 
-# Plot the actual and predicted values
+# Calculate errors between actual and predicted positions
+errors = {
+    'frame': data['frame'],
+    'x_error': np.abs(data['x'] - predicted_df['x_pred']),
+    'y_error': np.abs(data['y'] - predicted_df['y_pred']),
+    'z_error': np.abs(data['z'] - predicted_df['z_pred'])
+}
+
+# Convert to DataFrame
+errors_df = pd.DataFrame(errors)
+
+# Calculate summary statistics
+x_mae = errors_df['x_error'].mean()
+y_mae = errors_df['y_error'].mean()
+z_mae = errors_df['z_error'].mean()
+
+x_rmse = np.sqrt(np.mean(errors_df['x_error']**2))
+y_rmse = np.sqrt(np.mean(errors_df['y_error']**2))
+z_rmse = np.sqrt(np.mean(errors_df['z_error']**2))
+
+print("Summary of Errors:")
+print(f"MAE (x): {x_mae:.6f}, RMSE (x): {x_rmse:.6f}")
+print(f"MAE (y): {y_mae:.6f}, RMSE (y): {y_rmse:.6f}")
+print(f"MAE (z): {z_mae:.6f}, RMSE (z): {z_rmse:.6f}")
+
+# Save frame-by-frame errors to CSV
+errors_df.to_csv('errors.csv', index=False)
+print("Errors saved to 'errors.csv'.")
+
+# Plot actual vs predicted data
 actual_positions = data[['x', 'y', 'z']].values
 predicted_positions = np.array(predictions)
 
@@ -95,14 +89,25 @@ plt.figure(figsize=(15, 5))
 
 for i, coord in enumerate(['x', 'y', 'z']):
     plt.subplot(1, 3, i + 1)
-    plt.plot(actual_positions[:, i], label=f'Actual {coord}')
-    plt.plot(predicted_positions[:, i], label=f'Predicted {coord}', linestyle='--')
+    plt.plot(actual_positions[:, i], label=f'Actual {coord}', color='red')
+    plt.plot(predicted_positions[:, i], label=f'Predicted {coord}', linestyle='--', color='blue')
     plt.xlabel('Frame')
     plt.ylabel(f'{coord}-coordinate')
     plt.title(f'Actual vs Predicted {coord}')
     plt.legend()
 
 plt.tight_layout()
+plt.show()
+
+# Plot errors
+plt.figure(figsize=(12, 6))
+plt.plot(errors_df['frame'], errors_df['x_error'], label='X Error', color='red')
+plt.plot(errors_df['frame'], errors_df['y_error'], label='Y Error', color='green')
+plt.plot(errors_df['frame'], errors_df['z_error'], label='Z Error', color='blue')
+plt.xlabel('Frame')
+plt.ylabel('Absolute Error')
+plt.title('Prediction Errors for X, Y, Z Coordinates')
+plt.legend()
 plt.show()
 
 print("Predictions saved to 'predictions.csv'.")
