@@ -1,34 +1,57 @@
-import json
+import pandas as pd
 import matplotlib.pyplot as plt
-with open('filemane.json', 'r') as file:
-    data = json.load(file)
+import os
 
-filtered_data = {key: value for key, value in data.items() if 600 <= int(key) <= 1800} # define window of json elements to be plotted
+# Function to plot data from a single CSV
+def plot_csv(ax, csv_file, title, bottom_label=False):
+    data = pd.read_csv(csv_file)
+    # Extract the first 600 rows (10 seconds of data)
+    data = data.head(600)
+    
+    # Convert meters to centimeters for x, y, z
+    data['x'] = data['x'] * 100
+    data['y'] = data['y'] * 100
+    data['z'] = data['z'] * 100
+    time = data.index / 60.0
 
-frames = sorted(filtered_data.keys(), key=lambda k: int(k))
-times = [int(frame) / 60 for frame in frames]
+    ax.plot(time, data['x'], label='x (cm)', color='r')
+    ax.plot(time, data['y'], label='y (cm)', color='g')
+    ax.plot(time, data['z'], label='z (cm)', color='b')
+    
 
-times = [time - times[0] for time in times]
+    ax.set_title(title, fontsize=12)
 
-x_values = [filtered_data[frame]["x"] for frame in frames]
-y_values = [filtered_data[frame]["y"] for frame in frames]
-z_values = [filtered_data[frame]["z"] for frame in frames]
 
-plt.figure(figsize=(12, 4))
-# plt.plot(times, x_values, label="Side-to-side (x)", color="red", linewidth=1.5)
-# plt.plot(times, y_values, label="Back-and-forth (y)", color="blue", linewidth=1.5)
-# plt.plot(times, z_values, label="Up-and-down (z)", color="green", linewidth=1.5)
-plt.plot(times, x_values, color="red", linewidth=1.5)
-plt.plot(times, y_values, color="blue", linewidth=1.5)
-plt.plot(times, z_values, color="green", linewidth=1.5)
+csv_files = [
+    "Data/Elliptical_peter.csv", "Data/Elliptical_kristoffer.csv",
+    "Data/Row_peter.csv", "Data/Row_kristoffer.csv",
+    "Data/Stair_peter.csv", "Data/Stair_kristoffer.csv",
+    "Data/Walk_peter.csv", "Data/Walk_kristoffer.csv"
+]
 
-plt.title("Head displacement for INSERT EXERCISE HERE (straight / downward)", fontsize=20)
-# plt.xlabel("Time elapsed (seconds)", fontsize=20)
-# plt.ylabel("Head displacement (meters)", fontsize=20)
+titles = [
+    "Elliptical (user 1)", "Elliptical (user 2)",
+    "Cardio Row Machine (user 1)", "Cardio Row Machine (user 2)",
+    "Stairmaster (user 1)", "Stairmaster (user 2)",
+    "Treadmill Walking (user 1)", "Treadmill Walking (user 2)"
+]
 
-plt.xticks(fontsize=16)
-plt.yticks(fontsize=16)
 
-plt.grid(True)
-# plt.legend(fontsize=14, loc='lower right', frameon=True)
+fig, axs = plt.subplots(4, 2, figsize=(12, 8), sharex=True, sharey=True)
+axs = axs.ravel()
+
+for i, (csv_file, title) in enumerate(zip(csv_files, titles)):
+
+    if os.path.exists(csv_file):
+        plot_csv(axs[i], csv_file, title)
+    else:
+        axs[i].text(0.5, 0.5, "File not found", fontsize=12, ha='center')
+        axs[i].set_title(title)
+
+plt.tight_layout()
 plt.show()
+
+
+
+
+
