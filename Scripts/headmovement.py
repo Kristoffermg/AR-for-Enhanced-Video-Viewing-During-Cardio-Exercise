@@ -1,28 +1,33 @@
 import os
 import json
+import csv
 import matplotlib.pyplot as plt
 import numpy as np
 from pprint import pprint
 from sklearn.metrics import mean_absolute_error as mae, mean_squared_error as mse
 import time
-from scipy.signal import find_peaks, savgol_filter
+from scipy.signal import find_peaks, savgol_filter, medfilt
 
 from dataconverter import json_to_dataframe
 from dataconverter import json_to_csv
 
 class HeadMovement:
-    def __init__(self, json_path):
-        self.x_values, self.y_values, self.z_values, self.combined_values, self.frames = self.read_data(json_path)
-        self.dataframe = json_to_dataframe(json_path)
+    def __init__(self, data_path):
+        if data_path.endswith(".json"):
+            self.x_values, self.y_values, self.z_values, self.combined_values, self.frames = self.read_json_data(data_path)
+            self.dataframe = json_to_dataframe(data_path)
+        else:
+            self.x_values, self.y_values, self.z_values, self.frames = self.read_csv_data(data_path)
+        
         self.frames_length = self.frames[-1]
 
-        csv_path = json_path.replace(".json", ".csv")
+        csv_path = data_path.replace(".json", ".csv")
         if not os.path.exists(csv_path):
-            json_to_csv(json_path, csv_path)
+            json_to_csv(data_path, csv_path)
         self.csv_path = csv_path
 
     @staticmethod
-    def read_data(json_path):
+    def read_json_data(json_path):
         with open(json_path, "r") as file:
             data = json.load(file)
         
@@ -41,6 +46,21 @@ class HeadMovement:
             combined_values.append([x, y, z])
         frames = list(range(1, len(x_values)+1))
         return (x_values, y_values, z_values, np.array(combined_values), frames)
+    
+    @staticmethod
+    def read_csv_data(csv_path):
+        x_values = []
+        y_values = []
+        z_values = []
+        with open(csv_path, mode="r") as csv_file:
+            csvFile = csv.reader(csv_file)
+            next(csvFile, None)
+            for line in csvFile:
+                x_values.append(float(line[1]))
+                y_values.append(float(line[2]))
+                z_values.append(float(line[3]))
+        frames = list(range(1, len(x_values)+1))
+        return (x_values, y_values, z_values, frames)
 
     def plot_sharing_axes(self, suptitle):
         plt.subplot(3, 1, 1)
@@ -60,7 +80,7 @@ class HeadMovement:
 
         plt.show()
 
-    def head_movement_estimation(self, window_size, estimation_size):
+    def head_movement_estimation(self, signal_data, window_size, estimation_size):
         """Estimates head movement with savgol filtering and signal peak detection
 
         Savgol filtering: Denoises the data by removing small peaks that dont represent a fill signal cycle 
@@ -75,6 +95,7 @@ class HeadMovement:
             start_time = time.time()
             window_data = np.array(coordinate_value[window_position-window_size:window_position])
 
+            window_data = medfilt(window_data, kernel_size=3)
             window_data = savgol_filter(window_data, window_length=11, polyorder=2)
             peaks = find_peaks(window_data)[0]
 
@@ -83,7 +104,7 @@ class HeadMovement:
             # plt.show()
 
             if len(peaks) == 0:
-                print("No peaks found in the window?")
+                print("No peaks found in the provided signal data")
                 continue
 
             # Computes the average number of frames between the signal peaks
@@ -108,14 +129,24 @@ class HeadMovement:
             last_peak_value = window_data[peaks[-1]+1]
 
             # Creates a single array that represents the average of all the cycles
+            # average_cycle = []
+            # for cycle_step in range(average_cycle_steps):
+            #     current_cycle_step_values = []
+            #     for cycle in cycles:
+            #         if cycle_step >= len(cycle):
+            #             continue
+            #         current_cycle_step_values.append(cycle[cycle_step])
+            #     average_cycle.append(sum(current_cycle_step_values) / len(current_cycle_step_values))
+
             average_cycle = []
             for cycle_step in range(average_cycle_steps):
-                current_cycle_step_values = []
-                for cycle in cycles:
-                    if cycle_step >= len(cycle):
-                        continue
-                    current_cycle_step_values.append(cycle[cycle_step])
-                average_cycle.append(sum(current_cycle_step_values) / len(current_cycle_step_values))
+                current_cycle_step_values = [
+                    cycle[cycle_step] for cycle in cycles if cycle_step < len(cycle)
+                ]
+                # Assign higher weights to more recent cycles
+                weights = np.linspace(1, len(current_cycle_step_values), len(current_cycle_step_values))
+                weighted_average = np.average(current_cycle_step_values, weights=weights)
+                average_cycle.append(weighted_average)
 
             # An array of the difference between an average cycles peak and the frames in the cycle
             relative_difference_to_peak = []
@@ -139,7 +170,33 @@ class HeadMovement:
             plt.title("yay")
             plt.show()
 
+    def calculate_perceived_intensity(self):
+        head_position_data = self.x_values[600:1200]
+
+        head_position_data = medfilt(head_position_data, kernel_size=3)
+        head_position_data = savgol_filter(head_position_data, window_length=11, polyorder=2)
+        peaks = find_peaks(head_position_data)[0]
+
+        previous_peak = peaks[0]
+        accumulated_total_peak_difference = 0
+        for i in range(1, len(peaks)):
+            current_peak = peaks[i]
+            accumulated_total_peak_difference += current_peak - previous_peak
+            previous_peak = current_peak
+        
+        print(accumulated_total_peak_difference / len(peaks)-1)
+
+
+        
+
+        
+
+
+
     
 if __name__ == "__main__":
-    headMovement = HeadMovement(r"C:\Users\test\Documents\GitHub\ARCH\Data\Walk_2.csv")
-    headMovement.head_movement_estimation(window_size=1000, estimation_size=60)
+    headMovement = HeadMovement(r"C:\Users\krist\Documents\repos\ARCH\ARCH\Data\Walk_peter.csv")
+    # headMovement = HeadMovement(r"Run_2.csv")
+    # headMovement.plot_sharing_axes("pik")
+    # headMovement.head_movement_estimation(window_size=2000, estimation_size=60)
+    headMovement.calculate_perceived_intensity()
