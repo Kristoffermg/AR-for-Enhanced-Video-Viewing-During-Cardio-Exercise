@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{EDAE8845-3DCC-C712-6E88-098FF88566AA}</ProjectGuid>
+    <ProjectGuid>{7D60FA93-23B9-0D37-89B1-85EEF2434656}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>VoiceSDK.Editor</AssemblyName>
@@ -445,6 +445,14 @@
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Accord">
+      <HintPath>Assets\Packages\Accord.3.8.0\lib\netstandard2.0\Accord.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Accord.Statistics">
+      <HintPath>Assets\Packages\Accord.Statistics.3.8.0\lib\netstandard2.0\Accord.Statistics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="unityplastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@2.6.0\Lib\Editor\unityplastic.dll</HintPath>
       <Private>False</Private>
@@ -469,12 +477,32 @@
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="NuGetForUnity.PluginAPI">
+      <HintPath>Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\PluginAPI\NuGetForUnity.PluginAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.1\Runtime\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Accord.Audio">
+      <HintPath>Assets\Packages\Accord.Audio.3.8.0\lib\netstandard2.0\Accord.Audio.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.TextureAssets">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Accord.Math.Core">
+      <HintPath>Assets\Packages\Accord.Math.3.8.0\lib\netstandard2.0\Accord.Math.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MathNet.Numerics">
+      <HintPath>Assets\Packages\MathNet.Numerics.5.0.0\lib\netstandard2.0\MathNet.Numerics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Accord.Math">
+      <HintPath>Assets\Packages\Accord.Math.3.8.0\lib\netstandard2.0\Accord.Math.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="nunit.framework">
@@ -1004,59 +1032,59 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="VoiceSDK.Runtime.csproj">
-      <Project>{BFCB1A71-A1B1-F655-2E3A-49328AF55F29}</Project>
+      <Project>{B2A9E65B-B12D-6916-3028-BA0C6DEABF54}</Project>
       <Name>VoiceSDK.Runtime</Name>
     </ProjectReference>
     <ProjectReference Include="Meta.WitAi.csproj">
-      <Project>{011DC4E5-56EC-BE8F-8A66-8B7D2492CBBF}</Project>
+      <Project>{A5FD3CB6-8F33-4EFC-23FB-F7E802BE93F2}</Project>
       <Name>Meta.WitAi</Name>
     </ProjectReference>
     <ProjectReference Include="Meta.WitAi.Editor.csproj">
-      <Project>{55A5E845-175E-E641-CCA2-3D6F7C379819}</Project>
+      <Project>{C26E7281-3F44-0FFC-D6F2-7580DAD7F119}</Project>
       <Name>Meta.WitAi.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Meta.WitAi.TTS.csproj">
-      <Project>{4C92CAD7-FCF7-AC3B-3297-89ACCEA0CF2C}</Project>
+      <Project>{6C4C9A06-2423-9024-CDB0-A0734CC06D96}</Project>
       <Name>Meta.WitAi.TTS</Name>
     </ProjectReference>
     <ProjectReference Include="Meta.WitAi.TTS.Editor.csproj">
-      <Project>{88479939-1F08-51FB-3A2B-39C703C21653}</Project>
+      <Project>{5D0D9327-1D11-F522-9992-40F89134EE70}</Project>
       <Name>Meta.WitAi.TTS.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Meta.WitAi.Lib.csproj">
-      <Project>{011B871C-86AA-D2AA-88D1-1D526781229B}</Project>
+      <Project>{56BB4B11-685D-CC60-C89A-3969C6BAFD46}</Project>
       <Name>Meta.WitAi.Lib</Name>
     </ProjectReference>
     <ProjectReference Include="Meta.Voice.Hub.Runtime.csproj">
-      <Project>{C9ABED07-864C-765F-4149-CF3C8BE29EAE}</Project>
+      <Project>{CB2457F4-BF76-F662-F5E4-B3D24112840A}</Project>
       <Name>Meta.Voice.Hub.Runtime</Name>
     </ProjectReference>
     <ProjectReference Include="Meta.Voice.VSDKHub.Editor.csproj">
-      <Project>{A675791A-1F48-391C-8140-1140C4D746EA}</Project>
+      <Project>{D459B122-4BC9-CDAF-5DCA-188DCB42EECD}</Project>
       <Name>Meta.Voice.VSDKHub.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Meta.Voice.Hub.Editor.csproj">
-      <Project>{791691AE-C30E-18BD-1AAF-61BC0E153B32}</Project>
+      <Project>{F251E455-8033-55D2-389C-D047FC1371C6}</Project>
       <Name>Meta.Voice.Hub.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="VoiceSDK.Telemetry.csproj">
-      <Project>{DCE4F8D3-96F7-3EEF-9E78-1A5D56FEB7B7}</Project>
+      <Project>{8A44E1A7-2D26-0471-5A2A-C015A04D3897}</Project>
       <Name>VoiceSDK.Telemetry</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{067C016A-9BDF-7DCE-2E59-C851BCB7CD88}</Project>
+      <Project>{0DCDCFB5-3B0A-4171-99DC-05E63C5FE730}</Project>
       <Name>UnityEditor.UI</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
-      <Project>{03AC2CA7-AF01-FE34-84B6-7CE92CF47147}</Project>
+      <Project>{19B959FD-F73E-65CB-4242-730706FE6189}</Project>
       <Name>UnityEngine.UI</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.TestRunner.csproj">
-      <Project>{A3047590-38BB-CCB1-C01D-C771027F8920}</Project>
+      <Project>{0E8E1DF0-3F74-5FA7-81D4-72654F588A22}</Project>
       <Name>UnityEditor.TestRunner</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.TestRunner.csproj">
-      <Project>{01B1BFF9-F8EB-01DA-B770-0788E04F46BD}</Project>
+      <Project>{54D27F99-8E67-5D76-489E-9B3EF03E54B7}</Project>
       <Name>UnityEngine.TestRunner</Name>
     </ProjectReference>
   </ItemGroup>

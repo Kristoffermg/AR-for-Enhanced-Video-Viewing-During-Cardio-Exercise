@@ -195,8 +195,12 @@ class HeadMovement:
 
     
 if __name__ == "__main__":
-    headMovement = HeadMovement(r"C:\Users\krist\Documents\repos\ARCH\ARCH\Data\Walk_peter.csv")
+    headMovement = HeadMovement(r"c:\Users\test\Documents\Data\headPositionDataFilterMedMovement.csv")
     # headMovement = HeadMovement(r"Run_2.csv")
-    # headMovement.plot_sharing_axes("pik")
+    headMovement.frames = headMovement.frames[30:len(headMovement.frames)-30]
+    headMovement.x_values = headMovement.x_values[30:len(headMovement.x_values)-30]
+    headMovement.y_values = headMovement.y_values[30:len(headMovement.y_values)-30]
+    headMovement.z_values = headMovement.z_values[30:len(headMovement.z_values)-30]
+    headMovement.plot_sharing_axes("pik")
     # headMovement.head_movement_estimation(window_size=2000, estimation_size=60)
-    headMovement.calculate_perceived_intensity()
+    # headMovement.calculate_perceived_intensity()

@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{991C67F5-B89A-EED2-1DE5-B31CC2594D66}</ProjectGuid>
+    <ProjectGuid>{450F8F74-EC6C-7DC4-4F1D-A41874040289}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Meta.XR.BuildingBlocks.Editor</AssemblyName>
@@ -480,6 +480,14 @@
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Accord">
+      <HintPath>Assets\Packages\Accord.3.8.0\lib\netstandard2.0\Accord.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Accord.Statistics">
+      <HintPath>Assets\Packages\Accord.Statistics.3.8.0\lib\netstandard2.0\Accord.Statistics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="unityplastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@2.6.0\Lib\Editor\unityplastic.dll</HintPath>
       <Private>False</Private>
@@ -504,12 +512,32 @@
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="NuGetForUnity.PluginAPI">
+      <HintPath>Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\PluginAPI\NuGetForUnity.PluginAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.1\Runtime\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Accord.Audio">
+      <HintPath>Assets\Packages\Accord.Audio.3.8.0\lib\netstandard2.0\Accord.Audio.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.TextureAssets">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Accord.Math.Core">
+      <HintPath>Assets\Packages\Accord.Math.3.8.0\lib\netstandard2.0\Accord.Math.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MathNet.Numerics">
+      <HintPath>Assets\Packages\MathNet.Numerics.5.0.0\lib\netstandard2.0\MathNet.Numerics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Accord.Math">
+      <HintPath>Assets\Packages\Accord.Math.3.8.0\lib\netstandard2.0\Accord.Math.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="nunit.framework">
@@ -1039,103 +1067,103 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Oculus.VR.csproj">
-      <Project>{5F952402-0FAE-5C57-AE5C-69C2E4459BCA}</Project>
+      <Project>{1CC7E903-044D-2780-1191-FDCD578CC7DB}</Project>
       <Name>Oculus.VR</Name>
     </ProjectReference>
     <ProjectReference Include="Oculus.VR.Editor.csproj">
-      <Project>{619A6AC7-8E96-558B-820F-364CB4A43FA3}</Project>
+      <Project>{BF15E0F2-574F-3580-8077-F7223A5197BB}</Project>
       <Name>Oculus.VR.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Meta.XR.BuildingBlocks.csproj">
-      <Project>{2761BA9C-62DC-ABD6-DD90-7A3204DD1E18}</Project>
+      <Project>{E1E954CE-A6D3-04C1-48D4-5F7461F51600}</Project>
       <Name>Meta.XR.BuildingBlocks</Name>
     </ProjectReference>
     <ProjectReference Include="Meta.XR.Editor.Tags.csproj">
-      <Project>{7023E02F-9624-554E-8602-9C158CCA0055}</Project>
+      <Project>{B400075B-8161-405D-CB6E-74F967600036}</Project>
       <Name>Meta.XR.Editor.Tags</Name>
     </ProjectReference>
     <ProjectReference Include="Oculus.VR.Scripts.Editor.csproj">
-      <Project>{6A1A818E-2075-7503-AC3E-AC553B965D20}</Project>
+      <Project>{B026F4C6-1395-7B66-85C1-121B982E2254}</Project>
       <Name>Oculus.VR.Scripts.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Oculus.Platform.csproj">
-      <Project>{6F5DCEA0-CD24-3850-1354-95B968FF52EC}</Project>
+      <Project>{71BBE04C-F2A2-2952-BB6D-11D9482152BC}</Project>
       <Name>Oculus.Platform</Name>
     </ProjectReference>
     <ProjectReference Include="Meta.XR.Editor.UserInterface.csproj">
-      <Project>{61F50089-323C-098C-CBAE-3AA2888E3FE9}</Project>
+      <Project>{E503E3B7-28FD-EAC6-F648-8370FA79FD2E}</Project>
       <Name>Meta.XR.Editor.UserInterface</Name>
     </ProjectReference>
     <ProjectReference Include="Meta.XR.Editor.StatusMenu.csproj">
-      <Project>{48667432-97AF-0C0C-DA30-CE0B5FB2EC33}</Project>
+      <Project>{250CF466-0199-96D3-EADF-8AC572D764D1}</Project>
       <Name>Meta.XR.Editor.StatusMenu</Name>
     </ProjectReference>
     <ProjectReference Include="Meta.XR.Editor.Callbacks.csproj">
-      <Project>{C7899E62-3072-7177-36B3-B182CD6D1CBA}</Project>
+      <Project>{DA25C7D8-052E-01CF-CE0F-60A2CBEA4DD1}</Project>
       <Name>Meta.XR.Editor.Callbacks</Name>
     </ProjectReference>
     <ProjectReference Include="Meta.XR.Guides.Editor.csproj">
-      <Project>{FC5944ED-2DC1-BB75-D0B0-A92CE5C261A1}</Project>
+      <Project>{8E532F03-2A65-12D2-F65C-D638049B49E4}</Project>
       <Name>Meta.XR.Guides.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Meta.XR.Audio.csproj">
-      <Project>{DC307A19-E780-578D-C071-E719F3D69E09}</Project>
+      <Project>{8216981F-5681-26E6-10A9-580453CD8B88}</Project>
       <Name>Meta.XR.Audio</Name>
     </ProjectReference>
     <ProjectReference Include="Meta.XR.Editor.Reflection.csproj">
-      <Project>{C00E9E01-F7FC-1600-919B-92395D6A4FD6}</Project>
+      <Project>{4BD1CB71-76A4-EFD5-F2E7-A18A995067DA}</Project>
       <Name>Meta.XR.Editor.Reflection</Name>
     </ProjectReference>
     <ProjectReference Include="VoiceSDK.Editor.csproj">
-      <Project>{EDAE8845-3DCC-C712-6E88-098FF88566AA}</Project>
+      <Project>{7D60FA93-23B9-0D37-89B1-85EEF2434656}</Project>
       <Name>VoiceSDK.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="VoiceSDK.Dictation.Editor.csproj">
-      <Project>{25061A6A-FD25-AB08-B28E-730DF242B4F2}</Project>
+      <Project>{F7465B4A-7BFC-743C-7DF8-991E40DD8B41}</Project>
       <Name>VoiceSDK.Dictation.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="VoiceSDK.Dictation.Runtime.csproj">
-      <Project>{43AB9CDC-BA6D-D7E6-471D-993377B8649E}</Project>
+      <Project>{03BAF090-5162-4A28-E2F9-619F2F37FC5E}</Project>
       <Name>VoiceSDK.Dictation.Runtime</Name>
     </ProjectReference>
     <ProjectReference Include="Meta.Wit.Dictation.csproj">
-      <Project>{DB4682A0-BC3C-8A06-1CE7-DCA4EC203DD6}</Project>
+      <Project>{A4F02B51-7015-E5E7-460A-52ABE67D89DE}</Project>
       <Name>Meta.Wit.Dictation</Name>
     </ProjectReference>
     <ProjectReference Include="Meta.WitAi.csproj">
-      <Project>{011DC4E5-56EC-BE8F-8A66-8B7D2492CBBF}</Project>
+      <Project>{A5FD3CB6-8F33-4EFC-23FB-F7E802BE93F2}</Project>
       <Name>Meta.WitAi</Name>
     </ProjectReference>
     <ProjectReference Include="Meta.WitAi.Editor.csproj">
-      <Project>{55A5E845-175E-E641-CCA2-3D6F7C379819}</Project>
+      <Project>{C26E7281-3F44-0FFC-D6F2-7580DAD7F119}</Project>
       <Name>Meta.WitAi.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Meta.WitAi.TTS.csproj">
-      <Project>{4C92CAD7-FCF7-AC3B-3297-89ACCEA0CF2C}</Project>
+      <Project>{6C4C9A06-2423-9024-CDB0-A0734CC06D96}</Project>
       <Name>Meta.WitAi.TTS</Name>
     </ProjectReference>
     <ProjectReference Include="Meta.WitAi.TTS.Editor.csproj">
-      <Project>{88479939-1F08-51FB-3A2B-39C703C21653}</Project>
+      <Project>{5D0D9327-1D11-F522-9992-40F89134EE70}</Project>
       <Name>Meta.WitAi.TTS.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Oculus.Haptics.csproj">
-      <Project>{5655BD0C-7B09-66F0-2EA9-4567DF8B4FDE}</Project>
+      <Project>{9CF4C6E7-6DA4-17C5-3686-665773B1CE09}</Project>
       <Name>Oculus.Haptics</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{067C016A-9BDF-7DCE-2E59-C851BCB7CD88}</Project>
+      <Project>{0DCDCFB5-3B0A-4171-99DC-05E63C5FE730}</Project>
       <Name>UnityEditor.UI</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
-      <Project>{03AC2CA7-AF01-FE34-84B6-7CE92CF47147}</Project>
+      <Project>{19B959FD-F73E-65CB-4242-730706FE6189}</Project>
       <Name>UnityEngine.UI</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.TestRunner.csproj">
-      <Project>{A3047590-38BB-CCB1-C01D-C771027F8920}</Project>
+      <Project>{0E8E1DF0-3F74-5FA7-81D4-72654F588A22}</Project>
       <Name>UnityEditor.TestRunner</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.TestRunner.csproj">
-      <Project>{01B1BFF9-F8EB-01DA-B770-0788E04F46BD}</Project>
+      <Project>{54D27F99-8E67-5D76-489E-9B3EF03E54B7}</Project>
       <Name>UnityEngine.TestRunner</Name>
     </ProjectReference>
   </ItemGroup>
