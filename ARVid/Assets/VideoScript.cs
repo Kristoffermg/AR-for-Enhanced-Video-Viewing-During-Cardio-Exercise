@@ -9,7 +9,6 @@ using MathNet.Numerics.Statistics;
 using System;
 using System.Linq;
 using Unity.Properties;
-using MathNet.Filtering.Kalman;
 using Accord.Statistics.Running;
 
 public class VideoScript : MonoBehaviour
@@ -123,15 +122,15 @@ public class VideoScript : MonoBehaviour
 
             int intensity = CalculatePerceivedIntensity(xValues, yValues, zValues);
 
-            if (intensity <= 3 * scale)
+            if (intensity <= 1 * scale)
             {
                 intensitySphere.GetComponent<Renderer>().material.color = Color.green;
             }
-            else if (intensity <= 4 * scale)
+            else if (intensity <= 2 * scale)
             {
                 intensitySphere.GetComponent<Renderer>().material.color = Color.yellow;
             }
-            else if (intensity <= 6 * scale)
+            else if (intensity <= 3 * scale)
             {
                 intensitySphere.GetComponent<Renderer>().material.color = Color.red;
             }
@@ -340,21 +339,19 @@ public class VideoScript : MonoBehaviour
         return peaks.ToArray();
     }
 
-    static int[] FindSignificantPeaks(List<double> values, double percentageThreshold = 0.1)
+    int[] FindSignificantPeaks(List<double> values)
     {
-        if (values.Count < 3) return new int[0]; // Not enough data for peak detection
+        if (values.Count < 3) return new int[0]; 
 
         List<int> peaks = new List<int>();
 
-        double maxRange = values.Max() - values.Min(); // Find data range
-        double minPeakThreshold = maxRange * percentageThreshold; // Dynamic threshold
+        double noiseThreshold = ComputeNoiseThreshold(values, 0.35); 
 
         for (int i = 1; i < values.Count - 1; i++)
         {
-            if (values[i] > values[i - 1] && values[i] > values[i + 1]) // Standard peak detection
+            if (values[i] > values[i - 1] && values[i] > values[i + 1])
             {
-                double peakHeight = values[i] - values.Min(); // How high is this peak?
-                if (peakHeight >= minPeakThreshold) // Ignore small peaks
+                if (values[i] > noiseThreshold) 
                 {
                     peaks.Add(i);
                 }
@@ -364,5 +361,14 @@ public class VideoScript : MonoBehaviour
         return peaks.ToArray();
     }
 
+    double ComputeNoiseThreshold(List<double> values, double multiplier = 1.0)
+    {
+        double mean = values.Average();
+        double stdDev = Math.Sqrt(values.Select(v => Math.Pow(v - mean, 2)).Average());
+        return mean + (stdDev * multiplier); 
+    }
+
 }
+
+
 
