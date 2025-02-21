@@ -10,6 +10,7 @@ using System;
 using System.Linq;
 using Unity.Properties;
 using Accord.Statistics.Running;
+using Oculus.Interaction.OVR.Input;
 
 public class VideoScript : MonoBehaviour
 {
@@ -35,6 +36,8 @@ public class VideoScript : MonoBehaviour
 
     private Vector3 baseCanvasScale;
 
+    private readonly double startTime = 5; // How many seconds into the video it should start
+
     void Start()
     {
         headPositionData = new List<string>();
@@ -48,7 +51,9 @@ public class VideoScript : MonoBehaviour
         historicalZValues = new Queue<double>();
 
         baseCanvasScale = canvas.transform.localScale;
-        Debug.Log($"Base canvas {baseCanvasScale.x} {baseCanvasScale.y} {baseCanvasScale.z}");
+
+        video.time = startTime;
+        audio.time = (float)startTime;
 
         //video.Play();
     }
@@ -68,10 +73,12 @@ public class VideoScript : MonoBehaviour
     private readonly float canvasDownscaleAmount = 0.0002f; // how much the size of the canvas should be changed based on intensity (higher number = greater size reduction)
     private readonly float minimumCanvasSize = 0.00005f;
 
+    bool videoPaused = false;
+
     void Update()
     {
-        OVRInput.Update();
-        OVRInput.FixedUpdate();
+        //OVRInput.Update();
+        //OVRInput.FixedUpdate();
 
         canvas.transform.LookAt(centerEye.transform);
         canvas.transform.Rotate(0, 180, 0);
@@ -88,11 +95,10 @@ public class VideoScript : MonoBehaviour
         {
             Vector3 leftControllerPosition = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LHand);
             leftControllerPosition.y += 0.2f;
-            //leftControllerPosition.z += 0.2f;
             newVideoPosition = leftControllerPosition;
         }
 
-        if(OVRInput.Get(OVRInput.RawButton.LHandTrigger))
+        if (OVRInput.Get(OVRInput.RawButton.LHandTrigger))
         {
             video.Stop();
             audio.Stop();
@@ -100,7 +106,6 @@ public class VideoScript : MonoBehaviour
             audio.Play();
         }
 
-        //newVideoPosition.y = centerEyePosition.y - 0.04f;
         float heightDifference = previousHeadsetHeight - centerEyePosition.y;
         newVideoPosition.y -= heightDifference;
 
@@ -111,7 +116,7 @@ public class VideoScript : MonoBehaviour
         previousHeadsetHeight = centerEyePosition.y;
 
         StoreFrameData(centerEyePosition);
-        //Debug.Log($"current frame: {currentFrame}");
+
         if (currentFrame == perceivedIntensityUpdateInterval)
         {
             currentFrame = 0;
@@ -146,7 +151,7 @@ public class VideoScript : MonoBehaviour
 
             canvas.transform.localScale = Vector3.Lerp(canvas.transform.localScale, newScale, Time.deltaTime * lerpScale);
 
-            Debug.Log("intensity: " + intensity);
+            //Debug.Log("intensity: " + intensity);
         }
 
         if (OVRInput.Get(OVRInput.RawButton.RIndexTrigger))
@@ -158,7 +163,23 @@ public class VideoScript : MonoBehaviour
             zValues.Enqueue(centerEyePosition.z);
         }
 
-        if(OVRInput.Get(OVRInput.RawButton.B))
+        if (OVRInput.GetDown(OVRInput.RawButton.X))
+        {
+            if (videoPaused)
+            {
+                video.Play();
+                audio.Play();
+            }
+            else
+            {
+                video.Pause();
+                audio.Pause();
+                Debug.Log($"Paused at time: {video.time} seconds");
+            }
+            videoPaused = !videoPaused;
+        }
+
+        if (OVRInput.Get(OVRInput.RawButton.B))
         {
             List<double> x = new List<double>(xValues);
             List<double> y = new List<double>(yValues);
@@ -180,7 +201,7 @@ public class VideoScript : MonoBehaviour
             {
                 writer.WriteLine("frame,x,y,z");
 
-                for (int i=0; i < x.Count; i++)
+                for (int i = 0; i < x.Count; i++)
                 {
                     writer.WriteLine($"{i + 1},{x[i]},{y[i]},{z[i]}");
                 }
@@ -191,8 +212,6 @@ public class VideoScript : MonoBehaviour
                 //}
             }
         }
-
-
 
         //Vector3 cameraAngle = canvas.transform.rotation.eulerAngles;
         //cameraAngle[2] = canvas.transform.rotation.eulerAngles[2];
@@ -251,7 +270,7 @@ public class VideoScript : MonoBehaviour
         int weightedAveragePeaks = (weightedXPeaks + weightedYPeaks + weightedZPeaks) / (xWeight + yWeight + zWeight);
 
         //Debug.Log($"Peaks: {numberOfXPeaks},{numberOfYPeaks},{numberOfZPeaks} INTENSITY: {weightedAveragePeaks}");
-        
+
         return weightedAveragePeaks;
     }
 
@@ -265,7 +284,7 @@ public class VideoScript : MonoBehaviour
             var x = Enumerable.Range(-halfWindow, windowSize).Select(v => (double)v).ToArray();
             var y = data.Skip(i - halfWindow).Take(windowSize).ToArray();
             var p = MathNet.Numerics.Fit.Polynomial(x, y, polyOrder);
-            smoothed[i] = p[0]; 
+            smoothed[i] = p[0];
         }
 
         return smoothed;
@@ -324,7 +343,7 @@ public class VideoScript : MonoBehaviour
         }
 
         return smoothed;
-    }   
+    }
     static int[] FindPeaks(List<double> data)
     {
         List<int> peaks = new List<int>();
@@ -341,17 +360,17 @@ public class VideoScript : MonoBehaviour
 
     int[] FindSignificantPeaks(List<double> values)
     {
-        if (values.Count < 3) return new int[0]; 
+        if (values.Count < 3) return new int[0];
 
         List<int> peaks = new List<int>();
 
-        double noiseThreshold = ComputeNoiseThreshold(values, 0.35); 
+        double noiseThreshold = ComputeNoiseThreshold(values);
 
         for (int i = 1; i < values.Count - 1; i++)
         {
             if (values[i] > values[i - 1] && values[i] > values[i + 1])
             {
-                if (values[i] > noiseThreshold) 
+                if (values[i] > noiseThreshold)
                 {
                     peaks.Add(i);
                 }
@@ -361,11 +380,11 @@ public class VideoScript : MonoBehaviour
         return peaks.ToArray();
     }
 
-    double ComputeNoiseThreshold(List<double> values, double multiplier = 1.0)
+    double ComputeNoiseThreshold(List<double> values, double multiplier = 0.35)
     {
         double mean = values.Average();
         double stdDev = Math.Sqrt(values.Select(v => Math.Pow(v - mean, 2)).Average());
-        return mean + (stdDev * multiplier); 
+        return mean + (stdDev * multiplier);
     }
 
 }
