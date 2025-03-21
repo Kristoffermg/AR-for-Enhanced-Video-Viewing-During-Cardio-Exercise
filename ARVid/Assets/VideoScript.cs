@@ -8,9 +8,10 @@ using UnityEngine.Video;
 using MathNet.Numerics.Statistics;
 using System;
 using System.Linq;
-using Unity.Properties;
-using Accord.Statistics.Running;
-using Oculus.Interaction.OVR.Input;
+using UnityEngine.XR;
+using TMPro;
+using Accord.Statistics.Distributions.Univariate;
+
 
 public class VideoScript : MonoBehaviour
 {
@@ -38,6 +39,8 @@ public class VideoScript : MonoBehaviour
 
     private readonly double startTime = 5; // How many seconds into the video it should start
 
+    string videoPath;
+
     void Start()
     {
         headPositionData = new List<string>();
@@ -55,8 +58,21 @@ public class VideoScript : MonoBehaviour
         video.time = startTime;
         audio.time = (float)startTime;
 
+        OVRPlugin.systemDisplayFrequency = 120.0f; // Set to 72, 80, 90, or 120 based on the headset
+        Application.targetFrameRate = 120; // Match headset refresh rate
+
+        QualitySettings.antiAliasing = 0;
         //video.Play();
+
+        string videoPath = Path.Combine(Application.streamingAssetsPath, "output.mp4");
+
+        video.source = VideoSource.Url; // Set to URL mode
+        video.url = "file://" + videoPath; // Add file prefix for Android
+
+        video.Prepare();
+        video.prepareCompleted += (VideoPlayer vp) => { vp.Play(); };
     }
+
 
     Vector3 previousVideoPosition = Vector3.zero;
     private float previousHeadsetHeight = 0.0f;
@@ -70,32 +86,39 @@ public class VideoScript : MonoBehaviour
     private readonly int scale = historicalDataSizeThreshold / 100;
 
     private readonly float lerpScale = 3.0f; // how quickly the linear interpolation of the canvas scale happens (smooth size change)
-    private readonly float canvasDownscaleAmount = 0.0002f; // how much the size of the canvas should be changed based on intensity (higher number = greater size reduction)
+    private readonly float canvasDownscaleAmount = 0.0004f; // how much the size of the canvas should be changed based on intensity (higher number = greater size reduction)
     private readonly float minimumCanvasSize = 0.00005f;
+
+    Vector3 standardScale = new Vector3(0.003f, 0.003f, 0.003f);
+    Vector2 standardSize = new Vector2(192f, 108f);
+
+    Vector3 phoneScale = new Vector3(0.001f, 0.001f, 0.001f);
+    Vector2 phoneSize = new Vector2(148f, 72f);
+
+    private enum ViewingExperience
+    {
+        Adaptive,
+        Phone,
+        Static
+    }
+
+    private ViewingExperience currentViewingExperience = ViewingExperience.Adaptive;
 
     bool videoPaused = false;
 
-    void Update()
+    void LateUpdate()
     {
-        //OVRInput.Update();
-        //OVRInput.FixedUpdate();
-
-        canvas.transform.LookAt(centerEye.transform);
-        canvas.transform.Rotate(0, 180, 0);
-
-
-        Vector3 cameraPosition = camera.transform.position;
         Vector3 centerEyePosition = centerEye.transform.position;
-
-        currentFrame++;
 
         Vector3 newVideoPosition = previousVideoPosition;
 
         if (OVRInput.Get(OVRInput.RawButton.LIndexTrigger))
         {
+            canvas.transform.LookAt(centerEye.transform);
+            canvas.transform.Rotate(0, 180, 0);
             Vector3 leftControllerPosition = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LHand);
             leftControllerPosition.y += 0.2f;
-            newVideoPosition = leftControllerPosition;
+            canvas.transform.position = Vector3.Lerp(canvas.transform.position, leftControllerPosition, 0.1f);
         }
 
         if (OVRInput.Get(OVRInput.RawButton.LHandTrigger))
@@ -107,57 +130,94 @@ public class VideoScript : MonoBehaviour
         }
 
         float heightDifference = previousHeadsetHeight - centerEyePosition.y;
-        newVideoPosition.y -= heightDifference;
+        newVideoPosition.y -= Mathf.Lerp(0, heightDifference, 0.1f);  // Smoother adjustment
 
-        canvas.transform.position = newVideoPosition;
-        intensitySphere.transform.position = newVideoPosition;
+        //intensitySphere.transform.position = Vector3.Lerp(intensitySphere.transform.position, newVideoPosition, 0.1f);
 
         previousVideoPosition = newVideoPosition;
         previousHeadsetHeight = centerEyePosition.y;
+    }
+
+    private Vector3 velocity = Vector3.zero;
+
+    void Update()
+    {
+        //OVRInput.Update();
+        //OVRInput.FixedUpdate();
+
+        currentFrame++;
+
+        Vector3 centerEyePosition = centerEye.transform.position;
 
         StoreFrameData(centerEyePosition);
 
-        if (currentFrame == perceivedIntensityUpdateInterval)
+        if (currentViewingExperience == ViewingExperience.Adaptive)
         {
-            currentFrame = 0;
-
-            List<double> xValues = new List<double>(historicalXValues);
-            List<double> yValues = new List<double>(historicalYValues);
-            List<double> zValues = new List<double>(historicalZValues);
-
-            int intensity = CalculatePerceivedIntensity(xValues, yValues, zValues);
-
-            if (intensity <= 1 * scale)
+            if (currentFrame == perceivedIntensityUpdateInterval)
             {
-                intensitySphere.GetComponent<Renderer>().material.color = Color.green;
+                RunAdaptiveScaling();
             }
-            else if (intensity <= 2 * scale)
-            {
-                intensitySphere.GetComponent<Renderer>().material.color = Color.yellow;
-            }
-            else if (intensity <= 3 * scale)
-            {
-                intensitySphere.GetComponent<Renderer>().material.color = Color.red;
-            }
-            else
-            {
-                intensitySphere.GetComponent<Renderer>().material.color = Color.black;
-            }
-            Vector3 canvasScaleChange = new Vector3(canvasDownscaleAmount * intensity, canvasDownscaleAmount * intensity, canvasDownscaleAmount * intensity);
-
-            Vector3 newScale = baseCanvasScale - canvasScaleChange;
-
-            newScale = Vector3.Max(newScale, new Vector3(minimumCanvasSize, minimumCanvasSize, minimumCanvasSize));
-
-            canvas.transform.localScale = Vector3.Lerp(canvas.transform.localScale, newScale, Time.deltaTime * lerpScale);
-
-            //Debug.Log("intensity: " + intensity);
         }
 
+        HandleControllerInput(centerEyePosition);
+
+        //Vector3 cameraAngle = canvas.transform.rotation.eulerAngles;
+        //cameraAngle[2] = canvas.transform.rotation.eulerAngles[2];
+
+        //Quaternion canvasRotation = canvas.transform.rotation;
+        //canvasRotation.eulerAngles = cameraAngle;
+
+        //canvas.transform.rotation = canvasRotation;
+    }
+
+    void RunAdaptiveScaling()
+    {
+        currentFrame = 0;
+
+        List<double> xValues = new List<double>(historicalXValues);
+        List<double> yValues = new List<double>(historicalYValues);
+        List<double> zValues = new List<double>(historicalZValues);
+
+        int intensity = CalculatePerceivedIntensity(xValues, yValues, zValues);
+
+        if (intensity <= 1 * scale)
+        {
+            intensitySphere.GetComponent<Renderer>().material.color = Color.green;
+        }
+        else if (intensity <= 2 * scale)
+        {
+            intensitySphere.GetComponent<Renderer>().material.color = Color.yellow;
+        }
+        else if (intensity <= 3 * scale)
+        {
+            intensitySphere.GetComponent<Renderer>().material.color = Color.red;
+        }
+        else
+        {
+            intensitySphere.GetComponent<Renderer>().material.color = Color.black;
+        }
+        Vector3 canvasScaleChange = new Vector3(canvasDownscaleAmount * intensity, canvasDownscaleAmount * intensity, canvasDownscaleAmount * intensity);
+
+        Vector3 newScale = baseCanvasScale - canvasScaleChange;
+
+        newScale = Vector3.Max(newScale, new Vector3(minimumCanvasSize, minimumCanvasSize, minimumCanvasSize));
+
+        canvas.transform.localScale = Vector3.SmoothDamp(
+            canvas.transform.localScale,
+            newScale,
+            ref velocity,
+            0.6f
+        );
+        Debug.Log("intensity: " + intensity);
+    }
+
+    void HandleControllerInput(Vector3 centerEyePosition)
+    {
         if (OVRInput.Get(OVRInput.RawButton.RIndexTrigger))
         {
             currentRecordedFrame++;
             headPositionData.Add($"{currentRecordedFrame},{centerEyePosition.x},{centerEyePosition.y},{centerEyePosition.z}");
+               
             xValues.Enqueue(centerEyePosition.x);
             yValues.Enqueue(centerEyePosition.y);
             zValues.Enqueue(centerEyePosition.z);
@@ -179,47 +239,13 @@ public class VideoScript : MonoBehaviour
             videoPaused = !videoPaused;
         }
 
+
+
         if (OVRInput.Get(OVRInput.RawButton.B))
         {
-            List<double> x = new List<double>(xValues);
-            List<double> y = new List<double>(yValues);
-            List<double> z = new List<double>(zValues);
-
-            x = ApplyMedianFilter(x, 3);
-            x = GaussianSmooth(x, 11);
-            x = ApplySavitzkyGolay(x);
-
-            y = ApplyMedianFilter(y, 3);
-            y = GaussianSmooth(y, 11);
-            y = ApplySavitzkyGolay(y);
-
-            z = ApplyMedianFilter(z, 3);
-            z = GaussianSmooth(z, 11);
-            z = ApplySavitzkyGolay(z);
-
-            using (StreamWriter writer = new StreamWriter("C:\\Users\\test\\Documents\\Data\\headPositionData.csv"))
-            {
-                writer.WriteLine("frame,x,y,z");
-
-                for (int i = 0; i < x.Count; i++)
-                {
-                    writer.WriteLine($"{i + 1},{x[i]},{y[i]},{z[i]}");
-                }
-
-                //foreach(string row in headPositionData)
-                //{
-                //    writer.WriteLine(row);
-                //}
-            }
+            //WriteHeadPositionData();
+            ChangeViewingExperience();
         }
-
-        //Vector3 cameraAngle = canvas.transform.rotation.eulerAngles;
-        //cameraAngle[2] = canvas.transform.rotation.eulerAngles[2];
-
-        //Quaternion canvasRotation = canvas.transform.rotation;
-        //canvasRotation.eulerAngles = cameraAngle;
-
-        //canvas.transform.rotation = canvasRotation;
     }
 
     // Maintains a sliding window of the past 400 (x,y,z) values
@@ -234,6 +260,56 @@ public class VideoScript : MonoBehaviour
             historicalXValues.Dequeue();
             historicalYValues.Dequeue();
             historicalZValues.Dequeue();
+        }
+    }
+
+    void WriteHeadPositionData()
+    {
+        List<double> x = new List<double>(xValues);
+        List<double> y = new List<double>(yValues);
+        List<double> z = new List<double>(zValues);
+
+        x = ApplyMedianFilter(x, 3);
+        x = GaussianSmooth(x, 11);
+        x = ApplySavitzkyGolay(x);
+
+        y = ApplyMedianFilter(y, 3);
+        y = GaussianSmooth(y, 11);
+        y = ApplySavitzkyGolay(y);
+
+        z = ApplyMedianFilter(z, 3);
+        z = GaussianSmooth(z, 11);
+        z = ApplySavitzkyGolay(z);
+
+        using (StreamWriter writer = new StreamWriter("C:\\Users\\test\\Documents\\Data\\headPositionData.csv"))
+        {
+            writer.WriteLine("frame,x,y,z");
+
+            for (int i = 0; i < x.Count; i++)
+            {
+                writer.WriteLine($"{i + 1},{x[i]},{y[i]},{z[i]}");
+            }
+        }
+    }
+
+    void ChangeViewingExperience()
+    {
+        RectTransform canvasTransform = canvas.GetComponent<RectTransform>();
+        switch(currentViewingExperience)
+        {
+            case ViewingExperience.Adaptive:
+                currentViewingExperience = ViewingExperience.Static;
+                break;
+            case ViewingExperience.Static:
+                currentViewingExperience = ViewingExperience.Phone;
+                canvas.transform.localScale = phoneScale;
+                canvasTransform.sizeDelta = phoneSize;
+                break;
+            case ViewingExperience.Phone:
+                currentViewingExperience = ViewingExperience.Adaptive;
+                canvas.transform.localScale = standardScale;
+                canvasTransform.sizeDelta = standardSize;
+                break;
         }
     }
 
@@ -289,8 +365,6 @@ public class VideoScript : MonoBehaviour
 
         return smoothed;
     }
-
-
     static List<double> ApplyMedianFilter(List<double> data, int kernelSize)
     {
         int halfSize = kernelSize / 2;
@@ -343,19 +417,6 @@ public class VideoScript : MonoBehaviour
         }
 
         return smoothed;
-    }
-    static int[] FindPeaks(List<double> data)
-    {
-        List<int> peaks = new List<int>();
-        for (int i = 1; i < data.Count - 1; i++)
-        {
-            if (data[i] > data[i - 1] && data[i] > data[i + 1])
-            {
-                //Debug.Log($"Adding peak: {data[i]}");
-                peaks.Add(i);
-            }
-        }
-        return peaks.ToArray();
     }
 
     int[] FindSignificantPeaks(List<double> values)
