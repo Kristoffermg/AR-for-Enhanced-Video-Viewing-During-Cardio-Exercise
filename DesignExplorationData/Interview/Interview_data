@@ -1,0 +1,247 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36" version="26.1.0">
+  <diagram name="Side-1" id="LjQq0ro0P3SZ0MDr8k3q">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="sXVysy9-ccisgfUAUmoG-11" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#FF0000;" vertex="1" parent="1">
+          <mxGeometry x="850" y="-1140" width="300" height="640" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-1" value="&lt;div&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;1&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;- On what machines do you watch content? What intensity?&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;On the stairmaster set to 8/10 intensity.&lt;br&gt;- How do you watch content, where is the screen placed? Does it include anything?&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;On my phone, placed in a holder on the stairmaster so it is at eye level. It occludes buttons to change intensity and change the displayed information.&lt;br&gt;- What kind of content do you watch?&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;I watch gameplay streams of League of Legends on Twitch.&amp;nbsp;&lt;br&gt;- So how long do you watch for?&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;I watch for 30 to 40 minutes typically, but if the stream is uninteresting or there is just not a stream (He switches between &quot;Bausffs&quot; and &quot;LoLNemesis&quot;) I do not perform a full cardio session.&amp;nbsp;&lt;br&gt;- And what do you think of the viewing experience?&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;The screen could definitely be bigger, I sometimes catch myself doing a &quot;shrimp-pose&quot; because I get somewhat far away from the screen. I also think that the streams serve as a kind of distraction from the exercise, which is also the reason why I am not really concerned with the occluded buttons since I do not use them." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="160" height="660" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-2" value="&lt;div&gt;&lt;b style=&quot;font-size: 20px; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;2&lt;/b&gt;&lt;/div&gt;- On what machines do you watch content? What intensity?&lt;br&gt;&amp;nbsp; &amp;nbsp; Mainly on the treadmill but also on elliptical and the bike. Intensity is medium (speed 5 - 6 km/h, incline 10). duration is between 20 - 50 minutes.&amp;nbsp;&lt;br&gt;- How do you watch content, where is the screen placed? Does it include anything?&lt;br&gt;&amp;nbsp; &amp;nbsp; I use my phone. I put it on the machine so that it occludes part of the controls. It is just below chest level, so quite far down.&amp;nbsp;&lt;br&gt;- What kind of content do you watch?&lt;br&gt;&amp;nbsp; &amp;nbsp; I watch YouTube and sometimes TV shows. Mostly YouTube because if I am going to watch a show, I want to watch on a bigger screen like my TV at home.&amp;nbsp;&lt;br&gt;- Okay, so how long is the content that you watch while doing cardio? Both YouTube and the shows?&lt;br&gt;&amp;nbsp; &amp;nbsp; YouTube is between 10 and 20 minutes and shows are typically between 30 and 60 minutes.&lt;br&gt;- You mentioned that the screen should be bigger for watching TV shows, are there other gripes about the viewing experience?&lt;br&gt;&amp;nbsp; &amp;nbsp; The phone is also too low so the viewing angle is very bad. It does not matter much for YouTube, since that mostly serves as noise and occasional visuals, but if I am going to watch a TV show that I am invested in I would rather wait until I can watch it at home." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="240" y="40" width="160" height="720" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-3" value="&lt;div&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;3&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;- On what machines do you watch content? What intensity?&lt;br&gt;&amp;nbsp; &amp;nbsp; On the treadmill, typically a jogging pace (6 - 8 km/h) for around 20 - 30 minutes.&lt;br&gt;- How do you watch content, where is the screen placed? Does it include anything?&lt;br&gt;&amp;nbsp; &amp;nbsp; I watch on my phone. I put it on the machine below the conrol panel. It does not occlude anything. (Notes that there is no need to see the information on the machine, except for glances at how much time has passed.)&lt;br&gt;- What kind of content do you watch?&lt;br&gt;&amp;nbsp; &amp;nbsp; YouTube videos that match the length of the cardio session, so something between 10 and 30 minutes in length.&amp;nbsp;&lt;br&gt;- And how is the viewing experience when you do cardio?&lt;br&gt;&amp;nbsp; &amp;nbsp; The screen is too small and also placed too low which becomes annoying for my neck at times." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="440" y="40" width="160" height="470" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-5" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;4&lt;/b&gt;&lt;/font&gt;&lt;div&gt;-On what machines do you watch content? What intensity?&lt;br&gt;&amp;nbsp; &amp;nbsp; When watching content it is treadmill walking at a medium intensity (5 - 6 km/t 8 incline) for 30 to 40 minutes.&lt;br&gt;- How do you watch content, where is the screen placed? Does it include anything?&lt;br&gt;&amp;nbsp; &amp;nbsp; I watch on my phone. It is placed below the machines control panel. I do not feel that it occludes anything important.&amp;nbsp;&lt;br&gt;- What kind of content do you watch?&lt;br&gt;&amp;nbsp; &amp;nbsp; Netflix shows. Sometimes I play chess on my phone, but then I hold it in my hand.&amp;nbsp;&lt;br&gt;- How is the experience playing chess while walking?&lt;br&gt;&amp;nbsp; &amp;nbsp; It works well when the cardio is not intense. Of course I sometimes look up from the phone to glance around or look at how much time has passed on the machine.&lt;br&gt;- And how is the viewing experience watching Netflix?&lt;br&gt;&amp;nbsp; &amp;nbsp; The viewing angle is bad, especially with the incline, then the phone screen is more pointed at my stomach and chest rather than my eyes. The screen is also small so details are hard to see, so sometimes I pick up my phone to get it closer to my eyes.&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="640" y="40" width="160" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-6" value="&lt;div&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;5&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;-On what machines do you watch content? What intensity?&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; On the stairmaster and the elliptical. Intensity is around medium but it depends on the machine and how I am feeling on the day.&lt;/div&gt;&lt;div&gt;- How do you watch content, where is the screen placed? Does it include anything?&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; On my phone. I put it on the machine below or on top of the control panel. If I put it in the middle it will occlude the emergency stop button, but if I put it to either side it does not really occlude anything important.&lt;/div&gt;&lt;div&gt;- What kind of content do you watch?&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; Either YouTube videos or a show. YouTube is only whenever there is something new in the subscription feed like workout videos or sometimes cooking videos.&amp;nbsp;&lt;/div&gt;&lt;div&gt;- And how long is that content, both YouTube and the shows?&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; A show is like 20 to 30 minutes and a video is somewhere around 15 minutes. So if I watch YouTube, I will watch a few videos typically. If it&#39;s a show, I will watch an episode.&lt;/div&gt;&lt;div&gt;- And how is the viewing experience when you do cardio?&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; Sometimes, if I want to adjust the settings of the machine, I need to move the phone, which is annoying. So if I had somewhere else to put it where I do not need to hold it myself, that would be nice. Also the screen is very small to watch a show on.&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="840" y="40" width="160" height="740" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-7" value="&lt;div&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;6&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;-On what machines do you watch content? What intensity?&lt;br&gt;&amp;nbsp; &amp;nbsp; On the treadmill, walking pace and with incline at 10 so that is like the high end of medium intensity.&lt;br&gt;- How do you watch content, where is the screen placed? Does it include anything?&lt;br&gt;&amp;nbsp; &amp;nbsp; On my phone. It is placed on the machine in front of the panel, it does occlude the lower buttons, but when I have set the pace and incline, I do not touch them anyways.&lt;br&gt;- What kind of content do you watch?&lt;br&gt;&amp;nbsp; &amp;nbsp; I watch TV shows, occasionally YouTube but otherwise I just listen to music.&amp;nbsp;&lt;br&gt;- And how long do you tend to watch? Do you watch an entire episode of a show?&lt;br&gt;&amp;nbsp; &amp;nbsp; As long as I have time I will watch an entire episode sometimes two if the episodes are shorter. I want to get around 1 hour of cardio per session.&lt;br&gt;- So if you watch YouTube, what do you do to get 1 hour of content?&lt;br&gt;&amp;nbsp; &amp;nbsp; Then it is mainly a mix of YouTube and music. Sometimes I can find enough interesting videos on the recommended page of YouTube to fill most of the cardio session.&lt;br&gt;- And how is the viewing experience when you do cardio?&lt;br&gt;&amp;nbsp; &amp;nbsp; My main issues with the setup is the screen size and the angle that it gets with incline. Then it is also too far down from where I would otherwise look." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="920" width="160" height="760" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-8" value="&lt;div&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;7&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;-On what machines do you watch content? What intensity?&lt;br&gt;&amp;nbsp; &amp;nbsp; Rowing machine, Medium intensity, if I go too hard my phone falls down.&lt;br&gt;- How do you watch content, where is the screen placed? Does it include anything?&lt;br&gt;&amp;nbsp; &amp;nbsp; I can place the phone on front of the control panel of the machine on a little holder. The phone occludes the entire screen of the machine, but I do not use it, so it does not really matter.&lt;br&gt;- What kind of content do you watch?&lt;br&gt;&amp;nbsp; &amp;nbsp; YouTube and TV shows. For YouTube, I enable autoplay, so that it can fill the full cardio session without me having to stop rowing. I want to get around 30 minutes of cardio, but since I can not see how long has passed on the machine, I have to use the clock on the wall.&lt;br&gt;- So how would you call consider the viewing experience all in all?&lt;br&gt;&amp;nbsp; &amp;nbsp; Well of course it is annoying that I can not see the time elapsed on the machine but the placement is okay. The screen is too small to see much, especially when I move back and forth a lot." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#a20025;fontColor=#ffffff;strokeColor=#6F0000;" vertex="1" parent="1">
+          <mxGeometry x="241" y="920" width="159" height="580" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-9" value="&lt;div&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;8&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;-On what machines do you watch content? What intensity?&lt;br&gt;&amp;nbsp; &amp;nbsp; Treadmill, medium to high intensity. Mostly walking but sometimes running, though with running the content is not the focus.&lt;br&gt;- How do you watch content, where is the screen placed? Does it include anything?&lt;br&gt;&amp;nbsp; &amp;nbsp; On my phone placed in front of the control panel such that the lower buttons are occluded.&lt;br&gt;- What kind of content do you watch?&lt;br&gt;&amp;nbsp; &amp;nbsp; The content depends on whether I run or walk, if its walking, then I watch a show or something that I want to keep up with. When I am running, the content matters less since I do not watch very intently, so just some YouTube or podcast content.&amp;nbsp;&lt;br&gt;- So I assume that the length of the content also varies depending on if its running or walking?&lt;br&gt;&amp;nbsp; &amp;nbsp; I guess so yeah, A TV show is at most like 1h 10min, and so is a podcast. For YouTube it varies, but I would say between 10 and 20 minutes.&amp;nbsp;&lt;br&gt;- But do you then listen to an entire podcast while running or how long do you run for? And do you watch an entire episode when watching a show?&lt;br&gt;&amp;nbsp; &amp;nbsp; I do like to watch an entire episode, but podcasts I can keep listening to even when I stop running. When I run, my cardio is at most half an hour.&lt;br&gt;- Lastly, what are your thoughts on the viewing experience, could anything be better?&lt;br&gt;&amp;nbsp; &amp;nbsp; The screen is placed too low especially when running as I can&#39;t run and look down at the same time. When I watch while walking the screen could also be higher, and it would of course be nice if it was bigger." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d80073;fontColor=#ffffff;strokeColor=#A50040;" vertex="1" parent="1">
+          <mxGeometry x="440" y="920" width="160" height="880" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-10" value="&lt;div&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;9&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;-On what machines do you watch content? What intensity?&lt;br&gt;&amp;nbsp; &amp;nbsp; On the Stairmaster and elliptical. Low to medium intensity.&lt;br&gt;- How do you watch content, where is the screen placed? Does it include anything?&lt;br&gt;&amp;nbsp; &amp;nbsp; On my phone. I put it on the machine so it occludes some of the lower buttons like resistance or speed.&lt;br&gt;- What kind of content do you watch?&lt;br&gt;&amp;nbsp; &amp;nbsp; TV shows, sometimes movies.&amp;nbsp;&lt;br&gt;- How long is that? Do you watch an entire movie?&lt;br&gt;&amp;nbsp; &amp;nbsp; The shows are 30 to 60 minutes, I do watch an episode, sometimes two. If the movie is short I can watch it all, otherwise I finish it at home or next time I do cardio.&lt;br&gt;- And what are your thoughts on the experience watching on the phone?&amp;nbsp;&lt;br&gt;&amp;nbsp; &amp;nbsp; The screen is small and on the elliptical it is far too low. It is a little less annoying on the stairs but it is still too small." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#6a00ff;fontColor=#ffffff;strokeColor=#3700CC;" vertex="1" parent="1">
+          <mxGeometry x="640" y="920" width="160" height="500" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-11" value="&lt;div&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;10&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;-On what machines do you watch content? What intensity?&lt;br&gt;&amp;nbsp; &amp;nbsp; Treadmill and sometimes bike. Medium intensity.&amp;nbsp;&lt;br&gt;- How do you watch content, where is the screen placed? Does it include anything?&lt;br&gt;&amp;nbsp; &amp;nbsp; On my phone placed in front of the control panel or sometimes in the hand. It occludes some buttons on the machines, but I do not use them that much anyways.&lt;br&gt;- What kind of content do you watch?&lt;br&gt;&amp;nbsp; &amp;nbsp; If on treadmill I watch TV shows and if on the bike, either TV shows or TikTok&#39;s.&amp;nbsp;&lt;br&gt;- So for TV shows how long do you watch? Is it for an entire episode?&lt;br&gt;&amp;nbsp; &amp;nbsp; Yeah, so like between 20 and 40 minutes.&lt;br&gt;- And then what about when you watch TikTok&#39;s?&lt;br&gt;&amp;nbsp; &amp;nbsp; That varies, I do want to get at least 20 minutes of cardio, sometimes I switch between TikTok and a show.&lt;br&gt;- And what are your thoughts on the viewing experience, could anything be better?&lt;br&gt;&amp;nbsp; &amp;nbsp; Well TikTok&#39;s are fine on the phone but shows should have a bigger screen. And I would say that it is not always comfortable to have to look down when watching." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" vertex="1" parent="1">
+          <mxGeometry x="840" y="920" width="160" height="610" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-12" value="Treadmill:&lt;div&gt;2, 3, 4, 6, 8, 10&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="10" y="-1040" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-13" value="Intensity" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=40;" vertex="1" parent="1">
+          <mxGeometry x="135" y="-940" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-14" value="Machines" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=40;" vertex="1" parent="1">
+          <mxGeometry x="295" y="-1160" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-15" value="Stairmaster:&lt;div&gt;1, 5, 9&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="-1040" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-16" value="Elliptical:&lt;div&gt;2, 5, 9&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="-1040" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-17" value="Row machine:&lt;div&gt;7&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="-1040" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-18" value="Stationary bike:&lt;div&gt;2, 10&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="-1040" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-34" value="Low,&lt;div&gt;9&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="10" y="-820" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-35" value="High:&lt;div&gt;1&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="-820" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-36" value="Medium:&lt;div&gt;2, 3, 4, 5, 6, 7, 8, 9, 10&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="170" y="-820" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-46" value="Occlusion" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=40;" vertex="1" parent="1">
+          <mxGeometry x="575" y="-940" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-47" value="Yes:&lt;div&gt;1,2,(5),6,7,8,9,10&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="530" y="-820" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-48" value="No:&lt;div&gt;3,4, (5)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="690" y="-820" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-50" value="Placement" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=40;" vertex="1" parent="1">
+          <mxGeometry x="135" y="-740" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-51" value="Below eye level:&lt;div&gt;2, 3, 4, 5, 6, 8, 9, 10&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="10" y="-620" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-52" value="At eye level,&lt;div&gt;1, 7&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="-620" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-53" value="In hand:&lt;div&gt;10&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="-620" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-54" value="Phone screen:&lt;div&gt;1,2,3,4,5,6,7,8,9,10&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="605" y="-620" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-55" value="Approach" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=40;" vertex="1" parent="1">
+          <mxGeometry x="570" y="-740" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-56" value="Complaints" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=40;" vertex="1" parent="1">
+          <mxGeometry x="135" y="-530" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-57" value="Size:&lt;div&gt;1, 2, 3, 4, 5, 6, 7, 8, 9, 10&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="10" y="-410" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-58" value="Location:&lt;div&gt;2, 3, 4, 5, 6, 7, 8, 9, 10&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="-410" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-59" value="Content type" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=40;" vertex="1" parent="1">
+          <mxGeometry x="665" y="-480" width="230" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-60" value="YouTube:&lt;div&gt;2,3,5,6,7,8&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="580" y="-370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-61" value="TV Shows:&lt;div&gt;2,4,5,6,7,8,9,10&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="719" y="-370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-62" value="Movies:&lt;div&gt;9&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="860" y="-370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-63" value="Short-form content:&lt;div&gt;10&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="860" y="-290" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-64" value="Viewing angle:&lt;div&gt;2, 4, 6,&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="-410" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-65" value="Gameplay streams:&lt;div&gt;1&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="580" y="-290" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-66" value="Playing chess:&lt;div&gt;4&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="719" y="-290" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-67" value="Session length" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=40;" vertex="1" parent="1">
+          <mxGeometry x="860" y="-1150" width="270" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-68" value="30 - 40 minutes:&lt;div&gt;1&lt;/div&gt;&lt;div&gt;Content:&lt;/div&gt;&lt;div&gt;Streams&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="860" y="-1030" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-69" value="20 - 50 minutes:&lt;div&gt;2&lt;/div&gt;&lt;div&gt;Content:&amp;nbsp;&lt;/div&gt;&lt;div&gt;YouTube: 10 - 20&lt;/div&gt;&lt;div&gt;Show: 30 - 60&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="-1030" width="120" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-70" value="20 - 30 minutes:&lt;div&gt;3&lt;/div&gt;&lt;div&gt;Content:&lt;/div&gt;&lt;div&gt;YouTube: 10 - 30&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="860" y="-960" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-71" value="30 - 40 minutes:&lt;div&gt;4&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="860" y="-890" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-72" value="20 - 30 minutes:&lt;div&gt;5&lt;/div&gt;&lt;div&gt;Content:&lt;/div&gt;&lt;div&gt;Show: 20 - 30&lt;/div&gt;&lt;div&gt;YouTube: 15&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="-880" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-73" value="60 minutes:&lt;div&gt;6&lt;/div&gt;&lt;div&gt;Content:&lt;/div&gt;&lt;div&gt;Show: 30 - 60&amp;nbsp;&lt;/div&gt;&lt;div&gt;YouTube: NA&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="860" y="-810" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-74" value="30 minutes:&lt;div&gt;7&lt;/div&gt;&lt;div&gt;Content:&lt;/div&gt;&lt;div&gt;Show: NA&lt;/div&gt;&lt;div&gt;YouTube: NA&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="-790" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-75" value="30 - 70 minutes:&lt;div&gt;8&lt;/div&gt;&lt;div&gt;Content:&lt;/div&gt;&lt;div&gt;Show: up to 70 mintuies&lt;/div&gt;&lt;div&gt;YouTube: 10 - 20&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="860" y="-710" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-76" value="30 - 60 minutes:&lt;div&gt;9&lt;/div&gt;&lt;div&gt;Content:&lt;/div&gt;&lt;div&gt;Show: 30 - 60&lt;/div&gt;&lt;div&gt;Movie: NA&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="-700" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-77" value="20 - 40 minutes:&lt;div&gt;10&lt;/div&gt;&lt;div&gt;Content:&lt;/div&gt;&lt;div&gt;Show: 20 - 40&lt;/div&gt;&lt;div&gt;TikTok: 10 - 60 seconds&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="860" y="-610" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-78" value="The screen is so small that he sometimes catches himself in a shrimp posture trying to see the details of the gameplay stream." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="720" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-79" value="The size and viewing angle is so bad that they would rather wait until they get home to watch a show that they are invested in." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="780" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-80" value="Sometimes they pick their phone up to get it closer to their eyes to dissern details." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="680" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-81" value="When rowing and the screen is placed on the machines control panel, it is annoying moving back and forth given the small size of the screen." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="241" y="1520" width="159" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-82" value="They sometimes run. When running they can not look down at their phone to see the content." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="1820" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-83" value="The phone screen works well for short-form content.&lt;div&gt;(when biking)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="1550" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-84" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="75A-UY6XsPEc2cCDvu1c-1" target="75A-UY6XsPEc2cCDvu1c-78">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="480" y="820" as="sourcePoint" />
+            <mxPoint x="530" y="770" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-85" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="75A-UY6XsPEc2cCDvu1c-2" target="75A-UY6XsPEc2cCDvu1c-79">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="560" y="840" as="sourcePoint" />
+            <mxPoint x="610" y="790" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-86" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="75A-UY6XsPEc2cCDvu1c-5" target="75A-UY6XsPEc2cCDvu1c-80">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="540" y="840" as="sourcePoint" />
+            <mxPoint x="590" y="790" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-87" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="75A-UY6XsPEc2cCDvu1c-8">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="290" y="1760" as="sourcePoint" />
+            <mxPoint x="320" y="1520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-88" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="75A-UY6XsPEc2cCDvu1c-9" target="75A-UY6XsPEc2cCDvu1c-82">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="1870" as="sourcePoint" />
+            <mxPoint x="310" y="1820" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="75A-UY6XsPEc2cCDvu1c-89" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="75A-UY6XsPEc2cCDvu1c-11">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="860" y="1740" as="sourcePoint" />
+            <mxPoint x="920" y="1550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sXVysy9-ccisgfUAUmoG-1" value="&lt;font style=&quot;font-size: 40px;&quot;&gt;&lt;b style=&quot;&quot;&gt;Interviews&lt;/b&gt;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;Noteworthy comments are extracted below individual interviews&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="160" y="-50" width="690" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="sXVysy9-ccisgfUAUmoG-3" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#FF0000;" vertex="1" parent="1">
+          <mxGeometry x="10" y="-70" width="1010" height="1970" as="geometry" />
+        </mxCell>
+        <mxCell id="sXVysy9-ccisgfUAUmoG-4" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#FF0000;" vertex="1" parent="1">
+          <mxGeometry x="560" y="-470" width="430" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="sXVysy9-ccisgfUAUmoG-5" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#FF0000;" vertex="1" parent="1">
+          <mxGeometry y="-520" width="460" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="sXVysy9-ccisgfUAUmoG-6" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#FF0000;" vertex="1" parent="1">
+          <mxGeometry y="-730" width="460" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="sXVysy9-ccisgfUAUmoG-7" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#FF0000;" vertex="1" parent="1">
+          <mxGeometry y="-930" width="460" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="sXVysy9-ccisgfUAUmoG-8" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#FF0000;" vertex="1" parent="1">
+          <mxGeometry y="-1150" width="780" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="sXVysy9-ccisgfUAUmoG-9" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#FF0000;" vertex="1" parent="1">
+          <mxGeometry x="520" y="-930" width="300" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="sXVysy9-ccisgfUAUmoG-10" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#FF0000;" vertex="1" parent="1">
+          <mxGeometry x="515" y="-730" width="300" height="180" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
