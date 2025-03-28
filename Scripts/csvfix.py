@@ -50,9 +50,9 @@ def fix_file(file_path):
     print(f"Fixed file saved as {fixed_file_path}")
 
 file_to_fix = "Data/intensity/row/med_row.csv"  # Update with your actual file path
-fix_file(file_to_fix)
+# fix_file(file_to_fix)
 
 
 # input_path = 'Data/intensity/head.csv'
 # output_path = 'Data/intensity/treadmill/10speed_treadmill.csv'
-# rename_frames(input_path, output_path)
+rename_frames(r"C:\Users\test\Documents\GitHub\ARCH\Data\intensity\treadmill\martin\high12.csv", r"C:\Users\test\Documents\GitHub\ARCH\Data\intensity\treadmill\martin\high12fix.csv")

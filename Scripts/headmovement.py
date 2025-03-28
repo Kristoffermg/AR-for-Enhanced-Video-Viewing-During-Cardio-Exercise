@@ -195,7 +195,7 @@ class HeadMovement:
 
     
 if __name__ == "__main__":
-    headMovement = HeadMovement(r"c:\Users\test\Documents\Data\headPositionDataFilterMedMovement.csv")
+    headMovement = HeadMovement(r"C:\Users\test\Documents\GitHub\ARCH\Data\intensity\treadmill\peter\medium6.5.csv")
     # headMovement = HeadMovement(r"Run_2.csv")
     headMovement.frames = headMovement.frames[30:len(headMovement.frames)-30]
     headMovement.x_values = headMovement.x_values[30:len(headMovement.x_values)-30]

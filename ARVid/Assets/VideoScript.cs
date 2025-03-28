@@ -41,6 +41,13 @@ public class VideoScript : MonoBehaviour
 
     string videoPath;
 
+    private PeakDetector peakDetector;
+
+    public VideoScript()
+    {
+        peakDetector = new PeakDetector();
+    }
+
     void Start()
     {
         headPositionData = new List<string>();
@@ -58,19 +65,22 @@ public class VideoScript : MonoBehaviour
         video.time = startTime;
         audio.time = (float)startTime;
 
-        OVRPlugin.systemDisplayFrequency = 120.0f; // Set to 72, 80, 90, or 120 based on the headset
-        Application.targetFrameRate = 120; // Match headset refresh rate
+        Debug.Log($"System display: {OVRPlugin.systemDisplayFrequency} | target: {Application.targetFrameRate}");
+        OVRPlugin.systemDisplayFrequency = 120.0f; 
+        Application.targetFrameRate = 120;
+        QualitySettings.vSyncCount = 0;
 
         QualitySettings.antiAliasing = 0;
         //video.Play();
 
         string videoPath = Path.Combine(Application.streamingAssetsPath, "output.mp4");
 
-        video.source = VideoSource.Url; // Set to URL mode
-        video.url = "file://" + videoPath; // Add file prefix for Android
+        video.source = VideoSource.Url; 
+        video.url = "file://" + videoPath; 
 
         video.Prepare();
         video.prepareCompleted += (VideoPlayer vp) => { vp.Play(); };
+
     }
 
 
@@ -81,7 +91,7 @@ public class VideoScript : MonoBehaviour
 
     private readonly int perceivedIntensityUpdateInterval = 10; // how often the intensity should be recomputed/updated based on the number of frames passed
     private int currentFrame = 0;
-    private static readonly int historicalDataSizeThreshold = 100; // the size of the sliding window
+    private static readonly int historicalDataSizeThreshold = 300; // the size of the sliding window
 
     private readonly int scale = historicalDataSizeThreshold / 100;
 
@@ -94,6 +104,8 @@ public class VideoScript : MonoBehaviour
 
     Vector3 phoneScale = new Vector3(0.001f, 0.001f, 0.001f);
     Vector2 phoneSize = new Vector2(148f, 72f);
+
+    public float initialDistance = 2f;
 
     private enum ViewingExperience
     {
@@ -136,6 +148,7 @@ public class VideoScript : MonoBehaviour
 
         previousVideoPosition = newVideoPosition;
         previousHeadsetHeight = centerEyePosition.y;
+
     }
 
     private Vector3 velocity = Vector3.zero;
@@ -147,19 +160,24 @@ public class VideoScript : MonoBehaviour
 
         currentFrame++;
 
-        Vector3 centerEyePosition = centerEye.transform.position;
+        Vector3 headPosition = centerEye.transform.position;
 
-        StoreFrameData(centerEyePosition);
+        StoreFrameData(headPosition);
 
-        if (currentViewingExperience == ViewingExperience.Adaptive)
+        //if (currentViewingExperience == ViewingExperience.Adaptive)
+        //{
+        //    if (currentFrame >= perceivedIntensityUpdateInterval)
+        //    {
+        //        RunAdaptiveScaling();
+        //    }
+        //}
+
+        if(currentViewingExperience == ViewingExperience.Adaptive)
         {
-            if (currentFrame == perceivedIntensityUpdateInterval)
-            {
-                RunAdaptiveScaling();
-            }
+            AdjustCanvasFOV(headPosition);
         }
 
-        HandleControllerInput(centerEyePosition);
+        HandleControllerInput(headPosition);
 
         //Vector3 cameraAngle = canvas.transform.rotation.eulerAngles;
         //cameraAngle[2] = canvas.transform.rotation.eulerAngles[2];
@@ -208,8 +226,18 @@ public class VideoScript : MonoBehaviour
             ref velocity,
             0.6f
         );
+
+        WriteHeadPositionData(intensity);
         Debug.Log("intensity: " + intensity);
     }
+
+    void AdjustCanvasFOV(Vector3 headPosition, float FOV = 40f)
+    {
+        float currentDistance = Vector3.Distance(canvas.transform.position, headPosition);
+        float desiredWidth = 2 * currentDistance * Mathf.Tan(FOV * Mathf.Deg2Rad / 2);
+        canvas.transform.localScale = new Vector3(desiredWidth * 0.003f, desiredWidth * 0.003f, 1);
+    }
+
 
     void HandleControllerInput(Vector3 centerEyePosition)
     {
@@ -239,16 +267,14 @@ public class VideoScript : MonoBehaviour
             videoPaused = !videoPaused;
         }
 
-
-
-        if (OVRInput.Get(OVRInput.RawButton.B))
+        if (OVRInput.GetDown(OVRInput.RawButton.B))
         {
-            //WriteHeadPositionData();
-            ChangeViewingExperience();
+            WriteHeadPositionData();
+            //ChangeViewingExperience();;
         }
     }
 
-    // Maintains a sliding window of the past 400 (x,y,z) values
+    // Maintains a sliding window of the (x,y,z) values
     void StoreFrameData(Vector3 centerEyePosition)
     {
         historicalXValues.Enqueue(centerEyePosition.x);
@@ -262,26 +288,30 @@ public class VideoScript : MonoBehaviour
             historicalZValues.Dequeue();
         }
     }
-
-    void WriteHeadPositionData()
+    int fileNumber = 1;
+    void WriteHeadPositionData(int intensity=0)
     {
-        List<double> x = new List<double>(xValues);
-        List<double> y = new List<double>(yValues);
-        List<double> z = new List<double>(zValues);
+        //List<double> x = new List<double>(xValues);
+        //List<double> y = new List<double>(yValues);
+        //List<double> z = new List<double>(zValues);
 
-        x = ApplyMedianFilter(x, 3);
-        x = GaussianSmooth(x, 11);
-        x = ApplySavitzkyGolay(x);
+        List<double> x = new List<double>(historicalXValues);
+        List<double> y = new List<double>(historicalYValues);
+        List<double> z = new List<double>(historicalZValues);
 
-        y = ApplyMedianFilter(y, 3);
-        y = GaussianSmooth(y, 11);
-        y = ApplySavitzkyGolay(y);
+        //x = ApplyMedianFilter(x, 3);
+        //x = GaussianSmooth(x, 11);
+        //x = ApplySavitzkyGolay(x);
 
-        z = ApplyMedianFilter(z, 3);
-        z = GaussianSmooth(z, 11);
-        z = ApplySavitzkyGolay(z);
+        //y = ApplyMedianFilter(y, 3);
+        //y = GaussianSmooth(y, 11);
+        //y = ApplySavitzkyGolay(y);
 
-        using (StreamWriter writer = new StreamWriter("C:\\Users\\test\\Documents\\Data\\headPositionData.csv"))
+        //z = ApplyMedianFilter(z, 3);
+        //z = GaussianSmooth(z, 11);
+        //z = ApplySavitzkyGolay(z);
+
+        using (StreamWriter writer = new StreamWriter($"C:\\Users\\test\\Documents\\Data\\headPositionData{fileNumber}_{intensity}.csv"))
         {
             writer.WriteLine("frame,x,y,z");
 
@@ -290,6 +320,8 @@ public class VideoScript : MonoBehaviour
                 writer.WriteLine($"{i + 1},{x[i]},{y[i]},{z[i]}");
             }
         }
+        fileNumber++;
+
     }
 
     void ChangeViewingExperience()
@@ -299,16 +331,20 @@ public class VideoScript : MonoBehaviour
         {
             case ViewingExperience.Adaptive:
                 currentViewingExperience = ViewingExperience.Static;
+                Debug.Log("Viewing Experience: Static");
                 break;
             case ViewingExperience.Static:
                 currentViewingExperience = ViewingExperience.Phone;
                 canvas.transform.localScale = phoneScale;
                 canvasTransform.sizeDelta = phoneSize;
+                Debug.Log("Viewing Experience: Phone");
                 break;
             case ViewingExperience.Phone:
                 currentViewingExperience = ViewingExperience.Adaptive;
                 canvas.transform.localScale = standardScale;
                 canvasTransform.sizeDelta = standardSize;
+
+                Debug.Log("Viewing Experience: Adaptive");
                 break;
         }
     }
@@ -319,21 +355,21 @@ public class VideoScript : MonoBehaviour
 
     int CalculatePerceivedIntensity(List<double> xValues, List<double> yValues, List<double> zValues)
     {
-        xValues = ApplyMedianFilter(xValues, 3);
-        xValues = GaussianSmooth(xValues, 11);
-        xValues = ApplySavitzkyGolay(xValues);
+        //xValues = ApplyMedianFilter(xValues, 3);
+        //xValues = GaussianSmooth(xValues, 11);
+        //xValues = ApplySavitzkyGolay(xValues);
 
-        yValues = ApplyMedianFilter(yValues, 3);
-        yValues = GaussianSmooth(yValues, 11);
-        yValues = ApplySavitzkyGolay(yValues);
+        //yValues = ApplyMedianFilter(yValues, 3);
+        //yValues = GaussianSmooth(yValues, 11);
+        //yValues = ApplySavitzkyGolay(yValues);
 
-        zValues = ApplyMedianFilter(zValues, 3);
-        zValues = GaussianSmooth(zValues, 11);
-        zValues = ApplySavitzkyGolay(zValues);
+        //zValues = ApplyMedianFilter(zValues, 3);
+        //zValues = GaussianSmooth(zValues, 11);
+        //zValues = ApplySavitzkyGolay(zValues);
 
-        int[] xPeaks = FindSignificantPeaks(xValues);
-        int[] yPeaks = FindSignificantPeaks(yValues);
-        int[] zPeaks = FindSignificantPeaks(zValues);
+        int[] xPeaks = peakDetector.FindSignificantPeaks(xValues);
+        int[] yPeaks = peakDetector.FindSignificantPeaks(yValues);
+        int[] zPeaks = peakDetector.FindSignificantPeaks(zValues);
 
         int numberOfXPeaks = xPeaks.Length;
         int numberOfYPeaks = yPeaks.Length;
