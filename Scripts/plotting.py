@@ -6,24 +6,28 @@ import os
 def plot_csv(ax, csv_file, title, bottom_label=False):
     data = pd.read_csv(csv_file)
     # Extract the first 600 rows (10 seconds of data)
-    data = data.head(600)
+    # data = data.tail(1800) - data.head(600)
     
-    # Treadmill data
-    data['x'] = data['x'] * 100
-    data['y'] = data['y'] * 100
-    data['z'] = data['z'] * 100
-    time = data.index / 60.0
+    # adjusted data
+    if csv_file == r'Data\intensity\treadmill\kristoffer\low3.5.csv':
+        data['x'] = (data['x']-1.19095367833664) * 100
+        data['y'] = (data['y']-0.0200795717053383) * 100
+        data['z'] = (data['z']-0.277819227419859) * 100
+        time = data.index / 60.0
+    elif csv_file == r'Data\intensity\treadmill\kristoffer\medium6.csv':
+        data['x'] = (data['x']-1.22830774418456) * 100
+        data['y'] = (data['y']-0.01233788914236) * 100
+        data['z'] = (data['z']-0.263460008204631) * 100
+        time = data.index / 60.0
+    else :
+        data['x'] = (data['x']-1.19651592939548) * 100
+        data['y'] = (data['y']-0.0195061026514433) * 100
+        data['z'] = (data['z']-0.352275000637558) * 100
+        time = data.index / 60.0
 
-    # Elliptical data
-    # data['x'] = (data['x'] + 2) * 100
-    # data['y'] = data['y'] * 100
-    # data['z'] = (data['z'] - 2.7) * 100
-    # time = data.index / 60.0
-
-    # Row data
-    # data['x'] = (data['x'] + 1) * 100
-    # data['y'] = data['y'] * 100
-    # data['z'] = (data['z'] - 10.5) * 100
+    # data['x'] = (data['x']) * 100
+    # data['y'] = (data['y']) * 100
+    # data['z'] = (data['z']) * 100
     # time = data.index / 60.0
 
     ax.plot(time, data['x'], label='x (cm)', color='r')
@@ -34,10 +38,9 @@ def plot_csv(ax, csv_file, title, bottom_label=False):
 
 
 csv_files = [
-    'Data/intensity/treadmill/4.5speed_treadmill.csv',
-    'Data/intensity/treadmill/6speed_treadmill.csv',
-    'Data/intensity/treadmill/8speed_treadmill.csv',
-    'Data/intensity/treadmill/10speed_treadmill.csv'
+    r'Data\intensity\treadmill\kristoffer\low3.5.csv',
+    r'Data\intensity\treadmill\kristoffer\medium6.csv',
+    r'Data\intensity\treadmill\kristoffer\high11.csv'
 
     # 'Data/intensity/elliptical/low_elliptical.csv',
     # 'Data/intensity/elliptical/med_elliptical.csv',
@@ -49,10 +52,9 @@ csv_files = [
 ]
 
 titles = [
-    "Treadmill speed 4,5",
-    "Treadmill speed 6",
-    "Treadmill speed 8",
-    "Treadmill speed 10"
+    "Treadmill low (3.5 km/h)",
+    "Treadmill medium (6 km/h)",
+    "Treadmill high (11 km/h)"
 
     # "Ellipcal low intensity",
     # "Elliptical medium intensity",
@@ -64,7 +66,7 @@ titles = [
 ]
 
 
-fig, axs = plt.subplots(4, 1, figsize=(12, 8), sharex=True, sharey=True)
+fig, axs = plt.subplots(3, 1, figsize=(8, 6), sharex=True, sharey=True)
 axs = axs.ravel()
 
 for i, (csv_file, title) in enumerate(zip(csv_files, titles)):
@@ -73,7 +75,7 @@ for i, (csv_file, title) in enumerate(zip(csv_files, titles)):
     else:
         axs[i].text(0.5, 0.5, "File not found", fontsize=12, ha='center')
         axs[i].set_title(title)
-plt.legend()
+# plt.legend()
 plt.tight_layout()
 plt.show()
 
