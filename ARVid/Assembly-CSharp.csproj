@@ -62,6 +62,9 @@
   <ItemGroup>
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\PeakDetector.cs" />
+    <Compile Include="Assets\Scripts\UIManager.cs" />
+    <Compile Include="Assets\Scripts\DataLogger.cs" />
+    <Compile Include="Assets\Scripts\IntensityManager.cs" />
     <Compile Include="Assets\Scripts\VideoHandler.cs" />
     <Compile Include="Assets\VideoScript.cs" />
   </ItemGroup>
