@@ -31,7 +31,7 @@ public class IntensityManager : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject); 
+            Destroy(gameObject); // prevent duplicate
         }
     }
 

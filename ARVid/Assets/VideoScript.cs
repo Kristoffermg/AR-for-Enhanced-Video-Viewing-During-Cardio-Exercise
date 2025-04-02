@@ -45,7 +45,7 @@ public class VideoScript : MonoBehaviour
         QualitySettings.vSyncCount = 0;
         QualitySettings.antiAliasing = 0;;
 
-        string videoPath = Path.Combine(Application.streamingAssetsPath, "output.mp4");
+        string videoPath = Path.Combine(Application.streamingAssetsPath, "videoplayback.mp4");
 
         if (!File.Exists(videoPath))
         {
@@ -76,14 +76,13 @@ public class VideoScript : MonoBehaviour
         videoPaused = false;
 
         canvas.transform.LookAt(centerEye.transform);
-        canvas.transform.Rotate(0, 180, 0);
+        //canvas.transform.Rotate(0, 180, 0);
     }
 
     void Update()
     {
         Vector3 headPosition = centerEye.transform.position;
 
-        dataLogger.StoreFrameData(headPosition);
         uiManager.AdjustCanvasFOV();
         HandleControllerInput(headPosition);
         uiManager.MoveVideoPosition();
@@ -94,15 +93,23 @@ public class VideoScript : MonoBehaviour
     {
         if (OVRInput.Get(OVRInput.RawButton.LHandTrigger))
         {
-            video.time = 0; // video.Stop() can cause flickering
+            video.time = 0;
             audio.Stop();
             video.Play();
             audio.Play();
         }
 
-        if (OVRInput.Get(OVRInput.RawButton.RIndexTrigger))
+        //if (OVRInput.Get(OVRInput.RawButton.RIndexTrigger))
+        //{
+        //    dataLogger.EnqueueData(centerEyePosition);
+        //}
+        dataLogger.EnqueueData(centerEyePosition);
+
+
+        if (OVRInput.GetDown(OVRInput.RawButton.Y))
         {
-            dataLogger.EnqueueData(centerEyePosition);
+            canvas.transform.LookAt(centerEye.transform);
+            dataLogger.StartOrResetRecording();
         }
 
         if (OVRInput.GetDown(OVRInput.RawButton.X))
@@ -120,6 +127,7 @@ public class VideoScript : MonoBehaviour
             intensityManager.ChangeIntensityLevel();
         }
     }
+
 
     private void TogglePause()
     {
