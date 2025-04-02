@@ -11,7 +11,7 @@ public class DataLogger : MonoBehaviour
     private int fileNumber = 1;
     private uint currentRecordedFrame = 0;
 
-    private static readonly float recordingDuration = 10f; 
+    private static readonly float recordingDuration = 90f; 
 
     void Start()
     {
@@ -71,7 +71,7 @@ public class DataLogger : MonoBehaviour
             return;
         }
 
-        string filePath = $"C:\\Users\\test\\Documents\\Data\\headPositionData_{fileNumber}.csv";
+        string filePath = $"C:\\Users\\Marti\\Desktop\\perker\\{fileNumber}.csv";
         using (StreamWriter writer = new StreamWriter(filePath))
         {
             writer.WriteLine("frame,x,y,z");

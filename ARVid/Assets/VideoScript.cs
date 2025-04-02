@@ -76,16 +76,15 @@ public class VideoScript : MonoBehaviour
         videoPaused = false;
 
         canvas.transform.LookAt(centerEye.transform);
-        //canvas.transform.Rotate(0, 180, 0);
+        canvas.transform.Rotate(0, 180, 0);
     }
 
     void Update()
     {
         Vector3 headPosition = centerEye.transform.position;
-
+        canvas.transform.LookAt(centerEye.transform);
         uiManager.AdjustCanvasFOV();
         HandleControllerInput(headPosition);
-        uiManager.MoveVideoPosition();
     }
 
 
@@ -114,7 +113,8 @@ public class VideoScript : MonoBehaviour
 
         if (OVRInput.GetDown(OVRInput.RawButton.X))
         {
-            TogglePause();
+            uiManager.MoveVideoPosition();
+            //TogglePause();
         }
 
         if (OVRInput.GetDown(OVRInput.RawButton.B))
