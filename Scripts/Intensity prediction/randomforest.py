@@ -4,7 +4,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
-training_csv = "training.csv"
+training_csv = r"F:\GitHub\scripts\Classification for head data\row_training.csv"
 
 data = pd.read_csv(training_csv)
 
@@ -13,7 +13,7 @@ y = data['label']
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-rf_model = RandomForestClassifier(n_estimators=100, random_state=36)
+rf_model = RandomForestClassifier(n_estimators=100, random_state=42)
 
 rf_model.fit(X_train, y_train)
 
@@ -25,6 +25,5 @@ print(f"Accuracy: {accuracy * 100:.2f}%")
 comparison = pd.DataFrame({'Actual': y_test.values, 'Predicted': y_pred})
 print(comparison)
 
-
 # import joblib
-# joblib.dump(rf_model, 'random_forest_model.pkl')
+# joblib.dump(rf_model, 'row_intensity_experiment1.pkl')
