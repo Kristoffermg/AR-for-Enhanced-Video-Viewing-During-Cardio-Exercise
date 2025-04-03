@@ -11,12 +11,11 @@ public class IntensityManager : MonoBehaviour
     public GameObject intensitySphere;
     public GameObject canvas;
 
-    private PeakDetector peakDetector;
+    private InferenceManager inferenceManager;
 
     public void Start()
     {
-        peakDetector = new PeakDetector();
-
+        inferenceManager = new InferenceManager();
     }
 
     public static IntensityManager Instance { get; private set; }
@@ -42,6 +41,8 @@ public class IntensityManager : MonoBehaviour
     //private readonly float lerpScale = 3.0f; // how quickly the linear interpolation of the canvas scale happens (smooth size change)
     private readonly float canvasDownscaleAmount = 0.0004f; // how much the size of the canvas should be changed based on intensity (higher number = greater size reduction)
     private readonly float minimumCanvasSize = 0.00005f;
+
+    public readonly uint intensityUpdateRate = 200;
 
     private Vector3 baseCanvasScale;
     private Vector3 velocity = Vector3.zero;
@@ -82,84 +83,121 @@ public class IntensityManager : MonoBehaviour
         currentFrame++;
     }
 
-    void RunAdaptiveScaling(Queue<double> historicalXValues, Queue<double> historicalYValues, Queue<double> historicalZValues)
+    public void ComputeIntensity(List<(double X, double Y, double Z)> recentHeadPositionData)
     {
-        currentFrame = 0;
-
-        List<double> xValues = new List<double>(historicalXValues);
-        List<double> yValues = new List<double>(historicalYValues);
-        List<double> zValues = new List<double>(historicalZValues);
-
-        int intensity = CalculatePerceivedIntensity(xValues, yValues, zValues);
-
-        if (intensity <= 1 * scale)
-        {
-            intensitySphere.GetComponent<Renderer>().material.color = Color.green;
-        }
-        else if (intensity <= 2 * scale)
-        {
-            intensitySphere.GetComponent<Renderer>().material.color = Color.yellow;
-        }
-        else if (intensity <= 3 * scale)
-        {
-            intensitySphere.GetComponent<Renderer>().material.color = Color.red;
-        }
-        else
-        {
-            intensitySphere.GetComponent<Renderer>().material.color = Color.black;
-        }
-        Vector3 canvasScaleChange = new Vector3(canvasDownscaleAmount * intensity, canvasDownscaleAmount * intensity, canvasDownscaleAmount * intensity);
-
-        Vector3 newScale = baseCanvasScale - canvasScaleChange;
-
-        newScale = Vector3.Max(newScale, new Vector3(minimumCanvasSize, minimumCanvasSize, minimumCanvasSize));
-
-        canvas.transform.localScale = Vector3.SmoothDamp(
-            canvas.transform.localScale,
-            newScale,
-            ref velocity,
-            0.6f
-        );
-
-        Debug.Log("intensity: " + intensity);
+        float[] modelFeatures = ComputeModelFeatures(recentHeadPositionData);
+        inferenceManager.RunInference(modelFeatures);
     }
 
-    int xWeight = 5;
-    int yWeight = 5;
-    int zWeight = 5;
-
-    int CalculatePerceivedIntensity(List<double> xValues, List<double> yValues, List<double> zValues)
+    private float[] ComputeModelFeatures(List<(double X, double Y, double Z)> recentHeadPositionData)
     {
-        //xValues = ApplyMedianFilter(xValues, 3);
-        //xValues = GaussianSmooth(xValues, 11);
-        //xValues = ApplySavitzkyGolay(xValues);
+        var xVals = recentHeadPositionData.Select(p => p.X).ToArray();
+        var yVals = recentHeadPositionData.Select(p => p.Y).ToArray();
+        var zVals = recentHeadPositionData.Select(p => p.Z).ToArray();
 
-        //yValues = ApplyMedianFilter(yValues, 3);
-        //yValues = GaussianSmooth(yValues, 11);
-        //yValues = ApplySavitzkyGolay(yValues);
+        var meanX = xVals.Mean();
+        var meanY = yVals.Mean();
+        var meanZ = zVals.Mean();
 
-        //zValues = ApplyMedianFilter(zValues, 3);
-        //zValues = GaussianSmooth(zValues, 11);
-        //zValues = ApplySavitzkyGolay(zValues);
+        var stdX = xVals.StandardDeviation();
+        var stdY = yVals.StandardDeviation();
+        var stdZ = zVals.StandardDeviation();
 
-        int[] xPeaks = peakDetector.FindSignificantPeaks(xValues);
-        int[] yPeaks = peakDetector.FindSignificantPeaks(yValues);
-        int[] zPeaks = peakDetector.FindSignificantPeaks(zValues);
+        var energyX = xVals.Sum(v => v * v);
+        var energyY = yVals.Sum(v => v * v);
+        var energyZ = zVals.Sum(v => v * v);
 
-        int numberOfXPeaks = xPeaks.Length;
-        int numberOfYPeaks = yPeaks.Length;
-        int numberOfZPeaks = zPeaks.Length;
+        var sadX = xVals.Skip(1).Zip(xVals, (curr, prev) => Math.Abs(curr - prev)).Sum();
+        var sadY = yVals.Skip(1).Zip(yVals, (curr, prev) => Math.Abs(curr - prev)).Sum();
+        var sadZ = zVals.Skip(1).Zip(zVals, (curr, prev) => Math.Abs(curr - prev)).Sum();
 
-        int weightedXPeaks = numberOfXPeaks * xWeight;
-        int weightedYPeaks = numberOfYPeaks * yWeight;
-        int weightedZPeaks = numberOfZPeaks * zWeight;
-
-        int weightedAveragePeaks = (weightedXPeaks + weightedYPeaks + weightedZPeaks) / (xWeight + yWeight + zWeight);
-
-        //Debug.Log($"Peaks: {numberOfXPeaks},{numberOfYPeaks},{numberOfZPeaks} INTENSITY: {weightedAveragePeaks}");
-
-        return weightedAveragePeaks;
+        return new float[]
+        {
+            (float)meanX, (float)meanY, (float)meanZ,
+            (float)stdX, (float)stdY, (float)stdZ,
+            (float)energyX, (float)energyY, (float)energyZ,
+            (float)sadX, (float)sadY, (float)sadZ
+        };
     }
+
+    //void RunAdaptiveScaling(Queue<double> historicalXValues, Queue<double> historicalYValues, Queue<double> historicalZValues)
+    //{
+    //    currentFrame = 0;
+
+    //    List<double> xValues = new List<double>(historicalXValues);
+    //    List<double> yValues = new List<double>(historicalYValues);
+    //    List<double> zValues = new List<double>(historicalZValues);
+
+    //    int intensity = CalculatePerceivedIntensity(xValues, yValues, zValues);
+
+    //    if (intensity <= 1 * scale)
+    //    {
+    //        intensitySphere.GetComponent<Renderer>().material.color = Color.green;
+    //    }
+    //    else if (intensity <= 2 * scale)
+    //    {
+    //        intensitySphere.GetComponent<Renderer>().material.color = Color.yellow;
+    //    }
+    //    else if (intensity <= 3 * scale)
+    //    {
+    //        intensitySphere.GetComponent<Renderer>().material.color = Color.red;
+    //    }
+    //    else
+    //    {
+    //        intensitySphere.GetComponent<Renderer>().material.color = Color.black;
+    //    }
+    //    Vector3 canvasScaleChange = new Vector3(canvasDownscaleAmount * intensity, canvasDownscaleAmount * intensity, canvasDownscaleAmount * intensity);
+
+    //    Vector3 newScale = baseCanvasScale - canvasScaleChange;
+
+    //    newScale = Vector3.Max(newScale, new Vector3(minimumCanvasSize, minimumCanvasSize, minimumCanvasSize));
+
+    //    canvas.transform.localScale = Vector3.SmoothDamp(
+    //        canvas.transform.localScale,
+    //        newScale,
+    //        ref velocity,
+    //        0.6f
+    //    );
+
+    //    Debug.Log("intensity: " + intensity);
+    //}
+
+    //int xWeight = 5;
+    //int yWeight = 5;
+    //int zWeight = 5;
+
+    //int CalculatePerceivedIntensity(List<double> xValues, List<double> yValues, List<double> zValues)
+    //{
+    //    //xValues = ApplyMedianFilter(xValues, 3);
+    //    //xValues = GaussianSmooth(xValues, 11);
+    //    //xValues = ApplySavitzkyGolay(xValues);
+
+    //    //yValues = ApplyMedianFilter(yValues, 3);
+    //    //yValues = GaussianSmooth(yValues, 11);
+    //    //yValues = ApplySavitzkyGolay(yValues);
+
+    //    //zValues = ApplyMedianFilter(zValues, 3);
+    //    //zValues = GaussianSmooth(zValues, 11);
+    //    //zValues = ApplySavitzkyGolay(zValues);
+
+    //    int[] xPeaks = peakDetector.FindSignificantPeaks(xValues);
+    //    int[] yPeaks = peakDetector.FindSignificantPeaks(yValues);
+    //    int[] zPeaks = peakDetector.FindSignificantPeaks(zValues);
+
+    //    int numberOfXPeaks = xPeaks.Length;
+    //    int numberOfYPeaks = yPeaks.Length;
+    //    int numberOfZPeaks = zPeaks.Length;
+
+    //    int weightedXPeaks = numberOfXPeaks * xWeight;
+    //    int weightedYPeaks = numberOfYPeaks * yWeight;
+    //    int weightedZPeaks = numberOfZPeaks * zWeight;
+
+    //    int weightedAveragePeaks = (weightedXPeaks + weightedYPeaks + weightedZPeaks) / (xWeight + yWeight + zWeight);
+
+    //    //Debug.Log($"Peaks: {numberOfXPeaks},{numberOfYPeaks},{numberOfZPeaks} INTENSITY: {weightedAveragePeaks}");
+
+    //    return weightedAveragePeaks;
+    //}
 
     List<double> ApplySavitzkyGolay(List<double> data, int windowSize = 5, int polyOrder = 2)
     {

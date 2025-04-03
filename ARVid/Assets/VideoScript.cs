@@ -9,7 +9,6 @@ using MathNet.Numerics.Statistics;
 using System;
 using System.Linq;
 using UnityEngine.XR;
-using TMPro;
 using Accord.Statistics.Distributions.Univariate;
 using static IntensityManager;
 using Oculus.Interaction;
@@ -26,6 +25,7 @@ public class VideoScript : MonoBehaviour
     public GameObject centerEye;
 
     private readonly double startTime = 5; // How many seconds into the video it should start
+    private uint currentFrame;
 
     private bool videoPaused;
 
@@ -74,6 +74,7 @@ public class VideoScript : MonoBehaviour
         dataLogger = GetComponent<DataLogger>();
         intensityManager = GetComponent<IntensityManager>();
         videoPaused = false;
+        currentFrame = 0;
 
         canvas.transform.LookAt(centerEye.transform);
         canvas.transform.Rotate(0, 180, 0);
@@ -81,10 +82,19 @@ public class VideoScript : MonoBehaviour
 
     void Update()
     {
+        currentFrame++;
         Vector3 headPosition = centerEye.transform.position;
         canvas.transform.LookAt(centerEye.transform);
         uiManager.AdjustCanvasFOV();
+        uiManager.MoveVideoPosition();
         HandleControllerInput(headPosition);
+        dataLogger.EnqueueRecentData(headPosition);
+
+        if (currentFrame >= intensityManager.intensityUpdateRate)
+        {
+            currentFrame = 0;
+            intensityManager.ComputeIntensity(dataLogger.recentHeadPositionData);
+        }
     }
 
 

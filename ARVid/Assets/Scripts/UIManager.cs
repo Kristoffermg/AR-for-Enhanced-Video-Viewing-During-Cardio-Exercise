@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
 
     public void AdjustCanvasFOV()
     {
-        if(currentViewingExperience == ViewingExperience.Adaptive || currentViewingExperience == ViewingExperience.Static)
+        if(currentViewingExperience == ViewingExperience.Adaptive)
         {
             float currentDistance = Vector3.Distance(canvas.transform.position, centerEye.transform.position);
             float desiredWidth = 2 * currentDistance * Mathf.Tan((float)IntensityManager.Instance.CurrentIntensity * Mathf.Deg2Rad / 2);

@@ -1,3 +1,4 @@
+using Meta.XR.MRUtilityKit;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -5,6 +6,7 @@ using UnityEngine;
 
 public class DataLogger : MonoBehaviour
 {
+    public List<(double x, double y, double z)> recentHeadPositionData;
     private List<string> headPositionData;
     private bool isRecording = false;
     private float recordingStartTime;
@@ -16,6 +18,7 @@ public class DataLogger : MonoBehaviour
     void Start()
     {
         headPositionData = new List<string>();
+        recentHeadPositionData = new List<(double x, double y, double z)>();
     }
 
     public void StartOrResetRecording()
@@ -61,6 +64,14 @@ public class DataLogger : MonoBehaviour
 
         currentRecordedFrame++;
         headPositionData.Add($"{currentRecordedFrame},{centerEyePosition.x},{centerEyePosition.y},{centerEyePosition.z}");
+    }
+
+    public void EnqueueRecentData(Vector3 centerEyePosition, uint dataSizeCap=1000)
+    {
+        if (recentHeadPositionData.Count >= dataSizeCap)
+            recentHeadPositionData.RemoveAt(0);
+
+        recentHeadPositionData.Add((centerEyePosition.x, centerEyePosition.y, centerEyePosition.z));
     }
 
     private void WriteHeadPositionData()
