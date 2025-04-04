@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -8,8 +9,12 @@ public class UIManager : MonoBehaviour
     Vector3 standardScale = new Vector3(0.003f, 0.003f, 0.003f);
     Vector2 standardSize = new Vector2(192f, 108f);
 
-    Vector3 phoneScale = new Vector3(0.001f, 0.001f, 0.001f);
-    Vector2 phoneSize = new Vector2(148f, 72f);
+    //Vector3 phoneScale = new Vector3(0.001f, 0.001f, 0.001f);
+    //Vector2 phoneSize = new Vector2(148f, 72f);
+    
+    public Vector2 phoneSize = new Vector2(95f, 45f); 
+    Vector3 phoneScale = new Vector3(0.0008f, 0.0007f, 0.0008f);
+
 
     Vector3 previousVideoPosition = Vector3.zero;
 
@@ -32,9 +37,28 @@ public class UIManager : MonoBehaviour
     {
         if(currentViewingExperience == ViewingExperience.Adaptive)
         {
+            //float currentDistance = Vector3.Distance(canvas.transform.position, centerEye.transform.position);
+            //float desiredWidth = 2 * currentDistance * Mathf.Tan((float)IntensityManager.Instance.CurrentIntensity * Mathf.Deg2Rad / 2);
+            //Vector3 targetScale =  new Vector3(desiredWidth * 0.003f, desiredWidth * 0.003f, 1);
+            //canvas.transform.localScale = Vector3.Lerp(canvas.transform.localScale, targetScale, Time.deltaTime * 5f);
+
             float currentDistance = Vector3.Distance(canvas.transform.position, centerEye.transform.position);
-            float desiredWidth = 2 * currentDistance * Mathf.Tan((float)IntensityManager.Instance.CurrentIntensity * Mathf.Deg2Rad / 2);
-            Vector3 targetScale =  new Vector3(desiredWidth * 0.003f, desiredWidth * 0.003f, 1);
+
+            float minDistance = 0.3f;
+            float maxDistance = 2.0f;
+            float maxFOV = 63f;
+            float minFOV = 25f; 
+
+            float proximity = 1f - Mathf.InverseLerp(minDistance, maxDistance, currentDistance);
+
+            float dynamicFOV = Mathf.Lerp(minFOV, maxFOV, proximity);
+
+            float fovRadians = dynamicFOV * Mathf.Deg2Rad;
+            float desiredWidth = 2 * currentDistance * Mathf.Tan(fovRadians / 2);
+
+            float baseScale = desiredWidth * 0.003f;
+
+            Vector3 targetScale = new Vector3(baseScale, baseScale, 1);
             canvas.transform.localScale = Vector3.Lerp(canvas.transform.localScale, targetScale, Time.deltaTime * 5f);
 
             canvas.transform.LookAt(centerEye.transform);
@@ -44,7 +68,7 @@ public class UIManager : MonoBehaviour
 
     public void MoveVideoPosition()
     {
-        Vector3 leftControllerPosition = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LHand);
+        Vector3 leftControllerPosition = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LTouch);
         leftControllerPosition.y += 0.2f;
         canvas.transform.position = Vector3.Lerp(canvas.transform.position, leftControllerPosition, 0.1f);
     }
@@ -62,7 +86,7 @@ public class UIManager : MonoBehaviour
                 currentViewingExperience = ViewingExperience.Phone;
                 canvas.transform.localScale = phoneScale;
                 canvasTransform.sizeDelta = phoneSize;
-                Debug.Log("Viewing Experience set to Phone");
+                Debug.Log($"Viewing Experience set to Phone: {phoneSize.x}, {phoneSize.y}");
                 break;
             case ViewingExperience.Phone:
                 currentViewingExperience = ViewingExperience.Adaptive;

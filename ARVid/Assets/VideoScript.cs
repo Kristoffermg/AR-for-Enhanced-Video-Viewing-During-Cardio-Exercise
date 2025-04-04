@@ -42,7 +42,7 @@ public class VideoScript : MonoBehaviour
         OVRPlugin.systemDisplayFrequency = 120.0f; 
         Application.targetFrameRate = 120;
         QualitySettings.vSyncCount = 0;
-        QualitySettings.antiAliasing = 0;;
+        QualitySettings.antiAliasing = 0;
 
         uiManager = GetComponent<UIManager>();
         dataLogger = GetComponent<DataLogger>();
@@ -88,7 +88,10 @@ public class VideoScript : MonoBehaviour
         currentFrame++;
         Vector3 headPosition = centerEye.transform.position;
         uiManager.AdjustCanvasFOV();
-        uiManager.MoveVideoPosition();
+
+        if(OVRInput.GetControllerPositionTracked(OVRInput.Controller.LTouch)) 
+            uiManager.MoveVideoPosition();
+        
         HandleControllerInput(headPosition);
         dataLogger.EnqueueRecentData(headPosition);
 
@@ -102,38 +105,75 @@ public class VideoScript : MonoBehaviour
 
     private void HandleControllerInput(Vector3 centerEyePosition)
     {
-        if (OVRInput.Get(OVRInput.RawButton.LHandTrigger))
+        if (OVRInput.GetControllerPositionTracked(OVRInput.Controller.LTouch))
         {
-            video.time = 0;
-            audio.Stop();
-            video.Play();
-            audio.Play();
+            if (OVRInput.Get(OVRInput.RawButton.LHandTrigger))
+            {
+                video.time = 0;
+                audio.Stop();
+                video.Play();
+                audio.Play();
+            }
+
+            if (OVRInput.GetDown(OVRInput.RawButton.Y))
+            {
+                dataLogger.StartOrResetRecording();
+            }
+
+            if (OVRInput.GetDown(OVRInput.RawButton.X))
+            {
+                //uiManager.MoveVideoPosition();
+                TogglePause();
+            }
         }
 
-        if (OVRInput.Get(OVRInput.RawButton.RIndexTrigger))
+        if (OVRInput.GetControllerPositionTracked(OVRInput.Controller.RTouch))
         {
-            dataLogger.EnqueueData(centerEyePosition);
-        }
+            if (OVRInput.Get(OVRInput.RawButton.RIndexTrigger))
+            {
+                dataLogger.EnqueueData(centerEyePosition);
+            }
 
-        if (OVRInput.GetDown(OVRInput.RawButton.Y))
-        {
-            dataLogger.StartOrResetRecording();
-        }
+            if (OVRInput.GetDown(OVRInput.RawButton.B))
+            {
+                uiManager.ChangeViewingExperience();
+            }
 
-        if (OVRInput.GetDown(OVRInput.RawButton.X))
-        {
-            //uiManager.MoveVideoPosition();
-            TogglePause();
-        }
+            if (OVRInput.GetDown(OVRInput.RawButton.A))
+            {
+                intensityManager.ChangeIntensityLevel();
+            }
+            float verticalInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick).y;
+            float horizontalInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick).x;
 
-        if (OVRInput.GetDown(OVRInput.RawButton.B))
-        {
-            uiManager.ChangeViewingExperience();
-        }
+            Vector2 newPhoneSize = uiManager.phoneSize;
+            Vector3 currentScale = uiManager.canvas.transform.localScale;
+            Vector3 newScale = currentScale;
 
-        if (OVRInput.GetDown(OVRInput.RawButton.A))
-        {
-            intensityManager.ChangeIntensityLevel();
+            if (verticalInput > 0.5f)
+            {
+                newScale.y += 0.0001f;
+            }
+            else if (verticalInput < -0.5f)
+            {
+                newScale.y = Mathf.Max(0.0001f, newScale.y - 0.0001f);
+            }
+
+            if (horizontalInput > 0.5f)
+            {
+                newScale.x += 0.0001f;
+            }
+            else if (horizontalInput < -0.5f)
+            {
+                newScale.x = Mathf.Max(0.0001f, newScale.x - 0.0001f);
+            }
+
+            newScale.z = newScale.x;
+
+            uiManager.canvas.transform.localScale = newScale;
+            uiManager.phoneSize = newPhoneSize; 
+
+            Debug.Log($"New canvas scale: ({newScale.x}, {newScale.y}, {newScale.z})");
         }
     }
 
