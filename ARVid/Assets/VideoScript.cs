@@ -33,7 +33,6 @@ public class VideoScript : MonoBehaviour
     DataLogger dataLogger;
     IntensityManager intensityManager;
 
-
     void Start()
     {
         video.time = startTime;
@@ -45,12 +44,19 @@ public class VideoScript : MonoBehaviour
         QualitySettings.vSyncCount = 0;
         QualitySettings.antiAliasing = 0;;
 
-        string videoPath = Path.Combine(Application.streamingAssetsPath, "videoplayback.mp4");
+        uiManager = GetComponent<UIManager>();
+        dataLogger = GetComponent<DataLogger>();
+        intensityManager = GetComponent<IntensityManager>();
+
+        if (uiManager == null) { Debug.LogError("UIManager not found in scene"); }
+        if (dataLogger == null) { Debug.LogError("DataLogger not found in scene"); }
+        if (intensityManager == null) { Debug.LogError("IntensityManager not found in scene"); }
+
+        string videoPath = Path.Combine(Application.streamingAssetsPath, "familyguy.mp4");
 
         if (!File.Exists(videoPath))
         {
             Debug.LogError($"Video file not found at {videoPath}");
-            return;
         }
 
         video.source = VideoSource.Url; 
@@ -70,9 +76,6 @@ public class VideoScript : MonoBehaviour
             }
         };
 
-        uiManager = GetComponent<UIManager>();
-        dataLogger = GetComponent<DataLogger>();
-        intensityManager = GetComponent<IntensityManager>();
         videoPaused = false;
         currentFrame = 0;
 
@@ -84,7 +87,6 @@ public class VideoScript : MonoBehaviour
     {
         currentFrame++;
         Vector3 headPosition = centerEye.transform.position;
-        canvas.transform.LookAt(centerEye.transform);
         uiManager.AdjustCanvasFOV();
         uiManager.MoveVideoPosition();
         HandleControllerInput(headPosition);
@@ -108,23 +110,20 @@ public class VideoScript : MonoBehaviour
             audio.Play();
         }
 
-        //if (OVRInput.Get(OVRInput.RawButton.RIndexTrigger))
-        //{
-        //    dataLogger.EnqueueData(centerEyePosition);
-        //}
-        dataLogger.EnqueueData(centerEyePosition);
-
+        if (OVRInput.Get(OVRInput.RawButton.RIndexTrigger))
+        {
+            dataLogger.EnqueueData(centerEyePosition);
+        }
 
         if (OVRInput.GetDown(OVRInput.RawButton.Y))
         {
-            canvas.transform.LookAt(centerEye.transform);
             dataLogger.StartOrResetRecording();
         }
 
         if (OVRInput.GetDown(OVRInput.RawButton.X))
         {
-            uiManager.MoveVideoPosition();
-            //TogglePause();
+            //uiManager.MoveVideoPosition();
+            TogglePause();
         }
 
         if (OVRInput.GetDown(OVRInput.RawButton.B))

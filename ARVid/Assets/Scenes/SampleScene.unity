@@ -10832,10 +10832,11 @@ GameObject:
   - component: {fileID: 988157238}
   - component: {fileID: 988157237}
   - component: {fileID: 988157239}
-  - component: {fileID: 988157240}
+  - component: {fileID: 988157244}
+  - component: {fileID: 988157243}
   - component: {fileID: 988157242}
   - component: {fileID: 988157241}
-  - component: {fileID: 988157243}
+  - component: {fileID: 988157240}
   m_Layer: 0
   m_Name: VideoPlayer
   m_TagString: Untagged
@@ -10999,14 +11000,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 988157236}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4f52cab09be6364c97165bafe0a2aae, type: 3}
+  m_Script: {fileID: 11500000, guid: c7b3ce4c104437c4395977052a7c23ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 988157239}
-  video: {fileID: 988157237}
-  canvas: {fileID: 374322039}
-  camera: {fileID: 1354733541}
-  centerEye: {fileID: 1162430090}
+  modelAsset: {fileID: 0}
 --- !u!114 &988157241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11047,6 +11044,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intensitySphere: {fileID: 887264313}
   canvas: {fileID: 374322039}
+--- !u!114 &988157244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988157236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4f52cab09be6364c97165bafe0a2aae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audio: {fileID: 988157239}
+  video: {fileID: 988157237}
+  canvas: {fileID: 374322039}
+  camera: {fileID: 1354733541}
+  centerEye: {fileID: 1162430090}
 --- !u!1 &997930838
 GameObject:
   m_ObjectHideFlags: 0
@@ -18767,7 +18781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cc5c234723e3a54d8dd09b131117743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshType: 0
+  _meshType: 4
 --- !u!114 &1646810112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18799,7 +18813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2609c54f376cffc4da1ab9401cc1a36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skeletonType: 0
+  _skeletonType: 4
   _updateRootPose: 0
   _updateRootScale: 1
   _enablePhysicsCapsules: 0
@@ -20462,7 +20476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cc5c234723e3a54d8dd09b131117743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshType: 1
+  _meshType: 5
 --- !u!114 &1791087720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20494,7 +20508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2609c54f376cffc4da1ab9401cc1a36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skeletonType: 1
+  _skeletonType: 5
   _updateRootPose: 0
   _updateRootScale: 1
   _enablePhysicsCapsules: 0
