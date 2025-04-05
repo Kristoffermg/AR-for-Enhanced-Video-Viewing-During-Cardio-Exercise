@@ -69,8 +69,6 @@ def split_files_in_directory_into_chunks(directory, chunk_size=1000):
             preprocessing = Preprocessing(data_path)
             preprocessing.split_csv_into_multiple_files(chunk_size=1000, machine=machine)
 
-        
-
 def write_chunks_to_csv(folder_path, training_csv):
     label = ""
     folder_path_name_lower = os.path.basename(folder_path).lower()
@@ -91,7 +89,16 @@ def write_chunks_to_csv(folder_path, training_csv):
             feature_vector = preprocessing.preprocess()
             preprocessing.save_to_csv(feature_vector, training_csv)            
 
+
+def replace_intensity_label_to_machine(data_path, machine):
+    df = pd.read_csv(data_path)
+    df.drop(columns=["label"])
+    df["label"] = machine
+    pd.DataFrame.to_csv(df, r"C:\Users\test\Documents\GitHub\ARCH\Scripts\Intensity prediction/" + f"{machine}_label.csv")
+
 if __name__ == "__main__":
     # split_files_in_directory_into_chunks(r"F:\GitHub\ARCH\Data\intensity\session", chunk_size=1000)
-    write_chunks_to_csv(r"F:\GitHub\ARCH\Data\intensity\session\Elliptical\peterMEDIUMelliptical", ELLIPTICAL_TRAINING_CSV)
+    # write_chunks_to_csv(r"F:\GitHub\ARCH\Data\intensity\session\Elliptical\peterMEDIUMelliptical", ELLIPTICAL_TRAINING_CSV)
+
+    replace_intensity_label_to_machine(r"C:\Users\test\Documents\GitHub\ARCH\Scripts\Intensity prediction\treadmill_training.csv", "treadmill")
 

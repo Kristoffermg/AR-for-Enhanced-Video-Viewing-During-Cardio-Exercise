@@ -4,7 +4,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
-training_csv = r"F:\GitHub\scripts\Classification for head data\row_training.csv"
+training_csv = "machine_training.csv"
 
 data = pd.read_csv(training_csv)
 
@@ -25,5 +25,6 @@ print(f"Accuracy: {accuracy * 100:.2f}%")
 comparison = pd.DataFrame({'Actual': y_test.values, 'Predicted': y_pred})
 print(comparison)
 
-# import joblib
-# joblib.dump(rf_model, 'row_intensity_experiment1.pkl')
+
+import joblib
+joblib.dump(rf_model, 'machine_classification_experiment1.pkl')

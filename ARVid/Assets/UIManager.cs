@@ -8,13 +8,9 @@ public class UIManager : MonoBehaviour
 
     Vector3 standardScale = new Vector3(0.003f, 0.003f, 0.003f);
     Vector2 standardSize = new Vector2(192f, 108f);
-
-    //Vector3 phoneScale = new Vector3(0.001f, 0.001f, 0.001f);
-    //Vector2 phoneSize = new Vector2(148f, 72f);
     
     public Vector2 phoneSize = new Vector2(95f, 45f); 
     Vector3 phoneScale = new Vector3(0.0008f, 0.0007f, 0.0008f);
-
 
     Vector3 previousVideoPosition = Vector3.zero;
 
