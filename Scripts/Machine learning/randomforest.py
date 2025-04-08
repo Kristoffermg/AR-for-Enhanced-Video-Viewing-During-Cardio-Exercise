@@ -4,9 +4,9 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
-training_csv = "machine_training.csv"
+training_csv = r"C:\Users\test\Documents\GitHub\ARCH\Scripts\Machine learning\machine_training.csv"
 
-data = pd.read_csv(training_csv)
+data = pd.read_csv(training_csv).drop(columns=['Unnamed: 0'], errors='ignore')
 
 X = data.drop(columns='label') 
 y = data['label'] 

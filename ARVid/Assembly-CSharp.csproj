@@ -66,6 +66,7 @@
     <Compile Include="Assets\IntensityManager.cs" />
     <Compile Include="Assets\InferenceManager.cs" />
     <Compile Include="Assets\PeakDetector.cs" />
+    <Compile Include="Assets\APIHandler.cs" />
     <Compile Include="Assets\DataLogger.cs" />
     <Compile Include="Assets\VideoScript.cs" />
   </ItemGroup>

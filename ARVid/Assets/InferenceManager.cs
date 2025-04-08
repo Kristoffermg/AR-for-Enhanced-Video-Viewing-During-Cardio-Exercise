@@ -4,13 +4,17 @@ using System.Collections.Generic;
 
 public class InferenceManager : MonoBehaviour
 {
-    public NNModel modelAsset;
+    public NNModel treadmillIntensityModel;
+    public NNModel ellipticalIntensityModel;
+    public NNModel rowIntensityModel;
+    public NNModel machineModel;
+
     private Model runtimeModel;
     private IWorker worker;
 
     void Start()
     {
-        runtimeModel = ModelLoader.Load(modelAsset);
+        runtimeModel = ModelLoader.Load(treadmillIntensityModel);
         worker = WorkerFactory.CreateWorker(runtimeModel);
     }
 

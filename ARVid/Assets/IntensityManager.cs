@@ -2,6 +2,10 @@ using MathNet.Numerics.Statistics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
+using System.Net.Http;
+using System.Threading.Tasks;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -81,12 +85,6 @@ public class IntensityManager : MonoBehaviour
     public void Update()
     {
         currentFrame++;
-    }
-
-    public void ComputeIntensity(List<(double X, double Y, double Z)> recentHeadPositionData)
-    {
-        float[] modelFeatures = ComputeModelFeatures(recentHeadPositionData);
-        //inferenceManager.RunInference(modelFeatures);
     }
 
     private float[] ComputeModelFeatures(List<(double X, double Y, double Z)> recentHeadPositionData)
