@@ -87,7 +87,7 @@ public class VideoScript : MonoBehaviour
     {
         currentFrame++;
         Vector3 headPosition = centerEye.transform.position;
-        uiManager.AdjustCanvasFOV();
+        uiManager.AdjustAdaptiveVideoFOV();
 
         if(OVRInput.GetControllerPositionTracked(OVRInput.Controller.LTouch)) 
             uiManager.MoveVideoPosition();
@@ -98,7 +98,7 @@ public class VideoScript : MonoBehaviour
         if (currentFrame >= intensityManager.intensityUpdateRate)
         {
             currentFrame = 0;
-            intensityManager.ComputeIntensity(dataLogger.recentHeadPositionData);
+            //intensityManager.ComputeIntensity(dataLogger.recentHeadPositionData);
         }
     }
 
@@ -129,6 +129,75 @@ public class VideoScript : MonoBehaviour
 
         if (OVRInput.GetControllerPositionTracked(OVRInput.Controller.RTouch))
         {
+            float verticalInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick).y;
+            float horizontalInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick).x;
+
+            if (OVRInput.Get(OVRInput.RawButton.RHandTrigger))
+            {
+                if (OVRInput.Get(OVRInput.RawButton.A)) // Restart video
+                {
+
+                }
+
+                if (verticalInput > 0.5f)
+                {
+
+                }
+                else if (verticalInput < -0.5f)
+                {
+
+                }
+
+                if (horizontalInput > 0.5f) // Video fast forward
+                {
+
+                }
+                else if (horizontalInput < -0.5f) // Video fast backward
+                {
+
+                }
+            }
+            else
+            {
+                if (OVRInput.Get(OVRInput.RawButton.A)) // Start/Pause
+                {
+
+                }
+
+                if (OVRInput.Get(OVRInput.RawButton.B)) // Change method
+                {
+
+                }
+
+                if (OVRInput.Get(OVRInput.RawButton.RIndexTrigger)) // Change intensity (Low -> Medium -> High)
+                {
+
+                }
+
+                if (OVRInput.Get(OVRInput.RawButton.RThumbstickDown)) // 
+                {
+
+                }
+
+                if (verticalInput > 0.5f) // Recording length + 1min
+                {
+
+                }
+                else if (verticalInput < -0.5f) // Recording length - 1min
+                {
+
+                }
+
+                if (horizontalInput > 0.5f)
+                {
+
+                }
+                else if (horizontalInput < -0.5f)
+                {
+
+                }
+            }
+
             if (OVRInput.Get(OVRInput.RawButton.RIndexTrigger))
             {
                 dataLogger.EnqueueData(centerEyePosition);

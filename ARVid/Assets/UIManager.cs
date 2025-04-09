@@ -29,37 +29,41 @@ public class UIManager : MonoBehaviour
         Vector3 newVideoPosition = previousVideoPosition;
     }
 
-    public void AdjustCanvasFOV()
+    public void AdjustAdaptiveVideoFOV()
     {
-        if(currentViewingExperience == ViewingExperience.Adaptive)
+        if (currentViewingExperience == ViewingExperience.Adaptive)
         {
-            //float currentDistance = Vector3.Distance(canvas.transform.position, centerEye.transform.position);
-            //float desiredWidth = 2 * currentDistance * Mathf.Tan((float)IntensityManager.Instance.CurrentIntensity * Mathf.Deg2Rad / 2);
-            //Vector3 targetScale =  new Vector3(desiredWidth * 0.003f, desiredWidth * 0.003f, 1);
-            //canvas.transform.localScale = Vector3.Lerp(canvas.transform.localScale, targetScale, Time.deltaTime * 5f);
-
             float currentDistance = Vector3.Distance(canvas.transform.position, centerEye.transform.position);
+
+            float fovMaxScale = 1.575f;
+            float fovMinScale = 0.625f;
 
             float minDistance = 0.3f;
             float maxDistance = 2.0f;
-            float maxFOV = 63f;
-            float minFOV = 25f; 
+            float maxFOV = (float)IntensityManager.Instance.CurrentIntensity * fovMaxScale;
+            float minFOV = (float)IntensityManager.Instance.CurrentIntensity * fovMinScale; 
 
             float proximity = 1f - Mathf.InverseLerp(minDistance, maxDistance, currentDistance);
-
             float dynamicFOV = Mathf.Lerp(minFOV, maxFOV, proximity);
-
             float fovRadians = dynamicFOV * Mathf.Deg2Rad;
-            float desiredWidth = 2 * currentDistance * Mathf.Tan(fovRadians / 2);
 
-            float baseScale = desiredWidth * 0.003f;
-
-            Vector3 targetScale = new Vector3(baseScale, baseScale, 1);
-            canvas.transform.localScale = Vector3.Lerp(canvas.transform.localScale, targetScale, Time.deltaTime * 5f);
-
-            canvas.transform.LookAt(centerEye.transform);
-            canvas.transform.Rotate(0, 180, 0);
+            AdjustVideoFOV(fovRadians);
         }
+    }
+
+    private void AdjustVideoFOV(float FOV)
+    {
+        float currentDistance = Vector3.Distance(canvas.transform.position, centerEye.transform.position);
+
+        float desiredWidth = 2 * currentDistance * Mathf.Tan(FOV / 2);
+
+        float baseScale = desiredWidth * 0.003f;
+
+        Vector3 targetScale = new Vector3(baseScale, baseScale, 1);
+        canvas.transform.localScale = Vector3.Lerp(canvas.transform.localScale, targetScale, Time.deltaTime * 5f);
+
+        canvas.transform.LookAt(centerEye.transform);
+        canvas.transform.Rotate(0, 180, 0);
     }
 
     public void MoveVideoPosition()
@@ -76,6 +80,7 @@ public class UIManager : MonoBehaviour
         {
             case ViewingExperience.Adaptive:
                 currentViewingExperience = ViewingExperience.Static;
+                AdjustVideoFOV((float)IntensityManager.Instance.CurrentIntensity);
                 Debug.Log("Viewing Experience set to Static");
                 break;
             case ViewingExperience.Static:

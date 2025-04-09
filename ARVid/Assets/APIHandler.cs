@@ -22,7 +22,7 @@ public class APIHandler : MonoBehaviour
         worker = WorkerFactory.CreateWorker(runtimeModel);
     }
 
-    public async Task Get(List<(double X, double Y, double Z)> recentHeadPositionData)
+    public async Task Get(string model, List<(double X, double Y, double Z)> recentHeadPositionData)
     {
         var queryParams = "";
         foreach (var item in recentHeadPositionData)
@@ -30,7 +30,7 @@ public class APIHandler : MonoBehaviour
             queryParams += $"&X={item.X}&Y={item.Y}&Z={item.Z}";
         }
 
-        var url = $"http://127.0.0.1:8000/run_inference?{queryParams.TrimStart('&')}";
+        var url = $"http://127.0.0.1:8000/run_inference?{model}?{queryParams.TrimStart('&')}";
 
         using (HttpClient client = new HttpClient())
         {
