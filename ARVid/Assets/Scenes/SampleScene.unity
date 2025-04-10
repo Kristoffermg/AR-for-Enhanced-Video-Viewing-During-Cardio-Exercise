@@ -10616,7 +10616,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f52cab09be6364c97165bafe0a2aae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 988157239}
   video: {fileID: 968214028}
   canvas: {fileID: 92223838}
   camera: {fileID: 1162430090}
@@ -11001,7 +11000,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7b3ce4c104437c4395977052a7c23ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelAsset: {fileID: 0}
+  treadmillIntensityModel: {fileID: 0}
+  ellipticalIntensityModel: {fileID: 0}
+  rowIntensityModel: {fileID: 0}
+  machineModel: {fileID: 0}
 --- !u!114 &988157241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11028,6 +11030,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   centerEye: {fileID: 1162430090}
   canvas: {fileID: 374322039}
+  phoneSize: {x: 95, y: 45}
 --- !u!114 &988157243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11042,6 +11045,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intensitySphere: {fileID: 887264313}
   canvas: {fileID: 374322039}
+  uiManager: {fileID: 988157242}
 --- !u!114 &988157244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11054,7 +11058,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f52cab09be6364c97165bafe0a2aae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 988157239}
   video: {fileID: 988157237}
   canvas: {fileID: 374322039}
   camera: {fileID: 1354733541}

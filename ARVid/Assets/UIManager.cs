@@ -14,11 +14,11 @@ public class UIManager : MonoBehaviour
 
     Vector3 previousVideoPosition = Vector3.zero;
 
-    private enum ViewingExperience
+    public enum ViewingExperience
     {
-        Adaptive,
-        Phone,
-        Static
+        Adaptive = 1,
+        Phone = 2,
+        Static = 3
     }
 
     private ViewingExperience currentViewingExperience = ViewingExperience.Adaptive;
@@ -51,7 +51,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void AdjustVideoFOV(float FOV)
+    public void AdjustVideoFOV(float FOV)
     {
         float currentDistance = Vector3.Distance(canvas.transform.position, centerEye.transform.position);
 
@@ -73,7 +73,7 @@ public class UIManager : MonoBehaviour
         canvas.transform.position = Vector3.Lerp(canvas.transform.position, leftControllerPosition, 0.1f);
     }
 
-    public void ChangeViewingExperience()
+    public int ChangeViewingExperience()
     {
         RectTransform canvasTransform = canvas.GetComponent<RectTransform>();
         switch (currentViewingExperience)
@@ -96,6 +96,7 @@ public class UIManager : MonoBehaviour
                 Debug.Log("Viewing Experience set to Adaptive");
                 break;
         }
+        return (int)currentViewingExperience;
     }
 
     public void ChangeIntensityLevel()

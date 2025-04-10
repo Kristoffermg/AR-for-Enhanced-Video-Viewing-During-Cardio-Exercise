@@ -13,72 +13,30 @@ using Accord.Statistics.Distributions.Univariate;
 using static IntensityManager;
 using Oculus.Interaction;
 
-
 public class VideoScript : MonoBehaviour
 {
-    public AudioSource audio;
     public VideoPlayer video;
-
     public GameObject canvas;
     public GameObject camera;
-
     public GameObject centerEye;
-
-    private readonly double startTime = 5; // How many seconds into the video it should start
     private uint currentFrame;
-
     private bool videoPaused;
+    private UIManager uiManager;
+    private DataLogger dataLogger;
+    private IntensityManager intensityManager;
+    private bool hasVibrated = false;
 
-    UIManager uiManager;
-    DataLogger dataLogger;
-    IntensityManager intensityManager;
+    private const float VibrationFrequency = 1.0f;
+    private const float VibrationAmplitude = 1.0f;
+    private const float VibrationDuration = 0.1f;
+    private const float VibrationPause = 0.1f;
 
     void Start()
     {
-        video.time = startTime;
-        audio.time = (float)startTime;
-
-        Debug.Log($"System display: {OVRPlugin.systemDisplayFrequency} | target: {Application.targetFrameRate}");
-        OVRPlugin.systemDisplayFrequency = 120.0f; 
-        Application.targetFrameRate = 120;
-        QualitySettings.vSyncCount = 0;
-        QualitySettings.antiAliasing = 0;
-
-        uiManager = GetComponent<UIManager>();
-        dataLogger = GetComponent<DataLogger>();
-        intensityManager = GetComponent<IntensityManager>();
-
-        if (uiManager == null) { Debug.LogError("UIManager not found in scene"); }
-        if (dataLogger == null) { Debug.LogError("DataLogger not found in scene"); }
-        if (intensityManager == null) { Debug.LogError("IntensityManager not found in scene"); }
-
-        string videoPath = Path.Combine(Application.streamingAssetsPath, "familyguy.mp4");
-
-        if (!File.Exists(videoPath))
-        {
-            Debug.LogError($"Video file not found at {videoPath}");
-        }
-
-        video.source = VideoSource.Url; 
-        video.url = "file://" + videoPath; 
-
-        video.Prepare();
-
-        video.prepareCompleted += (VideoPlayer vp) =>
-        {
-            if (vp.isPrepared)
-            {
-                vp.Play();
-            }
-            else
-            {
-                Debug.LogError("Video preparation failed.");
-            }
-        };
-
+        InitializeComponents();
+        SetupVideoPlayer();
         videoPaused = false;
         currentFrame = 0;
-
         canvas.transform.LookAt(centerEye.transform);
         canvas.transform.Rotate(0, 180, 0);
     }
@@ -88,13 +46,11 @@ public class VideoScript : MonoBehaviour
         currentFrame++;
         Vector3 headPosition = centerEye.transform.position;
         uiManager.AdjustAdaptiveVideoFOV();
-
-        if(OVRInput.GetControllerPositionTracked(OVRInput.Controller.LTouch)) 
+        if (OVRInput.GetControllerPositionTracked(OVRInput.Controller.LTouch))
             uiManager.MoveVideoPosition();
-        
+
         HandleControllerInput(headPosition);
         dataLogger.EnqueueRecentData(headPosition);
-
         if (currentFrame >= intensityManager.intensityUpdateRate)
         {
             currentFrame = 0;
@@ -102,167 +58,190 @@ public class VideoScript : MonoBehaviour
         }
     }
 
+    private void InitializeComponents()
+    {
+        uiManager = GetComponent<UIManager>();
+        dataLogger = GetComponent<DataLogger>();
+        intensityManager = GetComponent<IntensityManager>();
+
+        if (uiManager == null) { Debug.LogError("UIManager not found in scene"); }
+        if (dataLogger == null) { Debug.LogError("DataLogger not found in scene"); }
+        if (intensityManager == null) { Debug.LogError("IntensityManager not found in scene"); }
+    }
+
+    private void SetupVideoPlayer()
+    {
+        string videoPath = Path.Combine(Application.streamingAssetsPath, "familyguy.mp4");
+        if (!File.Exists(videoPath))
+        {
+            Debug.LogError($"Video file not found at {videoPath}");
+            return;
+        }
+
+        video.source = VideoSource.Url;
+        video.url = "file://" + videoPath;
+        video.Prepare();
+    }
 
     private void HandleControllerInput(Vector3 centerEyePosition)
     {
         if (OVRInput.GetControllerPositionTracked(OVRInput.Controller.LTouch))
         {
-            if (OVRInput.Get(OVRInput.RawButton.LHandTrigger))
-            {
-                video.time = 0;
-                audio.Stop();
-                video.Play();
-                audio.Play();
-            }
-
             if (OVRInput.GetDown(OVRInput.RawButton.Y))
             {
-                dataLogger.StartOrResetRecording();
-            }
-
-            if (OVRInput.GetDown(OVRInput.RawButton.X))
-            {
-                //uiManager.MoveVideoPosition();
-                TogglePause();
+                dataLogger.StartOrStopRecording();
             }
         }
 
         if (OVRInput.GetControllerPositionTracked(OVRInput.Controller.RTouch))
         {
-            float verticalInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick).y;
-            float horizontalInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick).x;
+            HandleRightControllerInput(centerEyePosition);
+        }
 
-            if (OVRInput.Get(OVRInput.RawButton.RHandTrigger))
-            {
-                if (OVRInput.Get(OVRInput.RawButton.A)) // Restart video
-                {
-
-                }
-
-                if (verticalInput > 0.5f)
-                {
-
-                }
-                else if (verticalInput < -0.5f)
-                {
-
-                }
-
-                if (horizontalInput > 0.5f) // Video fast forward
-                {
-
-                }
-                else if (horizontalInput < -0.5f) // Video fast backward
-                {
-
-                }
-            }
-            else
-            {
-                if (OVRInput.Get(OVRInput.RawButton.A)) // Start/Pause
-                {
-
-                }
-
-                if (OVRInput.Get(OVRInput.RawButton.B)) // Change method
-                {
-
-                }
-
-                if (OVRInput.Get(OVRInput.RawButton.RIndexTrigger)) // Change intensity (Low -> Medium -> High)
-                {
-
-                }
-
-                if (OVRInput.Get(OVRInput.RawButton.RThumbstickDown)) // 
-                {
-
-                }
-
-                if (verticalInput > 0.5f) // Recording length + 1min
-                {
-
-                }
-                else if (verticalInput < -0.5f) // Recording length - 1min
-                {
-
-                }
-
-                if (horizontalInput > 0.5f)
-                {
-
-                }
-                else if (horizontalInput < -0.5f)
-                {
-
-                }
-            }
-
-            if (OVRInput.Get(OVRInput.RawButton.RIndexTrigger))
-            {
-                dataLogger.EnqueueData(centerEyePosition);
-            }
-
-            if (OVRInput.GetDown(OVRInput.RawButton.B))
-            {
-                uiManager.ChangeViewingExperience();
-            }
-
-            if (OVRInput.GetDown(OVRInput.RawButton.A))
-            {
-                intensityManager.ChangeIntensityLevel();
-            }
-            float verticalInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick).y;
-            float horizontalInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick).x;
-
-            Vector2 newPhoneSize = uiManager.phoneSize;
-            Vector3 currentScale = uiManager.canvas.transform.localScale;
-            Vector3 newScale = currentScale;
-
-            if (verticalInput > 0.5f)
-            {
-                newScale.y += 0.0001f;
-            }
-            else if (verticalInput < -0.5f)
-            {
-                newScale.y = Mathf.Max(0.0001f, newScale.y - 0.0001f);
-            }
-
-            if (horizontalInput > 0.5f)
-            {
-                newScale.x += 0.0001f;
-            }
-            else if (horizontalInput < -0.5f)
-            {
-                newScale.x = Mathf.Max(0.0001f, newScale.x - 0.0001f);
-            }
-
-            newScale.z = newScale.x;
-
-            uiManager.canvas.transform.localScale = newScale;
-            uiManager.phoneSize = newPhoneSize; 
-
-            Debug.Log($"New canvas scale: ({newScale.x}, {newScale.y}, {newScale.z})");
+        if (!videoPaused)
+        {
+            dataLogger.EnqueueData(centerEyePosition);
         }
     }
 
+    private void HandleRightControllerInput(Vector3 centerEyePosition)
+    {
+        float verticalInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick).y;
+        float horizontalInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick).x;
 
+        if (OVRInput.Get(OVRInput.RawButton.RHandTrigger))
+        {
+            HandleHandTriggerInput(horizontalInput, verticalInput);
+        }
+        else
+        {
+            HandleThumbstickInput(verticalInput);
+        }
+    }
+
+    private void HandleHandTriggerInput(float horizontalInput, float verticalInput)
+    {
+        if (OVRInput.GetDown(OVRInput.RawButton.A)) // Restart video
+        {
+            video.time = 0;
+            video.Stop();
+        }
+
+        if (OVRInput.GetDown(OVRInput.RawButton.RThumbstickDown)) // Cancel recording
+        {
+            dataLogger.CancelRecording();
+        }
+
+        if (video.isPrepared && video.isPlaying)
+        {
+            HandleVideoPlayback(horizontalInput, verticalInput);
+        }
+    }
+
+    private void HandleVideoPlayback(float horizontalInput, float verticalInput)
+    {
+        if (horizontalInput > 0.5f) // Fast forward 
+        {
+            video.playbackSpeed = 4;
+        }
+        else if (horizontalInput < -0.5f) // Skip backwards a little
+        {
+            video.time -= 10;
+        }
+        else if (verticalInput > 0.5f) // Go forward 1 minute
+        {
+            video.time += 60;
+        }
+        else if (verticalInput < -0.5f) // Go backwards 1 minute
+        {
+            video.time -= 60;
+        }
+        else // Set to normal playback
+        {
+            video.playbackSpeed = 1;
+        }
+    }
+
+    private void HandleThumbstickInput(float verticalInput)
+    {
+        if (OVRInput.GetDown(OVRInput.RawButton.A)) // Start/Pause
+        {
+            TogglePause();
+        }
+
+        if (OVRInput.GetDown(OVRInput.RawButton.B)) // Change method/viewing experience
+        {
+            int currentViewingExperience = uiManager.ChangeViewingExperience();
+            StartCoroutine(VibrateXTimes(currentViewingExperience));
+        }
+
+        if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger)) // Change intensity (Low -> Medium -> High)
+        {
+            intensityManager.ChangeIntensityLevel();
+            switch (intensityManager.CurrentIntensity)
+            {
+                case IntensityLevel.Low:
+                    StartCoroutine(VibrateXTimes(1));
+                    break;
+                case IntensityLevel.Medium:
+                    StartCoroutine(VibrateXTimes(2));
+                    break;
+                case IntensityLevel.High:
+                    StartCoroutine(VibrateXTimes(3));
+                    break;
+            }
+        }
+
+        if (OVRInput.GetDown(OVRInput.RawButton.RThumbstickDown)) // Start video and record head movement for X minutes
+        {
+            dataLogger.StartOrStopRecording();
+        }
+
+        HandleRecordingDurationAdjustment(verticalInput);
+    }
+
+    private void HandleRecordingDurationAdjustment(float verticalInput)
+    {
+        if (verticalInput > 0.5f && !hasVibrated) // Recording length + 1min
+        {
+            dataLogger.RecordingDuration += 1;
+            StartCoroutine(VibrateXTimes(dataLogger.RecordingDuration));
+            hasVibrated = true;
+        }
+        else if (verticalInput < -0.5f && !hasVibrated) // Recording length - 1min
+        {
+            dataLogger.RecordingDuration -= 1;
+            StartCoroutine(VibrateXTimes(dataLogger.RecordingDuration));
+            hasVibrated = true;
+        }
+        else if (Mathf.Abs(verticalInput) < 0.1f && hasVibrated)
+        {
+            hasVibrated = false;
+        }
+    }
+
+    private IEnumerator VibrateXTimes(int vibrations)
+    {
+        for (int i = 0; i < vibrations; i++)
+        {
+            OVRInput.SetControllerVibration(VibrationFrequency, VibrationAmplitude, OVRInput.Controller.RTouch);
+            yield return new WaitForSeconds(VibrationDuration);
+            OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.RTouch);
+            yield return new WaitForSeconds(VibrationPause);
+        }
+    }
     private void TogglePause()
     {
         if (videoPaused)
         {
             video.Play();
-            audio.Play();
         }
         else
         {
             video.Pause();
-            audio.Pause();
             Debug.Log($"Paused at time: {video.time} seconds");
         }
         videoPaused = !videoPaused;
     }
+
 }
-
-
-

@@ -9,11 +9,14 @@ public class DataLogger : MonoBehaviour
     public List<(double x, double y, double z)> recentHeadPositionData;
     private List<string> headPositionData;
     private bool isRecording = false;
-    private float recordingStartTime;
     private int fileNumber = 1;
     private uint currentRecordedFrame = 0;
-
-    private static readonly float recordingDuration = 90f; 
+    private int recordingDuration = 1;
+    public int RecordingDuration
+    {
+        get { return recordingDuration; }
+        set { recordingDuration = value; }
+    }
 
     void Start()
     {
@@ -21,7 +24,7 @@ public class DataLogger : MonoBehaviour
         recentHeadPositionData = new List<(double x, double y, double z)>();
     }
 
-    public void StartOrResetRecording()
+    public void StartOrStopRecording()
     {
         if (isRecording)
         {
@@ -33,10 +36,16 @@ public class DataLogger : MonoBehaviour
         }
     }
 
+    public void CancelRecording()
+    {
+        if (!isRecording) return;
+        isRecording = false;
+        Debug.Log("Recording cancelled.");
+    }
+
     private void StartRecording()
     {
         isRecording = true;
-        recordingStartTime = Time.time;
         headPositionData.Clear();
         currentRecordedFrame = 0;
         Debug.Log("Recording started...");
@@ -45,14 +54,13 @@ public class DataLogger : MonoBehaviour
 
     private IEnumerator StopAfterDuration()
     {
-        yield return new WaitForSeconds(recordingDuration);
+        yield return new WaitForSeconds(recordingDuration * 60);
         StopRecording();
     }
 
     private void StopRecording()
     {
         if (!isRecording) return;
-
         isRecording = false;
         WriteHeadPositionData();
         Debug.Log("Recording stopped and data saved.");
@@ -61,16 +69,14 @@ public class DataLogger : MonoBehaviour
     public void EnqueueData(Vector3 centerEyePosition)
     {
         if (!isRecording) return;
-
         currentRecordedFrame++;
         headPositionData.Add($"{currentRecordedFrame},{centerEyePosition.x},{centerEyePosition.y},{centerEyePosition.z}");
     }
 
-    public void EnqueueRecentData(Vector3 centerEyePosition, uint dataSizeCap=1000)
+    public void EnqueueRecentData(Vector3 centerEyePosition, uint dataSizeCap = 1000)
     {
         if (recentHeadPositionData.Count >= dataSizeCap)
             recentHeadPositionData.RemoveAt(0);
-
         recentHeadPositionData.Add((centerEyePosition.x, centerEyePosition.y, centerEyePosition.z));
     }
 
@@ -81,8 +87,7 @@ public class DataLogger : MonoBehaviour
             Debug.LogWarning("No head position data recorded.");
             return;
         }
-
-        string filePath = $"C:\\Users\\Marti\\Desktop\\perker\\{fileNumber}.csv";
+        string filePath = Path.Combine(Application.persistentDataPath, $"{fileNumber}.csv");
         using (StreamWriter writer = new StreamWriter(filePath))
         {
             writer.WriteLine("frame,x,y,z");
@@ -91,7 +96,6 @@ public class DataLogger : MonoBehaviour
                 writer.WriteLine(line);
             }
         }
-
         fileNumber++;
         Debug.Log($"Data saved to {filePath}");
     }
