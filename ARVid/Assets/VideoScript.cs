@@ -12,6 +12,7 @@ using UnityEngine.XR;
 using Accord.Statistics.Distributions.Univariate;
 using static IntensityManager;
 using Oculus.Interaction;
+using Unity.VisualScripting;
 
 public class VideoScript : MonoBehaviour
 {
@@ -115,12 +116,21 @@ public class VideoScript : MonoBehaviour
         }
         else
         {
-            HandleThumbstickInput(verticalInput);
+            if (!uiManager.SettingsMenuEnabled)
+                HandleThumbstickInput(verticalInput);
         }
     }
 
     private void HandleHandTriggerInput(float horizontalInput, float verticalInput)
     {
+        if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger)) // Toggle settings menu
+        {
+            uiManager.ToggleSettingsMenu();
+        }
+
+        if (uiManager.SettingsMenuEnabled)
+            return;
+
         if (OVRInput.GetDown(OVRInput.RawButton.A)) // Restart video
         {
             video.time = 0;
@@ -204,15 +214,21 @@ public class VideoScript : MonoBehaviour
     {
         if (verticalInput > 0.5f && !hasVibrated) // Recording length + 1min
         {
-            dataLogger.RecordingDuration += 1;
+            if (dataLogger.RecordingDuration < 5)
+            {
+                dataLogger.RecordingDuration += 1;
+                hasVibrated = true;
+            }
             StartCoroutine(VibrateXTimes(dataLogger.RecordingDuration));
-            hasVibrated = true;
         }
         else if (verticalInput < -0.5f && !hasVibrated) // Recording length - 1min
         {
-            dataLogger.RecordingDuration -= 1;
+            if (dataLogger.RecordingDuration > 1)
+            {
+                dataLogger.RecordingDuration -= 1;
+                hasVibrated = true;
+            }
             StartCoroutine(VibrateXTimes(dataLogger.RecordingDuration));
-            hasVibrated = true;
         }
         else if (Mathf.Abs(verticalInput) < 0.1f && hasVibrated)
         {

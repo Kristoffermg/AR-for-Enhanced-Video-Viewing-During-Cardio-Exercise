@@ -1,10 +1,19 @@
+using Meta.XR.ImmersiveDebugger.UserInterface.Generic;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
     public GameObject centerEye;
     public GameObject canvas;
+    public GameObject settings;
+    public GameObject video;
+
+    public TextMeshPro participantNumberText;
+
+    public Button incrementParticipantButton;
+    public Button decrementParticipantButton;
 
     Vector3 standardScale = new Vector3(0.003f, 0.003f, 0.003f);
     Vector2 standardSize = new Vector2(192f, 108f);
@@ -13,6 +22,10 @@ public class UIManager : MonoBehaviour
     Vector3 phoneScale = new Vector3(0.0008f, 0.0007f, 0.0008f);
 
     Vector3 previousVideoPosition = Vector3.zero;
+
+    public int StudyParticipantNumber { get; private set; } = 1;
+
+    public bool SettingsMenuEnabled { get; private set; } = true;
 
     public enum ViewingExperience
     {
@@ -27,6 +40,38 @@ public class UIManager : MonoBehaviour
     {
         Vector3 centerEyePosition = centerEye.transform.position;
         Vector3 newVideoPosition = previousVideoPosition;
+    }
+
+    public void ToggleSettingsMenu()
+    {
+        if(SettingsMenuEnabled)
+        {
+            settings.SetActive(false);
+            canvas.SetActive(true);
+        }
+        else
+        {
+            settings.SetActive(true);
+            canvas.SetActive(false);
+        }
+        SettingsMenuEnabled = !SettingsMenuEnabled;
+    }
+
+    public void IncrementButtonClick()
+    {
+        StudyParticipantNumber++;
+        StudyParticipantChange();
+    }
+
+    public void DecrementButtonClick()
+    {
+        StudyParticipantNumber--;
+        StudyParticipantChange();
+    }
+
+    private void StudyParticipantChange()
+    {
+        participantNumberText.text = $"Participant {StudyParticipantNumber}";
     }
 
     public void AdjustAdaptiveVideoFOV()
