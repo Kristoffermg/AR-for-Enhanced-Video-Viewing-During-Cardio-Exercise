@@ -6,24 +6,24 @@ import os
 def plot_csv(ax, csv_file, title, bottom_label=False):
     data = pd.read_csv(csv_file)
     # Extract the first 600 rows (10 seconds of data)
-    # data = data.tail(1800) - data.head(600)
+    data = data.head(720)
     
     # adjusted data
-    if csv_file == r'Data\intensity\treadmill\kristoffer\low3.5.csv':
+    if csv_file == r'Data\intensity\session\krisLOWrow.csv':
         data['x'] = (data['x']-1.19095367833664) * 100
         data['y'] = (data['y']-0.0200795717053383) * 100
         data['z'] = (data['z']-0.277819227419859) * 100
-        time = data.index / 60.0
-    elif csv_file == r'Data\intensity\treadmill\kristoffer\medium6.csv':
+        time = data.index / 72.0
+    elif csv_file == r'Data\intensity\session\krisMEDrow.csv':
         data['x'] = (data['x']-1.22830774418456) * 100
         data['y'] = (data['y']-0.01233788914236) * 100
         data['z'] = (data['z']-0.263460008204631) * 100
-        time = data.index / 60.0
+        time = data.index / 72.0
     else :
         data['x'] = (data['x']-1.19651592939548) * 100
         data['y'] = (data['y']-0.0195061026514433) * 100
         data['z'] = (data['z']-0.352275000637558) * 100
-        time = data.index / 60.0
+        time = data.index / 72.0
 
     # data['x'] = (data['x']) * 100
     # data['y'] = (data['y']) * 100
@@ -38,9 +38,9 @@ def plot_csv(ax, csv_file, title, bottom_label=False):
 
 
 csv_files = [
-    r'Data\intensity\treadmill\kristoffer\low3.5.csv',
-    r'Data\intensity\treadmill\kristoffer\medium6.csv',
-    r'Data\intensity\treadmill\kristoffer\high11.csv'
+    r'Data\intensity\session\krisLOWrow.csv',
+    r'Data\intensity\session\krisMEDrow.csv',
+    r'Data\intensity\session\krisHIGHrow.csv'
 
     # 'Data/intensity/elliptical/low_elliptical.csv',
     # 'Data/intensity/elliptical/med_elliptical.csv',
@@ -52,9 +52,9 @@ csv_files = [
 ]
 
 titles = [
-    "Treadmill low (3.5 km/h)",
-    "Treadmill medium (6 km/h)",
-    "Treadmill high (11 km/h)"
+    "Row Low",
+    "Row Medium",
+    "Row High"
 
     # "Ellipcal low intensity",
     # "Elliptical medium intensity",
