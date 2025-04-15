@@ -2,6 +2,7 @@ using Meta.XR.ImmersiveDebugger.UserInterface.Generic;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,10 +11,9 @@ public class UIManager : MonoBehaviour
     public GameObject settings;
     public GameObject video;
 
-    public TextMeshPro participantNumberText;
+    public VideoPlayer videoPlayer;
 
-    public Button incrementParticipantButton;
-    public Button decrementParticipantButton;
+    public TextMeshProUGUI participantNumberText;
 
     Vector3 standardScale = new Vector3(0.003f, 0.003f, 0.003f);
     Vector2 standardSize = new Vector2(192f, 108f);
@@ -23,9 +23,11 @@ public class UIManager : MonoBehaviour
 
     Vector3 previousVideoPosition = Vector3.zero;
 
-    public int StudyParticipantNumber { get; private set; } = 1;
+    public static int StudyParticipantNumber { get; private set; } = 1;
 
     public bool SettingsMenuEnabled { get; private set; } = true;
+
+    [SerializeField] private GameObject rightHandRayInteractor;
 
     public enum ViewingExperience
     {
@@ -34,7 +36,7 @@ public class UIManager : MonoBehaviour
         Static = 3
     }
 
-    private ViewingExperience currentViewingExperience = ViewingExperience.Adaptive;
+    public static ViewingExperience CurrentViewingExperience { get; private set; } = ViewingExperience.Adaptive;
 
     public void UIChange()
     {
@@ -44,17 +46,41 @@ public class UIManager : MonoBehaviour
 
     public void ToggleSettingsMenu()
     {
-        if(SettingsMenuEnabled)
+        if (SettingsMenuEnabled)
         {
             settings.SetActive(false);
-            canvas.SetActive(true);
+            video.SetActive(true);
+            rightHandRayInteractor.SetActive(false);
+
+            if (!videoPlayer.isPrepared)
+            {
+                videoPlayer.Prepare();
+                videoPlayer.prepareCompleted += OnVideoPrepared;
+            }
+            else
+            {
+                videoPlayer.Play();
+            }
         }
         else
         {
             settings.SetActive(true);
-            canvas.SetActive(false);
+            video.SetActive(false);
+            rightHandRayInteractor.SetActive(true);
+
+            if (videoPlayer.isPlaying)
+            {
+                videoPlayer.Pause();
+            }
         }
+
         SettingsMenuEnabled = !SettingsMenuEnabled;
+    }
+
+    private void OnVideoPrepared(VideoPlayer source)
+    {
+        videoPlayer.prepareCompleted -= OnVideoPrepared;
+        videoPlayer.Play();
     }
 
     public void IncrementButtonClick()
@@ -76,7 +102,7 @@ public class UIManager : MonoBehaviour
 
     public void AdjustAdaptiveVideoFOV()
     {
-        if (currentViewingExperience == ViewingExperience.Adaptive)
+        if (CurrentViewingExperience == ViewingExperience.Adaptive)
         {
             float currentDistance = Vector3.Distance(canvas.transform.position, centerEye.transform.position);
 
@@ -85,8 +111,8 @@ public class UIManager : MonoBehaviour
 
             float minDistance = 0.3f;
             float maxDistance = 2.0f;
-            float maxFOV = (float)IntensityManager.Instance.CurrentIntensity * fovMaxScale;
-            float minFOV = (float)IntensityManager.Instance.CurrentIntensity * fovMinScale; 
+            float maxFOV = (float)IntensityManager.CurrentIntensity * fovMaxScale;
+            float minFOV = (float)IntensityManager.CurrentIntensity * fovMinScale; 
 
             float proximity = 1f - Mathf.InverseLerp(minDistance, maxDistance, currentDistance);
             float dynamicFOV = Mathf.Lerp(minFOV, maxFOV, proximity);
@@ -121,32 +147,32 @@ public class UIManager : MonoBehaviour
     public int ChangeViewingExperience()
     {
         RectTransform canvasTransform = canvas.GetComponent<RectTransform>();
-        switch (currentViewingExperience)
+        switch (CurrentViewingExperience)
         {
             case ViewingExperience.Adaptive:
-                currentViewingExperience = ViewingExperience.Static;
-                AdjustVideoFOV((float)IntensityManager.Instance.CurrentIntensity);
+                CurrentViewingExperience = ViewingExperience.Static;
+                AdjustVideoFOV((float)IntensityManager.CurrentIntensity);
                 Debug.Log("Viewing Experience set to Static");
                 break;
             case ViewingExperience.Static:
-                currentViewingExperience = ViewingExperience.Phone;
+                CurrentViewingExperience = ViewingExperience.Phone;
                 canvas.transform.localScale = phoneScale;
                 canvasTransform.sizeDelta = phoneSize;
                 Debug.Log($"Viewing Experience set to Phone: {phoneSize.x}, {phoneSize.y}");
                 break;
             case ViewingExperience.Phone:
-                currentViewingExperience = ViewingExperience.Adaptive;
+                CurrentViewingExperience = ViewingExperience.Adaptive;
                 canvas.transform.localScale = standardScale;
                 canvasTransform.sizeDelta = standardSize;
                 Debug.Log("Viewing Experience set to Adaptive");
                 break;
         }
-        return (int)currentViewingExperience;
+        return (int)CurrentViewingExperience;
     }
 
     public void ChangeIntensityLevel()
     {
-        switch(IntensityManager.Instance.CurrentIntensity)
+        switch(IntensityManager.CurrentIntensity)
         {
             case IntensityManager.IntensityLevel.Low:
                 IntensityManager.Instance.SetIntensity(IntensityManager.IntensityLevel.Medium);

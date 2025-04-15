@@ -17,7 +17,7 @@ public class IntensityManager : MonoBehaviour
 
     public static IntensityManager Instance { get; private set; }
 
-    public IntensityLevel CurrentIntensity { get; private set; } = IntensityLevel.Low;
+    public static IntensityLevel CurrentIntensity { get; private set; } = IntensityLevel.Low;
 
     private int currentFrame = 0;
     private static readonly int historicalDataSizeThreshold = 300; // the size of the sliding window

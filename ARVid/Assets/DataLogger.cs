@@ -1,4 +1,5 @@
 using Meta.XR.MRUtilityKit;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +10,6 @@ public class DataLogger : MonoBehaviour
     public List<(double x, double y, double z)> recentHeadPositionData;
     private List<string> headPositionData;
     private bool isRecording = false;
-    private int fileNumber = 1;
     private uint currentRecordedFrame = 0;
     private int recordingDuration = 1;
     public int RecordingDuration
@@ -87,7 +87,41 @@ public class DataLogger : MonoBehaviour
             Debug.LogWarning("No head position data recorded.");
             return;
         }
-        string filePath = Path.Combine(Application.persistentDataPath, $"{fileNumber}.csv");
+
+        string folderName = $"StudyParticipant_{UIManager.StudyParticipantNumber}";
+        string path = Path.Combine(Application.persistentDataPath, folderName);
+
+        if (!Directory.Exists(path))
+        {
+            Directory.CreateDirectory(path);
+            Debug.Log("Directory created at: " + path);
+        }
+        else
+        {
+            Debug.Log("Directory already exists at: " + path);
+        }
+
+        string intensityLevel = Enum.GetName(typeof(IntensityManager.IntensityLevel), IntensityManager.CurrentIntensity);
+        string viewingExperience = Enum.GetName(typeof(UIManager.ViewingExperience), UIManager.CurrentViewingExperience);
+
+        string fileName = $"{folderName}/{intensityLevel}_{viewingExperience}.csv";
+        string filePath = Path.Combine(Application.persistentDataPath, fileName);
+
+        // This is to avoid overwriting the old file in case an accidental recording was started
+        int fileNameIteration = 1;
+        string directory = Path.GetDirectoryName(filePath);
+        string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(filePath);
+        string extension = Path.GetExtension(filePath);
+        string newFilePath = filePath;
+
+        while (File.Exists(newFilePath))
+        {
+            newFilePath = Path.Combine(directory, $"{fileNameWithoutExtension}_{fileNameIteration}{extension}");
+            fileNameIteration++;
+        }
+
+        filePath = newFilePath;
+
         using (StreamWriter writer = new StreamWriter(filePath))
         {
             writer.WriteLine("frame,x,y,z");
@@ -96,7 +130,7 @@ public class DataLogger : MonoBehaviour
                 writer.WriteLine(line);
             }
         }
-        fileNumber++;
-        Debug.Log($"Data saved to {filePath}");
+
+        Debug.Log("CSV written to: " + filePath);
     }
 }

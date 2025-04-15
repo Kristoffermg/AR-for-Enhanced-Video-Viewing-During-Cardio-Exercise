@@ -16,7 +16,7 @@ using Unity.VisualScripting;
 
 public class VideoScript : MonoBehaviour
 {
-    public VideoPlayer video;
+    public VideoPlayer videoPlayer;
     public GameObject canvas;
     public GameObject camera;
     public GameObject centerEye;
@@ -79,9 +79,9 @@ public class VideoScript : MonoBehaviour
             return;
         }
 
-        video.source = VideoSource.Url;
-        video.url = "file://" + videoPath;
-        video.Prepare();
+        videoPlayer.source = VideoSource.Url;
+        videoPlayer.url = "file://" + videoPath;
+        videoPlayer.Prepare();
     }
 
     private void HandleControllerInput(Vector3 centerEyePosition)
@@ -133,8 +133,8 @@ public class VideoScript : MonoBehaviour
 
         if (OVRInput.GetDown(OVRInput.RawButton.A)) // Restart video
         {
-            video.time = 0;
-            video.Stop();
+            videoPlayer.time = 0;
+            videoPlayer.Stop();
         }
 
         if (OVRInput.GetDown(OVRInput.RawButton.RThumbstickDown)) // Cancel recording
@@ -142,7 +142,7 @@ public class VideoScript : MonoBehaviour
             dataLogger.CancelRecording();
         }
 
-        if (video.isPrepared && video.isPlaying)
+        if (videoPlayer.isPrepared && videoPlayer.isPlaying)
         {
             HandleVideoPlayback(horizontalInput, verticalInput);
         }
@@ -152,23 +152,23 @@ public class VideoScript : MonoBehaviour
     {
         if (horizontalInput > 0.5f) // Fast forward 
         {
-            video.playbackSpeed = 4;
+            videoPlayer.playbackSpeed = 4;
         }
         else if (horizontalInput < -0.5f) // Skip backwards a little
         {
-            video.time -= 10;
+            videoPlayer.time -= 10;
         }
         else if (verticalInput > 0.5f) // Go forward 1 minute
         {
-            video.time += 60;
+            videoPlayer.time += 60;
         }
         else if (verticalInput < -0.5f) // Go backwards 1 minute
         {
-            video.time -= 60;
+            videoPlayer.time -= 60;
         }
         else // Set to normal playback
         {
-            video.playbackSpeed = 1;
+            videoPlayer.playbackSpeed = 1;
         }
     }
 
@@ -188,7 +188,7 @@ public class VideoScript : MonoBehaviour
         if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger)) // Change intensity (Low -> Medium -> High)
         {
             intensityManager.ChangeIntensityLevel();
-            switch (intensityManager.CurrentIntensity)
+            switch (CurrentIntensity)
             {
                 case IntensityLevel.Low:
                     StartCoroutine(VibrateXTimes(1));
@@ -250,12 +250,12 @@ public class VideoScript : MonoBehaviour
     {
         if (videoPaused)
         {
-            video.Play();
+            videoPlayer.Play();
         }
         else
         {
-            video.Pause();
-            Debug.Log($"Paused at time: {video.time} seconds");
+            videoPlayer.Pause();
+            Debug.Log($"Paused at time: {videoPlayer.time} seconds");
         }
         videoPaused = !videoPaused;
     }
