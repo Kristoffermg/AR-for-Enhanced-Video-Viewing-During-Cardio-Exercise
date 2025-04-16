@@ -16,7 +16,15 @@ using Unity.VisualScripting;
 
 public class VideoScript : MonoBehaviour
 {
-    public VideoPlayer videoPlayer;
+    public enum Video
+    {
+        FamilyGuy,
+        TheOffice,
+        BrooklynNineNine,
+        OnePunchMan
+    }
+
+    public static VideoPlayer videoPlayer;
     public GameObject canvas;
     public GameObject camera;
     public GameObject centerEye;
@@ -31,6 +39,19 @@ public class VideoScript : MonoBehaviour
     private const float VibrationAmplitude = 1.0f;
     private const float VibrationDuration = 0.1f;
     private const float VibrationPause = 0.1f;
+
+    static string selectedVideo = "Family Guy";
+
+    private static int selectedEpisode = 1;
+    public static int SelectedEpisode
+    {
+        get => selectedEpisode;
+        set
+        {
+            ChangeSelectedSeries(selectedVideo, value);
+            selectedEpisode = value;
+        }
+    }
 
     void Start()
     {
@@ -82,6 +103,34 @@ public class VideoScript : MonoBehaviour
         videoPlayer.source = VideoSource.Url;
         videoPlayer.url = "file://" + videoPath;
         videoPlayer.Prepare();
+    }
+
+    public static void ChangeSelectedSeries(string selectedSeries)
+    {
+        string videoPath = Path.Combine(Application.persistentDataPath, "StudyVideos", $"{selectedSeries}_Episode{selectedEpisode}.mp4");
+        if (!File.Exists(videoPath))
+        {
+            Debug.LogError($"Video file not found at {videoPath}");
+            return;
+        }
+
+        Debug.Log($"Selected video: {selectedSeries} episode {selectedEpisode}");
+
+        videoPlayer.url = "file://" + videoPath;
+    }
+
+    public static void ChangeSelectedSeries(string selectedSeries, int episode)
+    {
+        string videoPath = Path.Combine(Application.persistentDataPath, "StudyVideos", $"{selectedSeries}_Episode{episode}.mp4");
+        if (!File.Exists(videoPath))
+        {
+            Debug.LogError($"Video file not found at {videoPath}");
+            return;
+        }
+
+        Debug.Log($"Selected video: {selectedSeries} episode {episode}");
+
+        videoPlayer.url = "file://" + videoPath;
     }
 
     private void HandleControllerInput(Vector3 centerEyePosition)

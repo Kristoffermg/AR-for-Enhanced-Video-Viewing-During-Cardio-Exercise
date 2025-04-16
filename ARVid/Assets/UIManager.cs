@@ -1,7 +1,10 @@
+using Accord.Statistics.Distributions.Univariate;
 using Meta.XR.ImmersiveDebugger.UserInterface.Generic;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class UIManager : MonoBehaviour
@@ -51,15 +54,15 @@ public class UIManager : MonoBehaviour
             settings.SetActive(false);
             video.SetActive(true);
             rightHandRayInteractor.SetActive(false);
-
-            if (!videoPlayer.isPrepared)
+            
+            if (!VideoScript.videoPlayer.isPrepared)
             {
-                videoPlayer.Prepare();
-                videoPlayer.prepareCompleted += OnVideoPrepared;
+                VideoScript.videoPlayer.Prepare();
+                VideoScript.videoPlayer.prepareCompleted += OnVideoPrepared;
             }
             else
             {
-                videoPlayer.Play();
+                VideoScript.videoPlayer.Play();
             }
         }
         else
@@ -68,9 +71,9 @@ public class UIManager : MonoBehaviour
             video.SetActive(false);
             rightHandRayInteractor.SetActive(true);
 
-            if (videoPlayer.isPlaying)
+            if (VideoScript.videoPlayer.isPlaying)
             {
-                videoPlayer.Pause();
+                VideoScript.videoPlayer.Pause();
             }
         }
 
@@ -79,8 +82,8 @@ public class UIManager : MonoBehaviour
 
     private void OnVideoPrepared(VideoPlayer source)
     {
-        videoPlayer.prepareCompleted -= OnVideoPrepared;
-        videoPlayer.Play();
+        VideoScript.videoPlayer.prepareCompleted -= OnVideoPrepared;
+        VideoScript.videoPlayer.Play();
     }
 
     public void IncrementButtonClick()
@@ -98,6 +101,18 @@ public class UIManager : MonoBehaviour
     private void StudyParticipantChange()
     {
         participantNumberText.text = $"Participant {StudyParticipantNumber}";
+    }
+
+    public void SeriesSelectionDropdown(Dropdown change)
+    {
+        string selectedSeries = change.value.ToString();
+        VideoScript.ChangeSelectedSeries(selectedSeries);
+    }
+
+    public void EpisodeSelectionDropdownChanged(Dropdown change)
+    {
+        int selectedEpisode = Convert.ToInt16(change.value.ToString().Split(" ")[1]);
+        VideoScript.SelectedEpisode = selectedEpisode;
     }
 
     public void AdjustAdaptiveVideoFOV()
