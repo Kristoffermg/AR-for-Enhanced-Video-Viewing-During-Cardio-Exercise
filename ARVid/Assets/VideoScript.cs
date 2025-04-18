@@ -25,6 +25,9 @@ public class VideoScript : MonoBehaviour
     }
 
     public static VideoPlayer videoPlayer;
+    public VideoPlayer inspectorVideoPlayer;
+
+
     public GameObject canvas;
     public GameObject camera;
     public GameObject centerEye;
@@ -53,6 +56,16 @@ public class VideoScript : MonoBehaviour
         }
     }
 
+    void Awake()
+    {
+        inspectorVideoPlayer = GetComponent<VideoPlayer>();
+        videoPlayer = inspectorVideoPlayer;
+        if (videoPlayer == null)
+        {
+            Debug.LogError("VideoPlayer component not found");
+        }
+    }
+
     void Start()
     {
         InitializeComponents();
@@ -78,6 +91,8 @@ public class VideoScript : MonoBehaviour
             currentFrame = 0;
             //intensityManager.ComputeIntensity(dataLogger.recentHeadPositionData);
         }
+
+        dataLogger.EnqueueData(headPosition);
     }
 
     private void InitializeComponents()
@@ -147,11 +162,6 @@ public class VideoScript : MonoBehaviour
         {
             HandleRightControllerInput(centerEyePosition);
         }
-
-        if (!videoPaused)
-        {
-            dataLogger.EnqueueData(centerEyePosition);
-        }
     }
 
     private void HandleRightControllerInput(Vector3 centerEyePosition)
@@ -184,6 +194,11 @@ public class VideoScript : MonoBehaviour
         {
             videoPlayer.time = 0;
             videoPlayer.Stop();
+        }
+
+        if (OVRInput.GetDown(OVRInput.RawButton.B)) // Start video and record head movement for X minutes
+        {
+            dataLogger.StartOrStopRecording();
         }
 
         if (OVRInput.GetDown(OVRInput.RawButton.RThumbstickDown)) // Cancel recording
@@ -249,11 +264,6 @@ public class VideoScript : MonoBehaviour
                     StartCoroutine(VibrateXTimes(3));
                     break;
             }
-        }
-
-        if (OVRInput.GetDown(OVRInput.RawButton.RThumbstickDown)) // Start video and record head movement for X minutes
-        {
-            dataLogger.StartOrStopRecording();
         }
 
         HandleRecordingDurationAdjustment(verticalInput);
