@@ -2,6 +2,8 @@ using Accord.Statistics.Distributions.Univariate;
 using Meta.XR.ImmersiveDebugger.UserInterface.Generic;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,11 +19,12 @@ public class UIManager : MonoBehaviour
     public VideoPlayer videoPlayer;
 
     public TextMeshProUGUI participantNumberText;
+    public TextMeshProUGUI subtitleText;
 
     Vector3 standardScale = new Vector3(0.003f, 0.003f, 0.003f);
     Vector2 standardSize = new Vector2(192f, 108f);
-    
-    public Vector2 phoneSize = new Vector2(95f, 45f); 
+
+    public Vector2 phoneSize = new Vector2(95f, 45f);
     Vector3 phoneScale = new Vector3(0.0008f, 0.0007f, 0.0008f);
 
     Vector3 previousVideoPosition = Vector3.zero;
@@ -29,6 +32,8 @@ public class UIManager : MonoBehaviour
     public static int StudyParticipantNumber { get; private set; } = 1;
 
     public bool SettingsMenuEnabled { get; private set; } = true;
+
+    public bool SubtitlesEnabled { get; private set; } = true;
 
     [SerializeField] private GameObject rightHandRayInteractor;
 
@@ -40,6 +45,15 @@ public class UIManager : MonoBehaviour
     }
 
     public static ViewingExperience CurrentViewingExperience { get; private set; } = ViewingExperience.Adaptive;
+
+    private List<Subtitle> subtitles = new List<Subtitle>();
+    private int currentSubtitleIndex = 0;
+    private float nextSubtitleTime = 0f;
+    private string subtitleFilePath; // Store the subtitle file path
+
+    // Add this variable to hold the toggle.  Crucially, assign this in the Inspector.
+    [SerializeField] private UnityEngine.UI.Toggle subtitleToggle;
+
 
     public void UIChange()
     {
@@ -54,7 +68,7 @@ public class UIManager : MonoBehaviour
             settings.SetActive(false);
             video.SetActive(true);
             rightHandRayInteractor.SetActive(false);
-            
+
             if (!VideoScript.videoPlayer.isPrepared)
             {
                 VideoScript.videoPlayer.Prepare();
@@ -84,6 +98,7 @@ public class UIManager : MonoBehaviour
     {
         VideoScript.videoPlayer.prepareCompleted -= OnVideoPrepared;
         VideoScript.videoPlayer.Play();
+        LoadSubtitles(); 
     }
 
     public void IncrementButtonClick()
@@ -103,16 +118,48 @@ public class UIManager : MonoBehaviour
         participantNumberText.text = $"Participant {StudyParticipantNumber}";
     }
 
-    public void SeriesSelectionDropdown(Dropdown change)
+    public void SeriesSelectionDropdown(int selectedIndex)
     {
-        string selectedSeries = change.value.ToString();
+        selectedIndex += 1;
+        string selectedSeries = "";
+        switch (selectedIndex)
+        {
+            case 1:
+                selectedSeries = "OnePunchMan";
+                break;
+            case 2:
+                selectedSeries = "TheOffice";
+                break;
+            case 3:
+                break;
+        }
         VideoScript.ChangeSelectedSeries(selectedSeries);
+        LoadSubtitles(); 
     }
 
-    public void EpisodeSelectionDropdownChanged(Dropdown change)
+    public void EpisodeSelectionDropdownChanged(int selectedIndex)
     {
-        int selectedEpisode = Convert.ToInt16(change.value.ToString().Split(" ")[1]);
+
+        int selectedEpisode = selectedIndex + 1;
         VideoScript.SelectedEpisode = selectedEpisode;
+        VideoScript.ChangeSelectedSeries(VideoScript.selectedVideo, selectedEpisode);
+        LoadSubtitles(); 
+        currentSubtitleIndex = 0;
+        subtitleText.text = "";
+    }
+
+    public void SubtitleStatusChanged(UnityEngine.UI.Toggle toggle)
+    {
+        if (toggle != null) 
+        {
+            SubtitlesEnabled = toggle.isOn;
+            subtitleText.enabled = SubtitlesEnabled;
+        }
+        else
+        {
+            Debug.LogError("SubtitleStatusChanged was called with a null toggle!");
+        }
+
     }
 
     public void AdjustAdaptiveVideoFOV()
@@ -127,7 +174,7 @@ public class UIManager : MonoBehaviour
             float minDistance = 0.3f;
             float maxDistance = 2.0f;
             float maxFOV = (float)IntensityManager.CurrentIntensity * fovMaxScale;
-            float minFOV = (float)IntensityManager.CurrentIntensity * fovMinScale; 
+            float minFOV = (float)IntensityManager.CurrentIntensity * fovMinScale;
 
             float proximity = 1f - Mathf.InverseLerp(minDistance, maxDistance, currentDistance);
             float dynamicFOV = Mathf.Lerp(minFOV, maxFOV, proximity);
@@ -187,7 +234,7 @@ public class UIManager : MonoBehaviour
 
     public void ChangeIntensityLevel()
     {
-        switch(IntensityManager.CurrentIntensity)
+        switch (IntensityManager.CurrentIntensity)
         {
             case IntensityManager.IntensityLevel.Low:
                 IntensityManager.Instance.SetIntensity(IntensityManager.IntensityLevel.Medium);
@@ -204,4 +251,97 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (SubtitlesEnabled && subtitles != null && VideoScript.videoPlayer.isPlaying)
+        {
+            float currentTime = (float)VideoScript.videoPlayer.time;
+
+            if (currentSubtitleIndex < subtitles.Count && currentTime >= subtitles[currentSubtitleIndex].startTime)
+            {
+                subtitleText.text = subtitles[currentSubtitleIndex].text;
+                nextSubtitleTime = subtitles[currentSubtitleIndex].endTime;
+                currentSubtitleIndex++;
+            }
+            else if (currentTime >= nextSubtitleTime)
+            {
+                subtitleText.text = "";
+            }
+        }
+    }
+
+    void LoadSubtitles()
+    {
+        subtitles.Clear();
+        currentSubtitleIndex = 0;
+        subtitleText.text = "";
+
+        subtitleFilePath = "/sdcard/Android/data/com.UnityTechnologies.com.unity.template.urpblank/files/Content/OnePunchMan/srt/ep1.srt";
+
+
+        if (string.IsNullOrEmpty(subtitleFilePath) || !File.Exists(subtitleFilePath))
+        {
+            Debug.LogWarning("Subtitle file not found: " + subtitleFilePath);
+            return;
+        }
+
+        string[] lines = File.ReadAllLines(subtitleFilePath);
+        Subtitle currentSubtitle = null;
+        Regex timeCodeRegex = new Regex(@"(\d{2}):(\d{2}):(\d{2}),(\d{3}) --> (\d{2}):(\d{2}):(\d{2}),(\d{3})");
+
+        foreach (string line in lines)
+        {
+            if (string.IsNullOrWhiteSpace(line))
+            {
+                if (currentSubtitle != null)
+                {
+                    subtitles.Add(currentSubtitle);
+                    currentSubtitle = null;
+                }
+                continue;
+            }
+
+            if (int.TryParse(line, out int subtitleNumber))
+            {
+                currentSubtitle = new Subtitle();
+            }
+            else if (timeCodeRegex.IsMatch(line))
+            {
+                Match match = timeCodeRegex.Match(line);
+                if (currentSubtitle != null)
+                {
+                    currentSubtitle.startTime = ParseTimeCode(match.Groups[1].Value, match.Groups[2].Value, match.Groups[3].Value, match.Groups[4].Value);
+                    currentSubtitle.endTime = ParseTimeCode(match.Groups[5].Value, match.Groups[6].Value, match.Groups[7].Value, match.Groups[8].Value);
+                }
+            }
+            else if (currentSubtitle != null)
+            {
+                currentSubtitle.text += line + "\n";
+            }
+        }
+
+        if (currentSubtitle != null)
+        {
+            subtitles.Add(currentSubtitle);
+        }
+
+        Debug.Log($"Loaded {subtitles.Count} subtitles from {subtitleFilePath}");
+    }
+
+    float ParseTimeCode(string hours, string minutes, string seconds, string milliseconds)
+    {
+        float h = float.Parse(hours);
+        float m = float.Parse(minutes);
+        float s = float.Parse(seconds);
+        float ms = float.Parse(milliseconds) / 1000f;
+        return (h * 3600f) + (m * 60f) + s + ms;
+    }
+
+    private class Subtitle
+    {
+        public float startTime;
+        public float endTime;
+        public string text = "";
+    }
 }
+

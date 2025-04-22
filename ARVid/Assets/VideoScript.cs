@@ -43,7 +43,7 @@ public class VideoScript : MonoBehaviour
     private const float VibrationDuration = 0.1f;
     private const float VibrationPause = 0.1f;
 
-    static string selectedVideo = "Family Guy";
+    public static string selectedVideo = "OnePunchMan";
 
     private static int selectedEpisode = 1;
     public static int SelectedEpisode
@@ -108,7 +108,7 @@ public class VideoScript : MonoBehaviour
 
     private void SetupVideoPlayer()
     {
-        string videoPath = Path.Combine(Application.streamingAssetsPath, "familyguy.mp4");
+        string videoPath = Path.Combine(Application.persistentDataPath, "/sdcard/Android/data/com.UnityTechnologies.com.unity.template.urpblankfiles/files/Content", selectedVideo, "mp4", $"ep{selectedEpisode}.mp4");
         if (!File.Exists(videoPath))
         {
             Debug.LogError($"Video file not found at {videoPath}");
@@ -122,21 +122,15 @@ public class VideoScript : MonoBehaviour
 
     public static void ChangeSelectedSeries(string selectedSeries)
     {
-        string videoPath = Path.Combine(Application.persistentDataPath, "StudyVideos", $"{selectedSeries}_Episode{selectedEpisode}.mp4");
-        if (!File.Exists(videoPath))
-        {
-            Debug.LogError($"Video file not found at {videoPath}");
-            return;
-        }
-
-        Debug.Log($"Selected video: {selectedSeries} episode {selectedEpisode}");
-
-        videoPlayer.url = "file://" + videoPath;
+        selectedVideo = selectedSeries;
+        ChangeSelectedSeries(selectedSeries, selectedEpisode);
     }
 
     public static void ChangeSelectedSeries(string selectedSeries, int episode)
     {
-        string videoPath = Path.Combine(Application.persistentDataPath, "StudyVideos", $"{selectedSeries}_Episode{episode}.mp4");
+        selectedVideo = selectedSeries;
+        selectedEpisode = episode;
+        string videoPath = Path.Combine(Application.persistentDataPath, "/sdcard/Android/data/com.UnityTechnologies.com.unity.template.urpblankfiles/files/Content", selectedSeries, "mp4", $"ep{episode}.mp4");
         if (!File.Exists(videoPath))
         {
             Debug.LogError($"Video file not found at {videoPath}");
@@ -214,7 +208,7 @@ public class VideoScript : MonoBehaviour
 
     private void HandleVideoPlayback(float horizontalInput, float verticalInput)
     {
-        if (horizontalInput > 0.5f) // Fast forward 
+        if (horizontalInput > 0.5f) // Fast forward
         {
             videoPlayer.playbackSpeed = 4;
         }
