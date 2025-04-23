@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -20,6 +21,10 @@ public class UIManager : MonoBehaviour
 
     public TextMeshProUGUI participantNumberText;
     public TextMeshProUGUI subtitleText;
+    public TextMeshProUGUI episodeText;
+
+    public TMP_Dropdown seriesDropdown;
+    public TMP_Dropdown episodeDropdown;
 
     Vector3 standardScale = new Vector3(0.003f, 0.003f, 0.003f);
     Vector2 standardSize = new Vector2(192f, 108f);
@@ -49,9 +54,8 @@ public class UIManager : MonoBehaviour
     private List<Subtitle> subtitles = new List<Subtitle>();
     private int currentSubtitleIndex = 0;
     private float nextSubtitleTime = 0f;
-    private string subtitleFilePath; // Store the subtitle file path
+    private string subtitleFilePath;
 
-    // Add this variable to hold the toggle.  Crucially, assign this in the Inspector.
     [SerializeField] private UnityEngine.UI.Toggle subtitleToggle;
 
 
@@ -118,29 +122,33 @@ public class UIManager : MonoBehaviour
         participantNumberText.text = $"Participant {StudyParticipantNumber}";
     }
 
+    public void DecrementEpisodeButton()
+    {
+        VideoScript.DecrementEpisode();
+    }
+
+    public void IncrementEpisodeButton()
+    {
+        VideoScript.IncrementEpisode();
+    }
+
+    public void ChangeEpisodeText()
+    {
+        episodeText.text = $"Episode {VideoScript.SelectedEpisode}";
+    }
+
     public void SeriesSelectionDropdown(int selectedIndex)
     {
-        selectedIndex += 1;
-        string selectedSeries = "";
-        switch (selectedIndex)
-        {
-            case 1:
-                selectedSeries = "OnePunchMan";
-                break;
-            case 2:
-                selectedSeries = "TheOffice";
-                break;
-            case 3:
-                break;
-        }
+        Debug.Log("SeriesSelectionDropdown called with: " + selectedIndex);
+        string selectedSeries = seriesDropdown.options[selectedIndex].text;
         VideoScript.ChangeSelectedSeries(selectedSeries);
         LoadSubtitles(); 
     }
 
     public void EpisodeSelectionDropdownChanged(int selectedIndex)
     {
-
-        int selectedEpisode = selectedIndex + 1;
+        Debug.Log("EpisodeSelectionDropdown called with: " + selectedIndex);
+        int selectedEpisode = Convert.ToInt16(episodeDropdown.options[selectedIndex].text.Replace("Episode ", ""));
         VideoScript.SelectedEpisode = selectedEpisode;
         VideoScript.ChangeSelectedSeries(VideoScript.selectedVideo, selectedEpisode);
         LoadSubtitles(); 
@@ -249,6 +257,14 @@ public class UIManager : MonoBehaviour
                 Debug.Log("Intensity Level set to Low");
                 break;
         }
+    }
+
+    private void Start()
+    {
+        Debug.Log($"Series Dropdown: {seriesDropdown}");
+        Debug.Log($"Episode Dropdown: {episodeDropdown}");
+        episodeDropdown.onValueChanged.AddListener(EpisodeSelectionDropdownChanged);
+        seriesDropdown.onValueChanged.AddListener(SeriesSelectionDropdown);
     }
 
     void Update()

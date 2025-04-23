@@ -120,6 +120,27 @@ public class VideoScript : MonoBehaviour
         videoPlayer.Prepare();
     }
 
+    public static void DecrementEpisode()
+    {
+        if (selectedEpisode > 1)
+        {
+            SelectedEpisode--;
+        }
+        Debug.Log($"Decrement episode called: {selectedEpisode}");
+        //ChangeSelectedSeries(selectedVideo, selectedEpisode);
+    }
+
+    public static void IncrementEpisode()
+    {
+        if (selectedEpisode < 3)
+        {
+            selectedEpisode++;
+        }
+        Debug.Log($"Increment episode called: {selectedEpisode}");
+        //ChangeSelectedSeries(selectedVideo, selectedEpisode);
+    }
+
+
     public static void ChangeSelectedSeries(string selectedSeries)
     {
         selectedVideo = selectedSeries;
@@ -130,7 +151,7 @@ public class VideoScript : MonoBehaviour
     {
         selectedVideo = selectedSeries;
         selectedEpisode = episode;
-        string videoPath = Path.Combine(Application.persistentDataPath, "/sdcard/Android/data/com.UnityTechnologies.com.unity.template.urpblankfiles/files/Content", selectedSeries, "mp4", $"ep{episode}.mp4");
+        string videoPath = Path.Combine(Application.persistentDataPath, "/sdcard/Android/data/com.UnityTechnologies.com.unity.template.urpblank/files/Content", selectedSeries, "mp4", $"ep{episode}.mp4");
         if (!File.Exists(videoPath))
         {
             Debug.LogError($"Video file not found at {videoPath}");
