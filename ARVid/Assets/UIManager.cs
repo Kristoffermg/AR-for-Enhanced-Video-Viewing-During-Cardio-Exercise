@@ -42,6 +42,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject rightHandRayInteractor;
 
+    public static bool changedPlaybackTime = false;
+
     public enum ViewingExperience
     {
         Adaptive = 1,
@@ -132,11 +134,6 @@ public class UIManager : MonoBehaviour
         VideoScript.IncrementEpisode();
     }
 
-    public void ChangeEpisodeText()
-    {
-        episodeText.text = $"Episode {VideoScript.SelectedEpisode}";
-    }
-
     public void SeriesSelectionDropdown(int selectedIndex)
     {
         Debug.Log("SeriesSelectionDropdown called with: " + selectedIndex);
@@ -202,9 +199,6 @@ public class UIManager : MonoBehaviour
 
         Vector3 targetScale = new Vector3(baseScale, baseScale, 1);
         canvas.transform.localScale = Vector3.Lerp(canvas.transform.localScale, targetScale, Time.deltaTime * 5f);
-
-        canvas.transform.LookAt(centerEye.transform);
-        canvas.transform.Rotate(0, 180, 0);
     }
 
     public void MoveVideoPosition()
@@ -221,6 +215,7 @@ public class UIManager : MonoBehaviour
         {
             case ViewingExperience.Adaptive:
                 CurrentViewingExperience = ViewingExperience.Static;
+                canvas.transform.localScale = standardSize;
                 AdjustVideoFOV((float)IntensityManager.CurrentIntensity);
                 Debug.Log("Viewing Experience set to Static");
                 break;
@@ -237,6 +232,8 @@ public class UIManager : MonoBehaviour
                 Debug.Log("Viewing Experience set to Adaptive");
                 break;
         }
+        canvas.transform.LookAt(centerEye.transform);
+        canvas.transform.Rotate(0, 180, 0);
         return (int)CurrentViewingExperience;
     }
 
@@ -265,6 +262,8 @@ public class UIManager : MonoBehaviour
         Debug.Log($"Episode Dropdown: {episodeDropdown}");
         episodeDropdown.onValueChanged.AddListener(EpisodeSelectionDropdownChanged);
         seriesDropdown.onValueChanged.AddListener(SeriesSelectionDropdown);
+
+        LoadSubtitles();
     }
 
     void Update()
@@ -272,6 +271,60 @@ public class UIManager : MonoBehaviour
         if (SubtitlesEnabled && subtitles != null && VideoScript.videoPlayer.isPlaying)
         {
             float currentTime = (float)VideoScript.videoPlayer.time;
+
+            // if the videplayer time was either skipped forward or backward, adjust subtitle index
+            if (changedPlaybackTime)
+            {
+                if (subtitles[currentSubtitleIndex].startTime < currentTime)
+                {
+                    for (int i = currentSubtitleIndex; i < subtitles.Count-1; i++)
+                    {
+                        if (subtitles[i].startTime < currentTime && subtitles[i + 1].startTime > currentTime)
+                        {
+                            currentSubtitleIndex = i + 1;
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = currentSubtitleIndex; i > 0; i--)
+                    {
+                        if (subtitles[i].startTime > currentTime && subtitles[i - 1].startTime < currentTime)
+                        {
+                            currentSubtitleIndex = i - 1;
+                        }
+                    }
+                }
+            }
+
+            //if (changedPlaybackTime)
+            //{
+            //    int left = 0;
+            //    int right = subtitles.Count - 1;
+            //    int newIndex = 0;
+
+            //    while (left <= right)
+            //    {
+            //        int mid = (left + right) / 2;
+            //        if (subtitles[mid].startTime == currentTime)
+            //        {
+            //            newIndex = mid;
+            //            break;
+            //        }
+            //        else if (subtitles[mid].startTime < currentTime)
+            //        {
+            //            newIndex = mid; 
+            //            left = mid + 1;
+            //        }
+            //        else
+            //        {
+            //            right = mid - 1;
+            //        }
+            //    }
+
+            //    currentSubtitleIndex = newIndex;
+            //    changedPlaybackTime = false;
+            //}
 
             if (currentSubtitleIndex < subtitles.Count && currentTime >= subtitles[currentSubtitleIndex].startTime)
             {
@@ -292,7 +345,14 @@ public class UIManager : MonoBehaviour
         currentSubtitleIndex = 0;
         subtitleText.text = "";
 
-        subtitleFilePath = "/sdcard/Android/data/com.UnityTechnologies.com.unity.template.urpblank/files/Content/OnePunchMan/srt/ep1.srt";
+        if(VideoScript.pcLinkMode)
+        {
+            subtitleFilePath = "Assets/ep1.srt";
+        }
+        else
+        {
+            subtitleFilePath = $"/sdcard/Android/data/com.UnityTechnologies.com.unity.template.urpblank/files/Content/{VideoScript.selectedVideo}/srt/ep{VideoScript.SelectedEpisode}.srt";
+        }
 
 
         if (string.IsNullOrEmpty(subtitleFilePath) || !File.Exists(subtitleFilePath))

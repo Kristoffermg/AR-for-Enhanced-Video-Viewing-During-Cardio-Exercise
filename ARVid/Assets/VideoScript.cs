@@ -16,6 +16,7 @@ using Unity.VisualScripting;
 
 public class VideoScript : MonoBehaviour
 {
+    public static bool pcLinkMode = true;
     public enum Video
     {
         FamilyGuy,
@@ -108,7 +109,16 @@ public class VideoScript : MonoBehaviour
 
     private void SetupVideoPlayer()
     {
-        string videoPath = Path.Combine(Application.persistentDataPath, "/sdcard/Android/data/com.UnityTechnologies.com.unity.template.urpblankfiles/files/Content", selectedVideo, "mp4", $"ep{selectedEpisode}.mp4");
+        string videoPath = "";
+        if (pcLinkMode)
+        {
+            videoPath = "Assets/ep1.mp4";
+        }
+        else
+        {
+            videoPath = Path.Combine(Application.persistentDataPath, "/sdcard/Android/data/com.UnityTechnologies.com.unity.template.urpblankfiles/files/Content", selectedVideo, "mp4", $"ep{selectedEpisode}.mp4");
+        }
+
         if (!File.Exists(videoPath))
         {
             Debug.LogError($"Video file not found at {videoPath}");
@@ -151,7 +161,17 @@ public class VideoScript : MonoBehaviour
     {
         selectedVideo = selectedSeries;
         selectedEpisode = episode;
-        string videoPath = Path.Combine(Application.persistentDataPath, "/sdcard/Android/data/com.UnityTechnologies.com.unity.template.urpblank/files/Content", selectedSeries, "mp4", $"ep{episode}.mp4");
+
+        string videoPath = "";
+        if (pcLinkMode)
+        {
+            videoPath = "Assets/ep1.mp4";
+        }
+        else
+        {
+            videoPath = Path.Combine(Application.persistentDataPath, "/sdcard/Android/data/com.UnityTechnologies.com.unity.template.urpblankfiles/files/Content", selectedVideo, "mp4", $"ep{selectedEpisode}.mp4");
+        }
+
         if (!File.Exists(videoPath))
         {
             Debug.LogError($"Video file not found at {videoPath}");
@@ -232,18 +252,22 @@ public class VideoScript : MonoBehaviour
         if (horizontalInput > 0.5f) // Fast forward
         {
             videoPlayer.playbackSpeed = 4;
+            UIManager.changedPlaybackTime = true;
         }
         else if (horizontalInput < -0.5f) // Skip backwards a little
         {
             videoPlayer.time -= 10;
+            UIManager.changedPlaybackTime = true;
         }
         else if (verticalInput > 0.5f) // Go forward 1 minute
         {
             videoPlayer.time += 60;
+            UIManager.changedPlaybackTime = true;
         }
         else if (verticalInput < -0.5f) // Go backwards 1 minute
         {
             videoPlayer.time -= 60;
+            UIManager.changedPlaybackTime = true;
         }
         else // Set to normal playback
         {
