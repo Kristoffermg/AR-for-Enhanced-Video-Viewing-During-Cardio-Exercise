@@ -30,9 +30,9 @@ public class IntensityManager : MonoBehaviour
 
     public enum IntensityLevel
     {
-        Low = 40,
-        Medium = 30,
-        High = 20
+        Low = 60,
+        Medium = 45,
+        High = 30
     }
 
     private void Awake()

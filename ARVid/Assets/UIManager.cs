@@ -26,7 +26,8 @@ public class UIManager : MonoBehaviour
     public TMP_Dropdown seriesDropdown;
     public TMP_Dropdown episodeDropdown;
 
-    Vector3 standardScale = new Vector3(0.003f, 0.003f, 0.003f);
+    //Vector3 standardScale = new Vector3(0.003f, 0.003f, 0.003f);
+    Vector3 standardScale = new Vector3(0.003114f, 0.003326f, 0.003114f);
     Vector2 standardSize = new Vector2(192f, 108f);
 
     public Vector2 phoneSize = new Vector2(95f, 45f);
@@ -215,8 +216,8 @@ public class UIManager : MonoBehaviour
         {
             case ViewingExperience.Adaptive:
                 CurrentViewingExperience = ViewingExperience.Static;
-                canvas.transform.localScale = standardSize;
-                AdjustVideoFOV((float)IntensityManager.CurrentIntensity);
+                canvas.transform.localScale = standardScale;
+                //AdjustVideoFOV((float)IntensityManager.CurrentIntensity);
                 Debug.Log("Viewing Experience set to Static");
                 break;
             case ViewingExperience.Static:

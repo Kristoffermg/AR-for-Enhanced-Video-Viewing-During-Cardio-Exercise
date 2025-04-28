@@ -3325,7 +3325,9 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: TheOffice
       m_Image: {fileID: 0}
-    - m_Text: Guys in a Family
+    - m_Text: FamilyGuy
+      m_Image: {fileID: 0}
+    - m_Text: BrookylnNineNine
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12970,7 +12972,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 988157236}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 1bed6e4f40b7dac4c850cc5e22da511b, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 754d6fa79e5a87b4284072b4634daebc, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -13121,10 +13123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7b3ce4c104437c4395977052a7c23ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  treadmillIntensityModel: {fileID: 0}
-  ellipticalIntensityModel: {fileID: 0}
-  rowIntensityModel: {fileID: 0}
-  machineModel: {fileID: 0}
 --- !u!114 &988157241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18259,7 +18257,15 @@ MonoBehaviour:
   resetHmdPoseOnRelease: 1
   resetHmdPoseByMiddleMouseButton: 1
   activateKeys: 3201000031010000
+  activateKeyBindings:
+  - <Keyboard>/leftCtrl
+  - <Keyboard>/rightCtrl
+  - <Keyboard>/f1
   pitchKeys: 3401000033010000
+  pitchKeyBindings:
+  - <Keyboard>/leftAlt
+  - <Keyboard>/rightAlt
+  - <Keyboard>/f2
 --- !u!114 &1354733543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18275,7 +18281,7 @@ MonoBehaviour:
   useRecommendedMSAALevel: 1
   _monoscopic: 0
   _sharpenType: 0
-  enableDynamicResolution: 1
+  _enableDynamicResolution: 0
   minDynamicResolutionScale: 1
   maxDynamicResolutionScale: 1
   quest2MinDynamicResolutionScale: 0.7
