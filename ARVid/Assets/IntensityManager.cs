@@ -80,7 +80,7 @@ public class IntensityManager : MonoBehaviour
     public void SetIntensity(IntensityLevel newIntensity)
     {
         CurrentIntensity = newIntensity;
-        uiManager.AdjustVideoFOV((float)CurrentIntensity);
+        //uiManager.AdjustVideoFOV((float)CurrentIntensity);
     }
 
     /// <summary>

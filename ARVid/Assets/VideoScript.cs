@@ -15,7 +15,7 @@ using Oculus.Interaction;
 
 public class VideoScript : MonoBehaviour
 {
-    public static bool pcLinkMode = true;
+    public static bool pcLinkMode = false;
     public enum Video
     {
         FamilyGuy,
@@ -37,6 +37,7 @@ public class VideoScript : MonoBehaviour
     private DataLogger dataLogger;
     private IntensityManager intensityManager;
     private bool hasVibrated = false;
+    private bool lockedIn = false;
 
     private const float VibrationFrequency = 1.0f;
     private const float VibrationAmplitude = 1.0f;
@@ -81,7 +82,7 @@ public class VideoScript : MonoBehaviour
         currentFrame++;
         Vector3 headPosition = centerEye.transform.position;
         uiManager.AdjustAdaptiveVideoFOV();
-        if (OVRInput.GetControllerPositionTracked(OVRInput.Controller.LTouch))
+        if (OVRInput.GetControllerPositionTracked(OVRInput.Controller.LTouch) && !lockedIn)
             uiManager.MoveVideoPosition();
 
         HandleControllerInput(headPosition);
@@ -115,7 +116,7 @@ public class VideoScript : MonoBehaviour
         }
         else
         {
-            videoPath = Path.Combine(Application.persistentDataPath, "/sdcard/Android/data/com.UnityTechnologies.com.unity.template.urpblankfiles/files/Content", selectedVideo, "mp4", $"ep{selectedEpisode}.mp4");
+            videoPath = Path.Combine(Application.persistentDataPath, "/sdcard/Android/data/com.UnityTechnologies.com.unity.template.urpblank/files/Content", selectedVideo, "mp4", $"ep{selectedEpisode}.mp4");
         }
 
         if (!File.Exists(videoPath))
@@ -168,7 +169,7 @@ public class VideoScript : MonoBehaviour
         }
         else
         {
-            videoPath = Path.Combine(Application.persistentDataPath, "/sdcard/Android/data/com.UnityTechnologies.com.unity.template.urpblankfiles/files/Content", selectedVideo, "mp4", $"ep{selectedEpisode}.mp4");
+            videoPath = Path.Combine(Application.persistentDataPath, "/sdcard/Android/data/com.UnityTechnologies.com.unity.template.urpblank/files/Content", selectedVideo, "mp4", $"ep{selectedEpisode}.mp4");
         }
 
         if (!File.Exists(videoPath))
@@ -284,7 +285,7 @@ public class VideoScript : MonoBehaviour
         if (OVRInput.GetDown(OVRInput.RawButton.B)) // Change method/viewing experience
         {
             int currentViewingExperience = uiManager.ChangeViewingExperience();
-            StartCoroutine(VibrateXTimes(currentViewingExperience));
+            StartCoroutine(VibrateXTimes(currentViewingExperience, true));
         }
 
         if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger)) // Change intensity (Low -> Medium -> High)
@@ -293,15 +294,21 @@ public class VideoScript : MonoBehaviour
             switch (CurrentIntensity)
             {
                 case IntensityLevel.Low:
-                    StartCoroutine(VibrateXTimes(1));
+                    StartCoroutine(VibrateXTimes(1, true));
                     break;
                 case IntensityLevel.Medium:
-                    StartCoroutine(VibrateXTimes(2));
+                    StartCoroutine(VibrateXTimes(2, true));
                     break;
                 case IntensityLevel.High:
-                    StartCoroutine(VibrateXTimes(3));
+                    StartCoroutine(VibrateXTimes(3, true));
                     break;
             }
+        }
+
+        if (OVRInput.GetDown(OVRInput.RawButton.X))
+        {
+            lockedIn = !lockedIn;
+            StartCoroutine(VibrateXTimes(1, false));
         }
 
         HandleRecordingDurationAdjustment(verticalInput);
@@ -316,7 +323,7 @@ public class VideoScript : MonoBehaviour
                 dataLogger.RecordingDuration += 1;
                 hasVibrated = true;
             }
-            StartCoroutine(VibrateXTimes(dataLogger.RecordingDuration));
+            StartCoroutine(VibrateXTimes(dataLogger.RecordingDuration, true));
         }
         else if (verticalInput < -0.5f && !hasVibrated) // Recording length - 1min
         {
@@ -325,7 +332,7 @@ public class VideoScript : MonoBehaviour
                 dataLogger.RecordingDuration -= 1;
                 hasVibrated = true;
             }
-            StartCoroutine(VibrateXTimes(dataLogger.RecordingDuration));
+            StartCoroutine(VibrateXTimes(dataLogger.RecordingDuration, true));
         }
         else if (Mathf.Abs(verticalInput) < 0.1f && hasVibrated)
         {
@@ -333,14 +340,24 @@ public class VideoScript : MonoBehaviour
         }
     }
 
-    private IEnumerator VibrateXTimes(int vibrations)
+    private IEnumerator VibrateXTimes(int vibrations, bool rightController)
     {
         for (int i = 0; i < vibrations; i++)
         {
-            OVRInput.SetControllerVibration(VibrationFrequency, VibrationAmplitude, OVRInput.Controller.RTouch);
-            yield return new WaitForSeconds(VibrationDuration);
-            OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.RTouch);
-            yield return new WaitForSeconds(VibrationPause);
+            if(rightController)
+            {
+                OVRInput.SetControllerVibration(VibrationFrequency, VibrationAmplitude, OVRInput.Controller.RTouch);
+                yield return new WaitForSeconds(VibrationDuration);
+                OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.RTouch);
+                yield return new WaitForSeconds(VibrationPause);
+            }
+            else
+            {
+                OVRInput.SetControllerVibration(VibrationFrequency, VibrationAmplitude, OVRInput.Controller.LTouch);
+                yield return new WaitForSeconds(VibrationDuration);
+                OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.LTouch);
+                yield return new WaitForSeconds(VibrationPause);
+            }
         }
     }
     private void TogglePause()

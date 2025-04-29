@@ -199,7 +199,7 @@ public class UIManager : MonoBehaviour
         float baseScale = desiredWidth * 0.003f;
 
         Vector3 targetScale = new Vector3(baseScale, baseScale, 1);
-        canvas.transform.localScale = Vector3.Lerp(canvas.transform.localScale, targetScale, Time.deltaTime * 5f);
+        canvas.transform.localScale = Vector3.Lerp(canvas.transform.localScale, targetScale, Time.deltaTime * 5f); // 0.5f
     }
 
     public void MoveVideoPosition()
@@ -298,36 +298,7 @@ public class UIManager : MonoBehaviour
                 }
             }
 
-            //if (changedPlaybackTime)
-            //{
-            //    int left = 0;
-            //    int right = subtitles.Count - 1;
-            //    int newIndex = 0;
-
-            //    while (left <= right)
-            //    {
-            //        int mid = (left + right) / 2;
-            //        if (subtitles[mid].startTime == currentTime)
-            //        {
-            //            newIndex = mid;
-            //            break;
-            //        }
-            //        else if (subtitles[mid].startTime < currentTime)
-            //        {
-            //            newIndex = mid; 
-            //            left = mid + 1;
-            //        }
-            //        else
-            //        {
-            //            right = mid - 1;
-            //        }
-            //    }
-
-            //    currentSubtitleIndex = newIndex;
-            //    changedPlaybackTime = false;
-            //}
-
-            if (currentSubtitleIndex < subtitles.Count && currentTime >= subtitles[currentSubtitleIndex].startTime)
+            if (currentSubtitleIndex < subtitles.Count && currentTime >= subtitles[currentSubtitleIndex].startTime && currentTime <= subtitles[currentSubtitleIndex].endTime)
             {
                 subtitleText.text = subtitles[currentSubtitleIndex].text;
                 nextSubtitleTime = subtitles[currentSubtitleIndex].endTime;
