@@ -35,6 +35,18 @@ public class UIManager : MonoBehaviour
 
     Vector3 previousVideoPosition = Vector3.zero;
 
+    private float intensityScaleSpeed = 0.5f; // How quickly the video size should adjust after changing intensity level (only applicable to adaptive mode)
+    private float adaptiveScaleSpeed = 5f;  // How quickly the video size should adjust during the adaptive mode 
+    private float intensityAdjustmentDuration = 7f; // Duration to use intensityScaleSpeed (seconds)
+    private float speedTransitionDuration = 3f; // Duration of the speed transition (seconds)
+
+    private float intensityAdjustmentStartTime;
+    private float currentScaleSpeed;
+    private float speedTransitionStartTime;
+    private bool transitioningSpeed = false;
+
+    public bool currentlyAdjustingIntensityScale = false;
+
     public static int StudyParticipantNumber { get; private set; } = 1;
 
     public bool SettingsMenuEnabled { get; private set; } = true;
@@ -42,6 +54,7 @@ public class UIManager : MonoBehaviour
     public bool SubtitlesEnabled { get; private set; } = true;
 
     [SerializeField] private GameObject rightHandRayInteractor;
+    [SerializeField] private GameObject rightHandAnchor;
 
     public static bool changedPlaybackTime = false;
 
@@ -75,6 +88,7 @@ public class UIManager : MonoBehaviour
             settings.SetActive(false);
             video.SetActive(true);
             rightHandRayInteractor.SetActive(false);
+            rightHandAnchor.SetActive(false);
 
             if (!VideoScript.videoPlayer.isPrepared)
             {
@@ -91,11 +105,13 @@ public class UIManager : MonoBehaviour
             settings.SetActive(true);
             video.SetActive(false);
             rightHandRayInteractor.SetActive(true);
+            rightHandAnchor.SetActive(true);
 
             if (VideoScript.videoPlayer.isPlaying)
             {
                 VideoScript.videoPlayer.Pause();
             }
+
         }
 
         SettingsMenuEnabled = !SettingsMenuEnabled;
@@ -168,39 +184,86 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void AdjustAdaptiveVideoFOV()
+    public void SetIntensityScaleAdjustment(bool adjusting)
     {
-        if (CurrentViewingExperience == ViewingExperience.Adaptive)
+        currentlyAdjustingIntensityScale = adjusting;
+        if (adjusting)
         {
-            float currentDistance = Vector3.Distance(canvas.transform.position, centerEye.transform.position);
-
-            float fovMaxScale = 1.575f;
-            float fovMinScale = 0.625f;
-
-            float minDistance = 0.3f;
-            float maxDistance = 2.0f;
-            float maxFOV = (float)IntensityManager.CurrentIntensity * fovMaxScale;
-            float minFOV = (float)IntensityManager.CurrentIntensity * fovMinScale;
-
-            float proximity = 1f - Mathf.InverseLerp(minDistance, maxDistance, currentDistance);
-            float dynamicFOV = Mathf.Lerp(minFOV, maxFOV, proximity);
-            float fovRadians = dynamicFOV * Mathf.Deg2Rad;
-
-            AdjustVideoFOV(fovRadians);
+            intensityAdjustmentStartTime = Time.time;
+            currentScaleSpeed = intensityScaleSpeed; 
+            transitioningSpeed = false;
+        }
+        else if (transitioningSpeed == false)
+        {
+            speedTransitionStartTime = Time.time;
+            transitioningSpeed = true;
         }
     }
 
-    public void AdjustVideoFOV(float FOV)
+    public void AdjustAdaptiveVideoFOV()
     {
+        if (CurrentViewingExperience != ViewingExperience.Adaptive)
+        {
+            Debug.LogError("AdjustAdaptiveVideoFOV called while not in adaptive mode");
+            return;
+        }
+
+        if (currentlyAdjustingIntensityScale)
+        {
+            if (Time.time - intensityAdjustmentStartTime >= intensityAdjustmentDuration && !transitioningSpeed)
+            {
+                speedTransitionStartTime = Time.time;
+                transitioningSpeed = true;
+            }
+        }
+
+        if (transitioningSpeed)
+        {
+            float timeElapsed = Time.time - speedTransitionStartTime;
+            if (timeElapsed < speedTransitionDuration)
+            {
+                float t = Mathf.Clamp01(timeElapsed / speedTransitionDuration);
+                currentScaleSpeed = Mathf.Lerp(intensityScaleSpeed, adaptiveScaleSpeed, t);
+            }
+            else
+            {
+                currentScaleSpeed = adaptiveScaleSpeed;
+                transitioningSpeed = false;
+                currentlyAdjustingIntensityScale = false; 
+            }
+        }
+        else if (!currentlyAdjustingIntensityScale)
+        {
+            currentScaleSpeed = adaptiveScaleSpeed; 
+        }
+
         float currentDistance = Vector3.Distance(canvas.transform.position, centerEye.transform.position);
+        float fovMaxScale = 1.575f;
+        float fovMinScale = 0.625f;
+        float minDistance = 0.3f;
+        float maxDistance = 2.0f;
+        float maxFOV = (float)IntensityManager.CurrentIntensity * fovMaxScale;
+        float minFOV = (float)IntensityManager.CurrentIntensity * fovMinScale;
 
-        float desiredWidth = 2 * currentDistance * Mathf.Tan(FOV / 2);
+        float proximity = 1f - Mathf.InverseLerp(minDistance, maxDistance, currentDistance);
+        float FOV = Mathf.Lerp(minFOV, maxFOV, proximity);
 
-        float baseScale = desiredWidth * 0.003f;
-
-        Vector3 targetScale = new Vector3(baseScale, baseScale, 1);
-        canvas.transform.localScale = Vector3.Lerp(canvas.transform.localScale, targetScale, Time.deltaTime * 5f); // 0.5f
+        AdjustVideoFOV(FOV, currentScaleSpeed);
     }
+
+    public void AdjustVideoFOV(float FOV, float scalingSpeed)
+    {
+        Debug.Log($"Scaling speed: {scalingSpeed}");
+        float fovRadians = FOV * Mathf.Deg2Rad;
+        float currentDistance = Vector3.Distance(canvas.transform.position, centerEye.transform.position);
+        float desiredWidth = 2 * currentDistance * Mathf.Tan(fovRadians / 2);
+        float baseScale = desiredWidth * 0.003f;
+        Vector3 targetScale = new Vector3(baseScale, baseScale, 1);
+
+        canvas.transform.localScale = Vector3.Lerp(canvas.transform.localScale, targetScale, Time.deltaTime * scalingSpeed);
+    }
+
+
 
     public void MoveVideoPosition()
     {
@@ -217,14 +280,13 @@ public class UIManager : MonoBehaviour
             case ViewingExperience.Adaptive:
                 CurrentViewingExperience = ViewingExperience.Static;
                 canvas.transform.localScale = standardScale;
-                //AdjustVideoFOV((float)IntensityManager.CurrentIntensity);
                 Debug.Log("Viewing Experience set to Static");
                 break;
             case ViewingExperience.Static:
                 CurrentViewingExperience = ViewingExperience.Phone;
                 canvas.transform.localScale = phoneScale;
                 canvasTransform.sizeDelta = phoneSize;
-                Debug.Log($"Viewing Experience set to Phone: {phoneSize.x}, {phoneSize.y}");
+                Debug.Log($"Viewing Experience set to Phone");
                 break;
             case ViewingExperience.Phone:
                 CurrentViewingExperience = ViewingExperience.Adaptive;
@@ -236,25 +298,6 @@ public class UIManager : MonoBehaviour
         canvas.transform.LookAt(centerEye.transform);
         canvas.transform.Rotate(0, 180, 0);
         return (int)CurrentViewingExperience;
-    }
-
-    public void ChangeIntensityLevel()
-    {
-        switch (IntensityManager.CurrentIntensity)
-        {
-            case IntensityManager.IntensityLevel.Low:
-                IntensityManager.Instance.SetIntensity(IntensityManager.IntensityLevel.Medium);
-                Debug.Log("Intensity Level set to Medium");
-                break;
-            case IntensityManager.IntensityLevel.Medium:
-                IntensityManager.Instance.SetIntensity(IntensityManager.IntensityLevel.High);
-                Debug.Log("Intensity Level set to High");
-                break;
-            case IntensityManager.IntensityLevel.High:
-                IntensityManager.Instance.SetIntensity(IntensityManager.IntensityLevel.Low);
-                Debug.Log("Intensity Level set to Low");
-                break;
-        }
     }
 
     private void Start()

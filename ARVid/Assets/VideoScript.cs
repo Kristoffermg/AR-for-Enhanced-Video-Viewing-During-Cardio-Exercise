@@ -15,7 +15,7 @@ using Oculus.Interaction;
 
 public class VideoScript : MonoBehaviour
 {
-    public static bool pcLinkMode = false;
+    public static bool pcLinkMode = true;
     public enum Video
     {
         FamilyGuy,
@@ -81,7 +81,10 @@ public class VideoScript : MonoBehaviour
     {
         currentFrame++;
         Vector3 headPosition = centerEye.transform.position;
-        uiManager.AdjustAdaptiveVideoFOV();
+
+        if(UIManager.CurrentViewingExperience == UIManager.ViewingExperience.Adaptive)
+            uiManager.AdjustAdaptiveVideoFOV();
+
         if (OVRInput.GetControllerPositionTracked(OVRInput.Controller.LTouch) && !lockedIn)
             uiManager.MoveVideoPosition();
 
@@ -291,16 +294,20 @@ public class VideoScript : MonoBehaviour
         if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger)) // Change intensity (Low -> Medium -> High)
         {
             intensityManager.ChangeIntensityLevel();
+            uiManager.SetIntensityScaleAdjustment(true);
             switch (CurrentIntensity)
             {
                 case IntensityLevel.Low:
                     StartCoroutine(VibrateXTimes(1, true));
+                    uiManager.AdjustVideoFOV((float)IntensityLevel.Low, 0.5f);
                     break;
                 case IntensityLevel.Medium:
                     StartCoroutine(VibrateXTimes(2, true));
+                    uiManager.AdjustVideoFOV((float)IntensityLevel.Medium, 0.5f);
                     break;
                 case IntensityLevel.High:
                     StartCoroutine(VibrateXTimes(3, true));
+                    uiManager.AdjustVideoFOV((float)IntensityLevel.High, 0.5f);
                     break;
             }
         }

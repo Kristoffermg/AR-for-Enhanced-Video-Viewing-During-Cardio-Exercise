@@ -6607,7 +6607,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &450441221
 Transform:
   m_ObjectHideFlags: 0
@@ -12896,6 +12896,7 @@ MonoBehaviour:
   episodeDropdown: {fileID: 1683078101}
   phoneSize: {x: 95, y: 45}
   rightHandRayInteractor: {fileID: 929852932}
+  rightHandAnchor: {fileID: 450441220}
   subtitleToggle: {fileID: 0}
 --- !u!114 &988157243
 MonoBehaviour:
@@ -14408,7 +14409,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1131264209
 RectTransform:
   m_ObjectHideFlags: 0
