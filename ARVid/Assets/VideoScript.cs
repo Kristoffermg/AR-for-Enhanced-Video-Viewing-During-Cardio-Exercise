@@ -32,7 +32,7 @@ public class VideoScript : MonoBehaviour
     public GameObject camera;
     public GameObject centerEye;
     private uint currentFrame;
-    private bool videoPaused;
+    private static bool videoPaused;
     private UIManager uiManager;
     private DataLogger dataLogger;
     private IntensityManager intensityManager;
@@ -336,7 +336,12 @@ public class VideoScript : MonoBehaviour
             videoPlayer.prepareCompleted += OnVideoPrepared;
             videoPlayer.Prepare(); 
         }
+        else
+        {
+            videoPlayer.Play();
+        }
 
+        videoPlayer.loopPointReached -= OnVideoEnded; // to make sure the video is only "subscribed" once
         videoPlayer.loopPointReached += OnVideoEnded;
     }
 
@@ -368,7 +373,7 @@ public class VideoScript : MonoBehaviour
         }
         else if (verticalInput > 0.5f) // Go forward 1 minute
         {
-            videoPlayer.time += 60;
+            videoPlayer.time +=  60;
             UIManager.changedPlaybackTime = true;
         }
         else if (verticalInput < -0.5f) // Go backwards 1 minute
