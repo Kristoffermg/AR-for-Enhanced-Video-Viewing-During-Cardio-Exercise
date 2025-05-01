@@ -15,7 +15,7 @@ using Oculus.Interaction;
 
 public class VideoScript : MonoBehaviour
 {
-    public static bool pcLinkMode = true;
+    public static bool pcLinkMode = false;
     public enum Video
     {
         FamilyGuy,
@@ -44,7 +44,7 @@ public class VideoScript : MonoBehaviour
     private const float VibrationDuration = 0.1f;
     private const float VibrationPause = 0.1f;
 
-    public static string selectedVideo = "OnePunchMan";
+    public static string selectedSeries = "FamilyGuy";
 
     private static int selectedEpisode = 1;
     public static int SelectedEpisode
@@ -52,10 +52,12 @@ public class VideoScript : MonoBehaviour
         get => selectedEpisode;
         set
         {
-            ChangeSelectedSeries(selectedVideo, value);
+            ChangeSelectedSeries(selectedSeries, value, UIManager.CurrentViewingExperience == UIManager.ViewingExperience.Phone);
             selectedEpisode = value;
         }
     }
+
+    public static string CurrentCardioMachine { get; private set; } = "Treadmill";
 
     void Awake()
     {
@@ -119,7 +121,7 @@ public class VideoScript : MonoBehaviour
         }
         else
         {
-            videoPath = Path.Combine(Application.persistentDataPath, "/sdcard/Android/data/com.UnityTechnologies.com.unity.template.urpblank/files/Content", selectedVideo, "mp4", $"ep{selectedEpisode}.mp4");
+            videoPath = Path.Combine(Application.persistentDataPath, "/sdcard/Android/data/com.UnityTechnologies.com.unity.template.urpblank/files/Content", selectedSeries, "mp4", $"ep{selectedEpisode}.mp4");
         }
 
         if (!File.Exists(videoPath))
@@ -153,26 +155,27 @@ public class VideoScript : MonoBehaviour
         //ChangeSelectedSeries(selectedVideo, selectedEpisode);
     }
 
-
-    public static void ChangeSelectedSeries(string selectedSeries)
+    public static void ChangeSelectedSeries(string series, bool phone)
     {
-        selectedVideo = selectedSeries;
-        ChangeSelectedSeries(selectedSeries, selectedEpisode);
+        selectedSeries = series;
+        ChangeSelectedSeries(selectedSeries, selectedEpisode, phone);
     }
 
-    public static void ChangeSelectedSeries(string selectedSeries, int episode)
+    public static void ChangeSelectedSeries(string series, int episode, bool phone)
     {
-        selectedVideo = selectedSeries;
+        selectedSeries = series;
         selectedEpisode = episode;
 
-        string videoPath = "";
+        string fileName = $"ep{selectedEpisode}{(phone ? "_phone" : "")}.mp4";
+        string videoPath;
+
         if (pcLinkMode)
         {
-            videoPath = "Assets/ep1.mp4";
+            videoPath = Path.Combine("Assets", fileName);
         }
         else
         {
-            videoPath = Path.Combine(Application.persistentDataPath, "/sdcard/Android/data/com.UnityTechnologies.com.unity.template.urpblank/files/Content", selectedVideo, "mp4", $"ep{selectedEpisode}.mp4");
+            videoPath = Path.Combine(Application.persistentDataPath, "Content", series, "mp4", fileName);
         }
 
         if (!File.Exists(videoPath))
@@ -181,19 +184,44 @@ public class VideoScript : MonoBehaviour
             return;
         }
 
-        Debug.Log($"Selected video: {selectedSeries} episode {episode}");
+        string normalizedPath = videoPath.Replace("\\", "/");
+        string finalUrl = "file://" + normalizedPath;
 
-        videoPlayer.url = "file://" + videoPath;
+        if (videoPlayer.url == finalUrl)
+        {
+            Debug.Log("Same video url encountered, wont switch video source");
+            return;
+        }
+
+        Debug.Log($"Selected video: {selectedSeries} episode {selectedEpisode} {(phone ? "phone" : "")}");
+
+        bool switchResolution = (videoPlayer.url.Contains("_phone") && !finalUrl.Contains("_phone")) ||
+                                (!videoPlayer.url.Contains("_phone") && finalUrl.Contains("_phone"));
+
+        double videoTime = videoPlayer.time;
+
+        videoPlayer.url = finalUrl;
+
+        if (switchResolution)
+        {
+            Debug.Log($"Old time: {videoPlayer.time}, New time: {videoTime}");
+            videoPlayer.time = videoTime;
+            videoPlayer.prepareCompleted += OnVideoPrepared;
+            videoPlayer.Prepare(); 
+        }
+    }
+
+    static void OnVideoPrepared(VideoPlayer source)
+    {
+        videoPlayer.prepareCompleted -= OnVideoPrepared;
+        videoPlayer.Play();
     }
 
     private void HandleControllerInput(Vector3 centerEyePosition)
     {
         if (OVRInput.GetControllerPositionTracked(OVRInput.Controller.LTouch))
         {
-            if (OVRInput.GetDown(OVRInput.RawButton.Y))
-            {
-                dataLogger.StartOrStopRecording();
-            }
+            HandleLeftControllerInput();
         }
 
         if (OVRInput.GetControllerPositionTracked(OVRInput.Controller.RTouch))
@@ -215,6 +243,34 @@ public class VideoScript : MonoBehaviour
         {
             if (!uiManager.SettingsMenuEnabled)
                 HandleThumbstickInput(verticalInput);
+        }
+    }
+
+    private void HandleLeftControllerInput()
+    {
+        if (OVRInput.GetDown(OVRInput.RawButton.X))
+        {
+            lockedIn = !lockedIn;
+            StartCoroutine(VibrateXTimes(1, false));
+        }
+
+        if (OVRInput.GetDown(OVRInput.RawButton.Y))
+        {
+            switch (CurrentCardioMachine)
+            {
+                case "Treadmill":
+                    StartCoroutine(VibrateXTimes(1, false));
+                    CurrentCardioMachine = "Elliptical";
+                    break;
+                case "Elliptical":
+                    StartCoroutine(VibrateXTimes(2, false));
+                    CurrentCardioMachine = "Row";
+                    break;
+                case "Row":
+                    StartCoroutine(VibrateXTimes(3, false));
+                    CurrentCardioMachine = "Treadmill";
+                    break;
+            }
         }
     }
 
@@ -288,6 +344,7 @@ public class VideoScript : MonoBehaviour
         if (OVRInput.GetDown(OVRInput.RawButton.B)) // Change method/viewing experience
         {
             int currentViewingExperience = uiManager.ChangeViewingExperience();
+            ChangeSelectedSeries(selectedSeries, UIManager.CurrentViewingExperience == UIManager.ViewingExperience.Phone);
             StartCoroutine(VibrateXTimes(currentViewingExperience, true));
         }
 
@@ -310,12 +367,6 @@ public class VideoScript : MonoBehaviour
                     uiManager.AdjustVideoFOV((float)IntensityLevel.High, 0.5f);
                     break;
             }
-        }
-
-        if (OVRInput.GetDown(OVRInput.RawButton.X))
-        {
-            lockedIn = !lockedIn;
-            StartCoroutine(VibrateXTimes(1, false));
         }
 
         HandleRecordingDurationAdjustment(verticalInput);

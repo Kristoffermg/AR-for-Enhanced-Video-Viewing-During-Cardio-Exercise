@@ -101,10 +101,9 @@ public class DataLogger : MonoBehaviour
             Debug.Log("Directory already exists at: " + path);
         }
 
-        string intensityLevel = Enum.GetName(typeof(IntensityManager.IntensityLevel), IntensityManager.CurrentIntensity);
         string viewingExperience = Enum.GetName(typeof(UIManager.ViewingExperience), UIManager.CurrentViewingExperience);
 
-        string fileName = $"{folderName}/{intensityLevel}_{viewingExperience}.csv";
+        string fileName = $"{folderName}/{VideoScript.CurrentCardioMachine}_{viewingExperience}.csv";
         string filePath = Path.Combine(Application.persistentDataPath, fileName);
 
         // This is to avoid overwriting the old file in case an accidental recording was started

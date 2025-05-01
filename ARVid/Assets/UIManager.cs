@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     public GameObject canvas;
     public GameObject settings;
     public GameObject video;
+    public GameObject canvasLookAtTarget;
 
     public VideoPlayer videoPlayer;
 
@@ -67,7 +68,7 @@ public class UIManager : MonoBehaviour
 
     public static ViewingExperience CurrentViewingExperience { get; private set; } = ViewingExperience.Adaptive;
 
-    private List<Subtitle> subtitles = new List<Subtitle>();
+    //private List<Subtitle> subtitles = new List<Subtitle>();
     private int currentSubtitleIndex = 0;
     private float nextSubtitleTime = 0f;
     private string subtitleFilePath;
@@ -121,7 +122,6 @@ public class UIManager : MonoBehaviour
     {
         VideoScript.videoPlayer.prepareCompleted -= OnVideoPrepared;
         VideoScript.videoPlayer.Play();
-        LoadSubtitles(); 
     }
 
     public void IncrementButtonClick()
@@ -155,8 +155,7 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("SeriesSelectionDropdown called with: " + selectedIndex);
         string selectedSeries = seriesDropdown.options[selectedIndex].text;
-        VideoScript.ChangeSelectedSeries(selectedSeries);
-        LoadSubtitles(); 
+        VideoScript.ChangeSelectedSeries(selectedSeries, CurrentViewingExperience == ViewingExperience.Phone);
     }
 
     public void EpisodeSelectionDropdownChanged(int selectedIndex)
@@ -164,8 +163,7 @@ public class UIManager : MonoBehaviour
         Debug.Log("EpisodeSelectionDropdown called with: " + selectedIndex);
         int selectedEpisode = Convert.ToInt16(episodeDropdown.options[selectedIndex].text.Replace("Episode ", ""));
         VideoScript.SelectedEpisode = selectedEpisode;
-        VideoScript.ChangeSelectedSeries(VideoScript.selectedVideo, selectedEpisode);
-        LoadSubtitles(); 
+        VideoScript.ChangeSelectedSeries(VideoScript.selectedSeries, selectedEpisode, CurrentViewingExperience == ViewingExperience.Phone);
         currentSubtitleIndex = 0;
         subtitleText.text = "";
     }
@@ -253,7 +251,6 @@ public class UIManager : MonoBehaviour
 
     public void AdjustVideoFOV(float FOV, float scalingSpeed)
     {
-        Debug.Log($"Scaling speed: {scalingSpeed}");
         float fovRadians = FOV * Mathf.Deg2Rad;
         float currentDistance = Vector3.Distance(canvas.transform.position, centerEye.transform.position);
         float desiredWidth = 2 * currentDistance * Mathf.Tan(fovRadians / 2);
@@ -295,144 +292,16 @@ public class UIManager : MonoBehaviour
                 Debug.Log("Viewing Experience set to Adaptive");
                 break;
         }
-        canvas.transform.LookAt(centerEye.transform);
-        canvas.transform.Rotate(0, 180, 0);
+        canvasLookAtTarget.transform.LookAt(centerEye.transform);
+        canvasLookAtTarget.transform.Rotate(0, 180, 0);
+        canvasLookAtTarget.transform.localEulerAngles = new Vector3(0, canvasLookAtTarget.transform.localEulerAngles.y, 0f);
         return (int)CurrentViewingExperience;
     }
 
     private void Start()
     {
-        Debug.Log($"Series Dropdown: {seriesDropdown}");
-        Debug.Log($"Episode Dropdown: {episodeDropdown}");
         episodeDropdown.onValueChanged.AddListener(EpisodeSelectionDropdownChanged);
         seriesDropdown.onValueChanged.AddListener(SeriesSelectionDropdown);
-
-        LoadSubtitles();
-    }
-
-    void Update()
-    {
-        if (SubtitlesEnabled && subtitles != null && VideoScript.videoPlayer.isPlaying)
-        {
-            float currentTime = (float)VideoScript.videoPlayer.time;
-
-            // if the videplayer time was either skipped forward or backward, adjust subtitle index
-            if (changedPlaybackTime)
-            {
-                if (subtitles[currentSubtitleIndex].startTime < currentTime)
-                {
-                    for (int i = currentSubtitleIndex; i < subtitles.Count-1; i++)
-                    {
-                        if (subtitles[i].startTime < currentTime && subtitles[i + 1].startTime > currentTime)
-                        {
-                            currentSubtitleIndex = i + 1;
-                        }
-                    }
-                }
-                else
-                {
-                    for (int i = currentSubtitleIndex; i > 0; i--)
-                    {
-                        if (subtitles[i].startTime > currentTime && subtitles[i - 1].startTime < currentTime)
-                        {
-                            currentSubtitleIndex = i - 1;
-                        }
-                    }
-                }
-            }
-
-            if (currentSubtitleIndex < subtitles.Count && currentTime >= subtitles[currentSubtitleIndex].startTime && currentTime <= subtitles[currentSubtitleIndex].endTime)
-            {
-                subtitleText.text = subtitles[currentSubtitleIndex].text;
-                nextSubtitleTime = subtitles[currentSubtitleIndex].endTime;
-                currentSubtitleIndex++;
-            }
-            else if (currentTime >= nextSubtitleTime)
-            {
-                subtitleText.text = "";
-            }
-        }
-    }
-
-    void LoadSubtitles()
-    {
-        subtitles.Clear();
-        currentSubtitleIndex = 0;
-        subtitleText.text = "";
-
-        if(VideoScript.pcLinkMode)
-        {
-            subtitleFilePath = "Assets/ep1.srt";
-        }
-        else
-        {
-            subtitleFilePath = $"/sdcard/Android/data/com.UnityTechnologies.com.unity.template.urpblank/files/Content/{VideoScript.selectedVideo}/srt/ep{VideoScript.SelectedEpisode}.srt";
-        }
-
-
-        if (string.IsNullOrEmpty(subtitleFilePath) || !File.Exists(subtitleFilePath))
-        {
-            Debug.LogWarning("Subtitle file not found: " + subtitleFilePath);
-            return;
-        }
-
-        string[] lines = File.ReadAllLines(subtitleFilePath);
-        Subtitle currentSubtitle = null;
-        Regex timeCodeRegex = new Regex(@"(\d{2}):(\d{2}):(\d{2}),(\d{3}) --> (\d{2}):(\d{2}):(\d{2}),(\d{3})");
-
-        foreach (string line in lines)
-        {
-            if (string.IsNullOrWhiteSpace(line))
-            {
-                if (currentSubtitle != null)
-                {
-                    subtitles.Add(currentSubtitle);
-                    currentSubtitle = null;
-                }
-                continue;
-            }
-
-            if (int.TryParse(line, out int subtitleNumber))
-            {
-                currentSubtitle = new Subtitle();
-            }
-            else if (timeCodeRegex.IsMatch(line))
-            {
-                Match match = timeCodeRegex.Match(line);
-                if (currentSubtitle != null)
-                {
-                    currentSubtitle.startTime = ParseTimeCode(match.Groups[1].Value, match.Groups[2].Value, match.Groups[3].Value, match.Groups[4].Value);
-                    currentSubtitle.endTime = ParseTimeCode(match.Groups[5].Value, match.Groups[6].Value, match.Groups[7].Value, match.Groups[8].Value);
-                }
-            }
-            else if (currentSubtitle != null)
-            {
-                currentSubtitle.text += line + "\n";
-            }
-        }
-
-        if (currentSubtitle != null)
-        {
-            subtitles.Add(currentSubtitle);
-        }
-
-        Debug.Log($"Loaded {subtitles.Count} subtitles from {subtitleFilePath}");
-    }
-
-    float ParseTimeCode(string hours, string minutes, string seconds, string milliseconds)
-    {
-        float h = float.Parse(hours);
-        float m = float.Parse(minutes);
-        float s = float.Parse(seconds);
-        float ms = float.Parse(milliseconds) / 1000f;
-        return (h * 3600f) + (m * 60f) + s + ms;
-    }
-
-    private class Subtitle
-    {
-        public float startTime;
-        public float endTime;
-        public string text = "";
     }
 }
 
