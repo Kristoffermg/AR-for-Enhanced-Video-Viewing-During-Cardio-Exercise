@@ -15,7 +15,7 @@ using Oculus.Interaction;
 
 public class VideoScript : MonoBehaviour
 {
-    public static bool pcLinkMode = false;
+    public static bool pcLinkMode = true;
     public enum Video
     {
         FamilyGuy,
@@ -41,7 +41,8 @@ public class VideoScript : MonoBehaviour
 
     private const float VibrationFrequency = 1.0f;
     private const float VibrationAmplitude = 1.0f;
-    private const float VibrationDuration = 0.1f;
+    private const float VibrationDurationRegular = 0.1f;
+    private const float VibrationDurationRecording = 0.3f;
     private const float VibrationPause = 0.1f;
 
     public static string selectedSeries = "FamilyGuy";
@@ -135,6 +136,134 @@ public class VideoScript : MonoBehaviour
         videoPlayer.Prepare();
     }
 
+    private void HandleControllerInput(Vector3 centerEyePosition)
+    {
+        if (OVRInput.GetControllerPositionTracked(OVRInput.Controller.LTouch))
+        {
+            HandleLeftControllerInput();
+        }
+
+        if (OVRInput.GetControllerPositionTracked(OVRInput.Controller.RTouch))
+        {
+            HandleRightControllerInput(centerEyePosition);
+        }
+    }
+
+    private void HandleRightControllerInput(Vector3 centerEyePosition)
+    {
+        float verticalInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick).y;
+        float horizontalInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick).x;
+
+        if (OVRInput.Get(OVRInput.RawButton.RHandTrigger))
+        {
+            HandleHandTriggerInput(horizontalInput, verticalInput);
+        }
+        else
+        {
+            if (!uiManager.SettingsMenuEnabled)
+                HandleThumbstickInput(verticalInput);
+        }
+    }
+
+    private void HandleLeftControllerInput()
+    {
+        if (OVRInput.GetDown(OVRInput.RawButton.X))
+        {
+            lockedIn = !lockedIn;
+            StartCoroutine(VibrateXTimes(1, VibrationDurationRegular, false));
+        }
+
+        if (OVRInput.GetDown(OVRInput.RawButton.Y))
+        {
+            switch (CurrentCardioMachine)
+            {
+                case "Treadmill":
+                    StartCoroutine(VibrateXTimes(1, VibrationDurationRegular, false));
+                    CurrentCardioMachine = "Elliptical";
+                    break;
+                case "Elliptical":
+                    StartCoroutine(VibrateXTimes(2, VibrationDurationRegular, false));
+                    CurrentCardioMachine = "Row";
+                    break;
+                case "Row":
+                    StartCoroutine(VibrateXTimes(3, VibrationDurationRegular, false));
+                    CurrentCardioMachine = "Treadmill";
+                    break;
+            }
+        }
+    }
+
+    private void HandleHandTriggerInput(float horizontalInput, float verticalInput)
+    {
+        if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger)) // Toggle settings menu
+        {
+            uiManager.ToggleSettingsMenu();
+        }
+
+        if (uiManager.SettingsMenuEnabled)
+            return;
+
+        if (OVRInput.GetDown(OVRInput.RawButton.A)) // Restart video
+        {
+            videoPlayer.time = 0;
+            videoPlayer.Stop();
+        }
+
+        if (OVRInput.GetDown(OVRInput.RawButton.B)) // Start video and record head movement for X minutes
+        {
+            dataLogger.StartOrStopRecording();
+            StartCoroutine(VibrateXTimes(1, VibrationDurationRecording, true));
+        }
+
+        if (OVRInput.GetDown(OVRInput.RawButton.RThumbstickDown)) // Cancel recording
+        {
+            dataLogger.CancelRecording();
+        }
+
+        if (videoPlayer.isPrepared && videoPlayer.isPlaying)
+        {
+            HandleVideoPlayback(horizontalInput, verticalInput);
+        }
+    }
+
+    private void HandleThumbstickInput(float verticalInput)
+    {
+        if (OVRInput.GetDown(OVRInput.RawButton.A)) // Start/Pause
+        {
+            TogglePause();
+        }
+
+        if (OVRInput.GetDown(OVRInput.RawButton.B)) // Change method/viewing experience
+        {
+            int currentViewingExperience = uiManager.ChangeViewingExperience();
+            ChangeSelectedSeries(selectedSeries, UIManager.CurrentViewingExperience == UIManager.ViewingExperience.Phone);
+            StartCoroutine(VibrateXTimes(currentViewingExperience, VibrationDurationRegular, true));
+        }
+
+        if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger)) // Change intensity (Low -> Medium -> High)
+        {
+            intensityManager.ChangeIntensityLevel();
+            uiManager.SetIntensityScaleAdjustment(true);
+            switch (CurrentIntensity)
+            {
+                case IntensityLevel.Low:
+                    StartCoroutine(VibrateXTimes(1, VibrationDurationRegular, true));
+                    uiManager.AdjustVideoFOV((float)IntensityLevel.Low, 0.5f);
+                    break;
+                case IntensityLevel.Medium:
+                    StartCoroutine(VibrateXTimes(2, VibrationDurationRegular, true));
+                    uiManager.AdjustVideoFOV((float)IntensityLevel.Medium, 0.5f);
+                    break;
+                case IntensityLevel.High:
+                    StartCoroutine(VibrateXTimes(3, VibrationDurationRegular, true));
+                    uiManager.AdjustVideoFOV((float)IntensityLevel.High, 0.5f);
+                    break;
+            }
+        }
+
+        HandleRecordingDurationAdjustment(verticalInput);
+    }
+
     public static void DecrementEpisode()
     {
         if (selectedEpisode > 1)
@@ -142,7 +271,6 @@ public class VideoScript : MonoBehaviour
             SelectedEpisode--;
         }
         Debug.Log($"Decrement episode called: {selectedEpisode}");
-        //ChangeSelectedSeries(selectedVideo, selectedEpisode);
     }
 
     public static void IncrementEpisode()
@@ -152,7 +280,6 @@ public class VideoScript : MonoBehaviour
             selectedEpisode++;
         }
         Debug.Log($"Increment episode called: {selectedEpisode}");
-        //ChangeSelectedSeries(selectedVideo, selectedEpisode);
     }
 
     public static void ChangeSelectedSeries(string series, bool phone)
@@ -209,6 +336,8 @@ public class VideoScript : MonoBehaviour
             videoPlayer.prepareCompleted += OnVideoPrepared;
             videoPlayer.Prepare(); 
         }
+
+        videoPlayer.loopPointReached += OnVideoEnded;
     }
 
     static void OnVideoPrepared(VideoPlayer source)
@@ -217,94 +346,13 @@ public class VideoScript : MonoBehaviour
         videoPlayer.Play();
     }
 
-    private void HandleControllerInput(Vector3 centerEyePosition)
+    static void OnVideoEnded(VideoPlayer source)
     {
-        if (OVRInput.GetControllerPositionTracked(OVRInput.Controller.LTouch))
-        {
-            HandleLeftControllerInput();
-        }
-
-        if (OVRInput.GetControllerPositionTracked(OVRInput.Controller.RTouch))
-        {
-            HandleRightControllerInput(centerEyePosition);
-        }
+        videoPlayer.loopPointReached -= OnVideoEnded;
+        ChangeSelectedSeries(selectedSeries, selectedEpisode + 1, UIManager.CurrentViewingExperience == UIManager.ViewingExperience.Phone);
     }
 
-    private void HandleRightControllerInput(Vector3 centerEyePosition)
-    {
-        float verticalInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick).y;
-        float horizontalInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick).x;
 
-        if (OVRInput.Get(OVRInput.RawButton.RHandTrigger))
-        {
-            HandleHandTriggerInput(horizontalInput, verticalInput);
-        }
-        else
-        {
-            if (!uiManager.SettingsMenuEnabled)
-                HandleThumbstickInput(verticalInput);
-        }
-    }
-
-    private void HandleLeftControllerInput()
-    {
-        if (OVRInput.GetDown(OVRInput.RawButton.X))
-        {
-            lockedIn = !lockedIn;
-            StartCoroutine(VibrateXTimes(1, false));
-        }
-
-        if (OVRInput.GetDown(OVRInput.RawButton.Y))
-        {
-            switch (CurrentCardioMachine)
-            {
-                case "Treadmill":
-                    StartCoroutine(VibrateXTimes(1, false));
-                    CurrentCardioMachine = "Elliptical";
-                    break;
-                case "Elliptical":
-                    StartCoroutine(VibrateXTimes(2, false));
-                    CurrentCardioMachine = "Row";
-                    break;
-                case "Row":
-                    StartCoroutine(VibrateXTimes(3, false));
-                    CurrentCardioMachine = "Treadmill";
-                    break;
-            }
-        }
-    }
-
-    private void HandleHandTriggerInput(float horizontalInput, float verticalInput)
-    {
-        if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger)) // Toggle settings menu
-        {
-            uiManager.ToggleSettingsMenu();
-        }
-
-        if (uiManager.SettingsMenuEnabled)
-            return;
-
-        if (OVRInput.GetDown(OVRInput.RawButton.A)) // Restart video
-        {
-            videoPlayer.time = 0;
-            videoPlayer.Stop();
-        }
-
-        if (OVRInput.GetDown(OVRInput.RawButton.B)) // Start video and record head movement for X minutes
-        {
-            dataLogger.StartOrStopRecording();
-        }
-
-        if (OVRInput.GetDown(OVRInput.RawButton.RThumbstickDown)) // Cancel recording
-        {
-            dataLogger.CancelRecording();
-        }
-
-        if (videoPlayer.isPrepared && videoPlayer.isPlaying)
-        {
-            HandleVideoPlayback(horizontalInput, verticalInput);
-        }
-    }
 
     private void HandleVideoPlayback(float horizontalInput, float verticalInput)
     {
@@ -334,44 +382,6 @@ public class VideoScript : MonoBehaviour
         }
     }
 
-    private void HandleThumbstickInput(float verticalInput)
-    {
-        if (OVRInput.GetDown(OVRInput.RawButton.A)) // Start/Pause
-        {
-            TogglePause();
-        }
-
-        if (OVRInput.GetDown(OVRInput.RawButton.B)) // Change method/viewing experience
-        {
-            int currentViewingExperience = uiManager.ChangeViewingExperience();
-            ChangeSelectedSeries(selectedSeries, UIManager.CurrentViewingExperience == UIManager.ViewingExperience.Phone);
-            StartCoroutine(VibrateXTimes(currentViewingExperience, true));
-        }
-
-        if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger)) // Change intensity (Low -> Medium -> High)
-        {
-            intensityManager.ChangeIntensityLevel();
-            uiManager.SetIntensityScaleAdjustment(true);
-            switch (CurrentIntensity)
-            {
-                case IntensityLevel.Low:
-                    StartCoroutine(VibrateXTimes(1, true));
-                    uiManager.AdjustVideoFOV((float)IntensityLevel.Low, 0.5f);
-                    break;
-                case IntensityLevel.Medium:
-                    StartCoroutine(VibrateXTimes(2, true));
-                    uiManager.AdjustVideoFOV((float)IntensityLevel.Medium, 0.5f);
-                    break;
-                case IntensityLevel.High:
-                    StartCoroutine(VibrateXTimes(3, true));
-                    uiManager.AdjustVideoFOV((float)IntensityLevel.High, 0.5f);
-                    break;
-            }
-        }
-
-        HandleRecordingDurationAdjustment(verticalInput);
-    }
-
     private void HandleRecordingDurationAdjustment(float verticalInput)
     {
         if (verticalInput > 0.5f && !hasVibrated) // Recording length + 1min
@@ -381,7 +391,7 @@ public class VideoScript : MonoBehaviour
                 dataLogger.RecordingDuration += 1;
                 hasVibrated = true;
             }
-            StartCoroutine(VibrateXTimes(dataLogger.RecordingDuration, true));
+            StartCoroutine(VibrateXTimes(dataLogger.RecordingDuration, VibrationDurationRegular, true));
         }
         else if (verticalInput < -0.5f && !hasVibrated) // Recording length - 1min
         {
@@ -390,7 +400,7 @@ public class VideoScript : MonoBehaviour
                 dataLogger.RecordingDuration -= 1;
                 hasVibrated = true;
             }
-            StartCoroutine(VibrateXTimes(dataLogger.RecordingDuration, true));
+            StartCoroutine(VibrateXTimes(dataLogger.RecordingDuration, VibrationDurationRegular, true));
         }
         else if (Mathf.Abs(verticalInput) < 0.1f && hasVibrated)
         {
@@ -398,21 +408,21 @@ public class VideoScript : MonoBehaviour
         }
     }
 
-    private IEnumerator VibrateXTimes(int vibrations, bool rightController)
+    private IEnumerator VibrateXTimes(int vibrations, float vibrationDuration, bool rightController)
     {
         for (int i = 0; i < vibrations; i++)
         {
             if(rightController)
             {
                 OVRInput.SetControllerVibration(VibrationFrequency, VibrationAmplitude, OVRInput.Controller.RTouch);
-                yield return new WaitForSeconds(VibrationDuration);
+                yield return new WaitForSeconds(vibrationDuration);
                 OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.RTouch);
                 yield return new WaitForSeconds(VibrationPause);
             }
             else
             {
                 OVRInput.SetControllerVibration(VibrationFrequency, VibrationAmplitude, OVRInput.Controller.LTouch);
-                yield return new WaitForSeconds(VibrationDuration);
+                yield return new WaitForSeconds(vibrationDuration);
                 OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.LTouch);
                 yield return new WaitForSeconds(VibrationPause);
             }
@@ -431,5 +441,7 @@ public class VideoScript : MonoBehaviour
         }
         videoPaused = !videoPaused;
     }
+
+
 
 }

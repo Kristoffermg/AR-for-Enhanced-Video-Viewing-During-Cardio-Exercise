@@ -16,7 +16,6 @@ public class UIManager : MonoBehaviour
     public GameObject canvas;
     public GameObject settings;
     public GameObject video;
-    public GameObject canvasLookAtTarget;
 
     public VideoPlayer videoPlayer;
 
@@ -36,7 +35,7 @@ public class UIManager : MonoBehaviour
 
     Vector3 previousVideoPosition = Vector3.zero;
 
-    private float intensityScaleSpeed = 0.5f; // How quickly the video size should adjust after changing intensity level (only applicable to adaptive mode)
+    private float intensityScaleSpeed = 0.4f; // How quickly the video size should adjust after changing intensity level (only applicable to adaptive mode)
     private float adaptiveScaleSpeed = 5f;  // How quickly the video size should adjust during the adaptive mode 
     private float intensityAdjustmentDuration = 7f; // Duration to use intensityScaleSpeed (seconds)
     private float speedTransitionDuration = 3f; // Duration of the speed transition (seconds)
@@ -292,9 +291,9 @@ public class UIManager : MonoBehaviour
                 Debug.Log("Viewing Experience set to Adaptive");
                 break;
         }
-        canvasLookAtTarget.transform.LookAt(centerEye.transform);
-        canvasLookAtTarget.transform.Rotate(0, 180, 0);
-        canvasLookAtTarget.transform.localEulerAngles = new Vector3(0, canvasLookAtTarget.transform.localEulerAngles.y, 0f);
+        canvas.transform.LookAt(centerEye.transform);
+        canvas.transform.Rotate(0, 180, 0);
+        canvas.transform.localEulerAngles = new Vector3(0, canvas.transform.localEulerAngles.y, 0f);
         return (int)CurrentViewingExperience;
     }
 
