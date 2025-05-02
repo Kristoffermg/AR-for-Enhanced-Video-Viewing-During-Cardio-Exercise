@@ -61,8 +61,8 @@ public class UIManager : MonoBehaviour
     public enum ViewingExperience
     {
         Adaptive = 1,
-        Phone = 2,
-        Static = 3
+        Phone = 3,
+        Static = 2
     }
 
     public static ViewingExperience CurrentViewingExperience { get; private set; } = ViewingExperience.Adaptive;

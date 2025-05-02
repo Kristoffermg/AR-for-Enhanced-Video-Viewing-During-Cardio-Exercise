@@ -15,7 +15,7 @@ using Oculus.Interaction;
 
 public class VideoScript : MonoBehaviour
 {
-    public static bool pcLinkMode = true;
+    public static bool pcLinkMode = false;
     public enum Video
     {
         FamilyGuy,
@@ -42,7 +42,7 @@ public class VideoScript : MonoBehaviour
     private const float VibrationFrequency = 1.0f;
     private const float VibrationAmplitude = 1.0f;
     private const float VibrationDurationRegular = 0.1f;
-    private const float VibrationDurationRecording = 0.3f;
+    private const float VibrationDurationRecording = 0.6f;
     private const float VibrationPause = 0.1f;
 
     public static string selectedSeries = "FamilyGuy";
@@ -242,6 +242,9 @@ public class VideoScript : MonoBehaviour
 
         if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger)) // Change intensity (Low -> Medium -> High)
         {
+            if (UIManager.CurrentViewingExperience != UIManager.ViewingExperience.Adaptive)
+                return;
+
             intensityManager.ChangeIntensityLevel();
             uiManager.SetIntensityScaleAdjustment(true);
             switch (CurrentIntensity)
@@ -334,7 +337,8 @@ public class VideoScript : MonoBehaviour
             Debug.Log($"Old time: {videoPlayer.time}, New time: {videoTime}");
             videoPlayer.time = videoTime;
             videoPlayer.prepareCompleted += OnVideoPrepared;
-            videoPlayer.Prepare(); 
+            videoPlayer.Prepare();
+            videoPaused = true;
         }
         else
         {
@@ -348,7 +352,6 @@ public class VideoScript : MonoBehaviour
     static void OnVideoPrepared(VideoPlayer source)
     {
         videoPlayer.prepareCompleted -= OnVideoPrepared;
-        videoPlayer.Play();
     }
 
     static void OnVideoEnded(VideoPlayer source)

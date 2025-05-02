@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\UIManager.cs" />
+    <Compile Include="Assets\Unity.VisualScripting.Generated\VisualScripting.Core\AotStubs.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\VideoHandler.cs" />
     <Compile Include="Assets\IntensityManager.cs" />
@@ -103,6 +104,7 @@
     <None Include="Assets\Packages\MathNet.Numerics.5.0.0\lib\netstandard2.0\MathNet.Numerics.xml" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\Unity.VisualScripting.Generated\VisualScripting.Core\link.xml" />
     <None Include="Assets\Packages\Accord.Statistics.3.8.0\lib\netstandard2.0\Accord.Statistics.xml" />
     <None Include="Assets\Packages\Accord.Math.3.8.0\lib\netstandard2.0\Accord.Math.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
