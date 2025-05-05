@@ -48,6 +48,7 @@ public class VideoScript : MonoBehaviour
     public static string selectedSeries = "FamilyGuy";
 
     private static int selectedEpisode = 1;
+
     public static int SelectedEpisode
     {
         get => selectedEpisode;
@@ -134,6 +135,9 @@ public class VideoScript : MonoBehaviour
         videoPlayer.source = VideoSource.Url;
         videoPlayer.url = "file://" + videoPath;
         videoPlayer.Prepare();
+
+        videoPlayer.loopPointReached -= OnVideoEnded;
+        videoPlayer.loopPointReached += OnVideoEnded;
     }
 
     private void HandleControllerInput(Vector3 centerEyePosition)
@@ -146,22 +150,6 @@ public class VideoScript : MonoBehaviour
         if (OVRInput.GetControllerPositionTracked(OVRInput.Controller.RTouch))
         {
             HandleRightControllerInput(centerEyePosition);
-        }
-    }
-
-    private void HandleRightControllerInput(Vector3 centerEyePosition)
-    {
-        float verticalInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick).y;
-        float horizontalInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick).x;
-
-        if (OVRInput.Get(OVRInput.RawButton.RHandTrigger))
-        {
-            HandleHandTriggerInput(horizontalInput, verticalInput);
-        }
-        else
-        {
-            if (!uiManager.SettingsMenuEnabled)
-                HandleThumbstickInput(verticalInput);
         }
     }
 
@@ -190,6 +178,27 @@ public class VideoScript : MonoBehaviour
                     CurrentCardioMachine = "Treadmill";
                     break;
             }
+        }
+
+        if (OVRInput.GetDown(OVRInput.RawButton.LHandTrigger))
+        {
+            uiManager.LookAtCamera();
+        }
+    }
+
+    private void HandleRightControllerInput(Vector3 centerEyePosition)
+    {
+        float verticalInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick).y;
+        float horizontalInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick).x;
+
+        if (OVRInput.Get(OVRInput.RawButton.RHandTrigger))
+        {
+            HandleHandTriggerInput(horizontalInput, verticalInput);
+        }
+        else
+        {
+            if (!uiManager.SettingsMenuEnabled)
+                HandleThumbstickInput(verticalInput);
         }
     }
 
@@ -230,6 +239,7 @@ public class VideoScript : MonoBehaviour
     {
         if (OVRInput.GetDown(OVRInput.RawButton.A)) // Start/Pause
         {
+            StartCoroutine(VibrateXTimes(1, VibrationDurationRegular, true));
             TogglePause();
         }
 
@@ -291,14 +301,31 @@ public class VideoScript : MonoBehaviour
         ChangeSelectedSeries(selectedSeries, selectedEpisode, phone);
     }
 
+    private static double lastRequestedTime = 0;
+    private static bool changingVideo = false;
+    private static string pendingSeries = null;
+    private static int pendingEpisode = -1;
+    private static bool pendingPhone = false;
+    private static bool hasPendingChange = false;
+
     public static void ChangeSelectedSeries(string series, int episode, bool phone)
     {
+        if (changingVideo)
+        {
+            Debug.Log($"Video change already in progress. Queuing change to {series} ep{episode} {(phone ? "phone" : "")}");
+            pendingSeries = series;
+            pendingEpisode = episode;
+            pendingPhone = phone;
+            hasPendingChange = true;
+            return;
+        }
+
+        changingVideo = true;
+
         selectedSeries = series;
         selectedEpisode = episode;
-
         string fileName = $"ep{selectedEpisode}{(phone ? "_phone" : "")}.mp4";
         string videoPath;
-
         if (pcLinkMode)
         {
             videoPath = Path.Combine("Assets", fileName);
@@ -307,46 +334,106 @@ public class VideoScript : MonoBehaviour
         {
             videoPath = Path.Combine(Application.persistentDataPath, "Content", series, "mp4", fileName);
         }
-
         if (!File.Exists(videoPath))
         {
             Debug.LogError($"Video file not found at {videoPath}");
+            changingVideo = false;
+            shouldPlayAfterPrepare = false;
+            forceStartFromBeginning = false;
+
+            ProcessPendingChange();
             return;
         }
-
         string normalizedPath = videoPath.Replace("\\", "/");
         string finalUrl = "file://" + normalizedPath;
-
         if (videoPlayer.url == finalUrl)
         {
             Debug.Log("Same video url encountered, wont switch video source");
+            changingVideo = false;
+            shouldPlayAfterPrepare = false;
+            forceStartFromBeginning = false;
+
+            ProcessPendingChange();
             return;
         }
-
         Debug.Log($"Selected video: {selectedSeries} episode {selectedEpisode} {(phone ? "phone" : "")}");
-
         bool switchResolution = (videoPlayer.url.Contains("_phone") && !finalUrl.Contains("_phone")) ||
                                 (!videoPlayer.url.Contains("_phone") && finalUrl.Contains("_phone"));
 
-        double videoTime = videoPlayer.time;
+        if (!forceStartFromBeginning)
+        {
+            double currentTime = videoPlayer.time;
+            if (currentTime > 0)
+            {
+                lastRequestedTime = currentTime;
+            }
+        }
+
+        void OnPrepareCompleted(VideoPlayer vp)
+        {
+            if (forceStartFromBeginning)
+            {
+                Debug.Log("Forcing video to start from beginning (time = 0)");
+                vp.time = 0;
+                forceStartFromBeginning = false;
+            }
+            else
+            {
+                Debug.Log($"Video prepared. Setting time from {vp.time} to {lastRequestedTime}");
+                vp.time = lastRequestedTime;
+            }
+
+            if (shouldPlayAfterPrepare)
+            {
+                Debug.Log("Auto-playing video after preparation");
+                vp.Play();
+                videoPaused = false;
+            }
+            else
+            {
+                vp.Pause();
+                videoPaused = true;
+            }
+
+            vp.prepareCompleted -= OnPrepareCompleted; 
+            changingVideo = false;
+
+            shouldPlayAfterPrepare = false;
+
+            ProcessPendingChange();
+        }
+
+        videoPlayer.Pause();
 
         videoPlayer.url = finalUrl;
 
+        videoPlayer.prepareCompleted += OnPrepareCompleted;
+        videoPlayer.Prepare();
+
         if (switchResolution)
         {
-            Debug.Log($"Old time: {videoPlayer.time}, New time: {videoTime}");
-            videoPlayer.time = videoTime;
-            videoPlayer.prepareCompleted += OnVideoPrepared;
-            videoPlayer.Prepare();
-            videoPaused = true;
-        }
-        else
-        {
-            videoPlayer.Play();
+            Debug.Log($"Resolution switch initiated. Saved time: {lastRequestedTime}");
         }
 
-        videoPlayer.loopPointReached -= OnVideoEnded; // to make sure the video is only "subscribed" once
+        videoPlayer.loopPointReached -= OnVideoEnded;
         videoPlayer.loopPointReached += OnVideoEnded;
+    }
+
+    private static void ProcessPendingChange()
+    {
+        if (hasPendingChange)
+        {
+            Debug.Log($"Processing pending change to {pendingSeries} ep{pendingEpisode} {(pendingPhone ? "phone" : "")}");
+            string tempSeries = pendingSeries;
+            int tempEpisode = pendingEpisode;
+            bool tempPhone = pendingPhone;
+
+            hasPendingChange = false;
+            pendingSeries = null;
+            pendingEpisode = -1;
+
+            ChangeSelectedSeries(tempSeries, tempEpisode, tempPhone);
+        }
     }
 
     static void OnVideoPrepared(VideoPlayer source)
@@ -354,11 +441,54 @@ public class VideoScript : MonoBehaviour
         videoPlayer.prepareCompleted -= OnVideoPrepared;
     }
 
+    private static bool shouldPlayAfterPrepare = false;
+    private static bool forceStartFromBeginning = false;
+
     static void OnVideoEnded(VideoPlayer source)
     {
+        Debug.Log($"Video ended. Current episode: {selectedSeries} ep{selectedEpisode}");
+
         videoPlayer.loopPointReached -= OnVideoEnded;
-        ChangeSelectedSeries(selectedSeries, selectedEpisode + 1, UIManager.CurrentViewingExperience == UIManager.ViewingExperience.Phone);
+
+        bool isPhoneMode = UIManager.CurrentViewingExperience == UIManager.ViewingExperience.Phone;
+
+        int nextEpisode = selectedEpisode + 1;
+        string nextFileName = $"ep{nextEpisode}{(isPhoneMode ? "_phone" : "")}.mp4";
+        string nextVideoPath;
+
+        if (pcLinkMode)
+        {
+            nextVideoPath = Path.Combine("Assets", nextFileName);
+        }
+        else
+        {
+            nextVideoPath = Path.Combine(Application.persistentDataPath, "Content", selectedSeries, "mp4", nextFileName);
+        }
+
+        if (File.Exists(nextVideoPath))
+        {
+            Debug.Log($"Switching to next episode: {selectedSeries} ep{nextEpisode}");
+
+            lastRequestedTime = 0;
+            forceStartFromBeginning = true;
+
+            shouldPlayAfterPrepare = true;
+
+            ChangeSelectedSeries(selectedSeries, nextEpisode, isPhoneMode);
+        }
+        else
+        {
+            Debug.LogWarning($"Next episode not found at {nextVideoPath}. Restarting current episode.");
+
+            videoPlayer.loopPointReached += OnVideoEnded;
+
+            videoPlayer.time = 0;
+            videoPlayer.Play();
+            videoPaused = false;
+        }
     }
+
+
 
 
 

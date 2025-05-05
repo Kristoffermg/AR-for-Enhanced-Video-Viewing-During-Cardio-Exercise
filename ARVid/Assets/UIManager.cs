@@ -264,7 +264,7 @@ public class UIManager : MonoBehaviour
     public void MoveVideoPosition()
     {
         Vector3 leftControllerPosition = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LTouch);
-        leftControllerPosition.y += 0.2f;
+        //leftControllerPosition.y += 0.2f;
         canvas.transform.position = Vector3.Lerp(canvas.transform.position, leftControllerPosition, 0.1f);
     }
 
@@ -291,10 +291,48 @@ public class UIManager : MonoBehaviour
                 Debug.Log("Viewing Experience set to Adaptive");
                 break;
         }
-        canvas.transform.LookAt(centerEye.transform);
-        canvas.transform.Rotate(0, 180, 0);
-        canvas.transform.localEulerAngles = new Vector3(0, canvas.transform.localEulerAngles.y, 0f);
+        LookAtCamera();
         return (int)CurrentViewingExperience;
+    }
+
+    public void LookAtCamera()
+    {
+        // Store the current anchor and pivot settings of the canvas RectTransform
+        RectTransform canvasRect = canvas.GetComponent<RectTransform>();
+        Vector2 originalAnchor = canvasRect.anchorMin;
+        Vector2 originalPivot = canvasRect.pivot;
+
+        // First just do a basic horizontal look-at
+        canvas.transform.LookAt(new Vector3(centerEye.transform.position.x, canvas.transform.position.y, centerEye.transform.position.z));
+        canvas.transform.Rotate(0, 180, 0); // Flip to face camera
+
+        // Calculate a more precise direction for vertical adjustment
+        // Use a ray from center eye to a point at the same height as the canvas
+        Vector3 eyeForward = centerEye.transform.forward;
+        Vector3 horizontalDirection = new Vector3(eyeForward.x, 0, eyeForward.z).normalized;
+
+        // Get height difference between eye and canvas
+        float heightDifference = centerEye.transform.position.y - canvas.transform.position.y;
+
+        // Calculate angle based on height and pivot
+        float verticalAngle = 0;
+
+        // If canvas is below eye level, tilt up
+        if (heightDifference > 0)
+        {
+            // The pivot being at bottom (0.5, 0) means we need to tilt differently
+            verticalAngle = Mathf.Clamp(Mathf.Atan2(heightDifference, 1.5f) * Mathf.Rad2Deg, 0, 60);
+        }
+        // If canvas is above eye level, tilt down
+        else if (heightDifference < 0)
+        {
+            verticalAngle = Mathf.Clamp(Mathf.Atan2(heightDifference, 1.5f) * Mathf.Rad2Deg, -60, 0);
+        }
+
+        // Apply the vertical rotation separately, keeping the y rotation we already set
+        canvas.transform.localEulerAngles = new Vector3(verticalAngle, canvas.transform.localEulerAngles.y, 0f);
+
+        Debug.Log($"Canvas pointing at center eye. Height difference: {heightDifference}, Vertical angle: {verticalAngle}");
     }
 
     private void Start()

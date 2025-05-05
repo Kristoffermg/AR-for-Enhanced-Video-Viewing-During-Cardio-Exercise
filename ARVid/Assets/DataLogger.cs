@@ -49,7 +49,6 @@ public class DataLogger : MonoBehaviour
         headPositionData.Clear();
         currentRecordedFrame = 0;
         Debug.Log("Recording started...");
-        StartCoroutine(StopAfterDuration());
     }
 
     private IEnumerator StopAfterDuration()
