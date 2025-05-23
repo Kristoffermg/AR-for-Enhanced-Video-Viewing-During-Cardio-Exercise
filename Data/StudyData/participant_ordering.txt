@@ -1,0 +1,89 @@
+Machine:
+    A: Treadmill
+    B: Elliptical
+    C: Row
+
+Mode:
+    1: Phone
+    2: Static
+    3: Adaptive
+
+Participant 1:
+  Trial 1: Machine A, Modes [2, 3, 1]
+  Trial 2: Machine B, Modes [3, 1, 2]
+  Trial 3: Machine C, Modes [1, 2, 3]
+
+Participant 2:
+  Trial 1: Machine A, Modes [2, 1, 3]
+  Trial 2: Machine B, Modes [1, 3, 2]
+  Trial 3: Machine C, Modes [2, 3, 1]
+
+Participant 3:
+  Trial 1: Machine A, Modes [2, 1, 3]
+  Trial 2: Machine B, Modes [2, 3, 1]
+  Trial 3: Machine C, Modes [1, 2, 3]
+
+Participant 4:
+  Trial 1: Machine A, Modes [1, 2, 3]
+  Trial 2: Machine B, Modes [3, 1, 2]
+  Trial 3: Machine C, Modes [2, 3, 1]
+
+Participant 5:
+  Trial 1: Machine A, Modes [3, 2, 1]
+  Trial 2: Machine C, Modes [3, 1, 2]
+  Trial 3: Machine B, Modes [1, 3, 2]
+
+Participant 6:
+  Trial 1: Machine A, Modes [1, 2, 3]
+  Trial 2: Machine C, Modes [1, 3, 2]
+  Trial 3: Machine B, Modes [3, 1, 2]
+
+Participant 7:
+  Trial 1: Machine A, Modes [2, 3, 1]
+  Trial 2: Machine C, Modes [1, 2, 3]
+  Trial 3: Machine B, Modes [3, 1, 2]
+
+Participant 8:
+  Trial 1: Machine B, Modes [1, 2, 3]
+  Trial 2: Machine A, Modes [3, 2, 1]
+  Trial 3: Machine C, Modes [2, 1, 3]
+
+Participant 9: 
+  Trial 1: Machine B, Modes [1, 3, 2]
+  Trial 2: Machine A, Modes [3, 2, 1]
+  Trial 3: Machine C, Modes [3, 1, 2]
+
+Participant 10: 
+  Trial 1: Machine B, Modes [1, 3, 2]
+  Trial 2: Machine A, Modes [1, 2, 3]
+  Trial 3: Machine C, Modes [2, 1, 3]
+
+Participant 11:
+  Trial 1: Machine B, Modes [1, 2, 3]
+  Trial 2: Machine A, Modes [2, 3, 1]
+  Trial 3: Machine C, Modes [2, 1, 3]
+
+Participant 12:
+  Trial 1: Machine B, Modes [2, 1, 3]
+  Trial 2: Machine C, Modes [3, 2, 1]
+  Trial 3: Machine A, Modes [1, 2, 3]
+
+Participant 13: 
+  Trial 1: Machine B, Modes [3, 2, 1]
+  Trial 2: Machine C, Modes [3, 1, 2]
+  Trial 3: Machine A, Modes [2, 3, 1]
+
+Participant 14: 
+  Trial 1: Machine C, Modes [1, 2, 3]
+  Trial 2: Machine B, Modes [3, 2, 1]
+  Trial 3: Machine A, Modes [1, 3, 2]
+
+Participant 15: 
+  Trial 1: Machine C, Modes [1, 3, 2]
+  Trial 2: Machine B, Modes [2, 3, 1]
+  Trial 3: Machine A, Modes [1, 2, 3]
+
+Participant 16: 
+  Trial 1: Machine C, Modes [3, 1, 2]
+  Trial 2: Machine B, Modes [1, 3, 2]
+  Trial 3: Machine A, Modes [3, 2, 1]
