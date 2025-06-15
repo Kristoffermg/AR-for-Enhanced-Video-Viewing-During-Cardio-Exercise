@@ -1,0 +1,17 @@
+participant,age,sex,cardioRegularity,accessoryActivity,triedVR,chosenContent
+01,25,M,Often,"Music",Yes,OnePunchMan
+02,23,M,Occasionally,"Music",Yes,BrooklynNineNine
+03,27,M,Occasionally,"Music;TVshows;ShortForm;Twitch",No,OnePunchMan
+04,21,F,Often,"Music;Shortform",Yes,FamilyGuy
+05,25,M,Often,"Nothing",No,OnePunchMan
+06,26,M,Moderately,"Music",Yes,ParksAndRecreation
+07,24,M,Rarely,"Music",Yes,ParksAndRecreation
+08,28,M,Often,"TVshows",Yes,TheOffice
+09,27,M,Occasionally,"Music",Yes,FamilyGuy
+10,26,M,Moderately,"Music;ShortForm",No,OnePunchMan
+11,25,M,Often,"Music;TVshows",Yes,BrooklynNineNine
+12,25,M,Often,"Nothing",Yes,BrooklynNineNine
+13,25,M,Often,"Music",Yes,FamilyGuy
+14,24,M,VeryOften,"Music;TVshows",Yes,OnePunchMan
+15,25,M,Often,"Music;TVshows;Sudoku",Yes,OnePunchMan
+16,26,M,Often,"Music;TVshows",Yes,BrooklynNineNine
