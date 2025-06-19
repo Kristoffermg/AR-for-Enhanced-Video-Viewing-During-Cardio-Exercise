@@ -55,13 +55,19 @@ Add this to your Unity Assets: https://assetstore.unity.com/packages/tools/integ
 After installing, inside Unity: Window -> Package Manager -> Select "My Assets" -> Install the Unity XR All-in-One SDK
 
 2.  **TMPro (TextMeshPro)**:
-This package is used for displaying the Text and Dropdowns in the menu UI
 Inside Unity: Window -> Package Manager -> Select "Unity Registry" -> Search "TextMeshPro" and install
+
+3.  **NUnit**:
+Inside Unity: Window -> Package Manager -> Select "Unity Registry" -> Search "NUnit" and install
 
 ## Videos
 As of right now, the implementation in VideoScript.cs is only set up for our study use case (playing a specific set of series).
 In order to play a video, change the implementation in VideoScript.cs to support your video file(s).
 Then, install an app like SideQuest to upload your video(s) to their respective file locations (which again, requires you to change the VideoScript.cs implementation).
+
+## Build
+The APK for this project is stored at ARVid/ProjectBuild.apk
+Install it on your Meta Quest 3S by installing the [Android Debug Bridge (adb)](https://developer.android.com/tools/adb) and running "adb install ProjectBuild.apk" in the command prompt.
 
 ## Controls
 * **Start / Pause video**: A
