@@ -1,17 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Text;
 using UnityEngine;
 using UnityEngine.Video;
-using MathNet.Numerics.Statistics;
-using System;
-using System.Linq;
-using UnityEngine.XR;
-using Accord.Statistics.Distributions.Univariate;
 using static IntensityManager;
-using Oculus.Interaction;
 
 public class VideoScript : MonoBehaviour
 {

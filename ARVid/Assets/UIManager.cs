@@ -1,13 +1,6 @@
-using Accord.Statistics.Distributions.Univariate;
-using Meta.XR.ImmersiveDebugger.UserInterface.Generic;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text.RegularExpressions;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class UIManager : MonoBehaviour
