@@ -1,0 +1,182 @@
+#Analysis of likert scale questions
+
+df <- read.csv("C:/Users/Marti/Documents/GitHub/ARCH/Data/StudyData/csv/between.csv")
+
+
+df$participant <- as.factor(df$participant)
+df$machine <- factor(df$machine, labels = c("Treadmill", "Elliptical", "Rowing"))
+df$mode <- factor(df$mode, labels = c("Phone", "Static", "Adaptive"))
+
+df$group <- interaction(df$machine, df$mode)
+
+#Testing Q1 for machine_mode, mode, and machine
+kruskal.test(cumbersome ~ group, data = df)
+
+kruskal.test(cumbersome ~ mode, data = df)
+
+kruskal.test(cumbersome ~ machine, data = df)
+
+#Testing Q2 for machine_mode, mode, and machine
+kruskal.test(intensity ~ group, data = df)
+
+kruskal.test(intensity ~ mode, data = df)
+
+kruskal.test(intensity ~ machine, data = df)
+
+
+#Testing Q3 for machine_mode, mode, and machine
+kruskal.test(enjoyable ~ group, data = df)
+
+kruskal.test(enjoyable ~ mode, data = df)
+
+kruskal.test(enjoyable ~ machine, data = df)
+
+
+#Testing Q4 for machine_mode, mode, and machine
+kruskal.test(enhance ~ group, data = df)
+
+kruskal.test(enhance ~ mode, data = df)
+
+kruskal.test(enhance ~ machine, data = df)
+
+
+#Post hoc Dunn's test, do only for p<0.05
+library(FSA)
+dunnTest(cumbersome ~ mode, data = df, method = "bonferroni")
+dunnTest(cumbersome ~ machine_mode, data = df, method = "bonferroni")
+#dunnTest(cumbersome ~ machine, data = df, method = "bonferroni")
+
+dunnTest(intensity ~ mode, data = df, method = "bonferroni")
+dunnTest(intensity ~ machine_mode, data = df, method = "bonferroni")
+#dunnTest(intensity ~ machine, data = df, method = "bonferroni")
+
+dunnTest(enjoyable ~ mode, data = df, method = "bonferroni")
+dunnTest(enjoyable ~ machine_mode, data = df, method = "bonferroni")
+#dunnTest(enjoyable ~ machine, data = df, method = "bonferroni")
+
+dunnTest(enhance ~ mode, data = df, method = "bonferroni")
+dunnTest(enhance ~ machine_mode, data = df, method = "bonferroni")
+#dunnTest(enhance ~ machine, data = df, method = "bonferroni")
+
+
+#Calculating effect sizes: Z/sqrt(N). For us, sqrt(N)=12
+
+effect_sizes <- data.frame(
+  Comparison = c(
+    "P - S (Q1)", "P - A (Q1)", "S - A (Q1)",
+    "P - S (Q2)", "P - A (Q2)", "S - A (Q2)",
+    "A - P (Q3)", "A - S (Q3)", "P - S (Q3)",
+    "A - P (Q4)", "A - S (Q4)", "P - S (Q4)"
+  ),
+  r = abs(c(
+    0.48138208, 0.53931375, 0.05793167,
+    0.27877992, 0.43710200, 0.15832208,
+    0.48114680, 0.06989847, -0.41124833,
+    0.40329241, 0.02019602, -0.38309639
+  ))
+)
+
+# Add effect size magnitude labels
+effect_sizes$Magnitude <- cut(effect_sizes$r,
+  breaks = c(0, 0.1, 0.3, 0.5, Inf),
+  labels = c("Negligible", "Small", "Medium", "Large")
+)
+
+# Export to compact PDF
+pdf("effect_sizes_plot.pdf", width = 4.5, height = 4.5)
+
+# Plot
+ggplot(effect_sizes, aes(x = reorder(Comparison, r), y = r, fill = Magnitude)) +
+  geom_bar(stat = "identity") +
+  geom_hline(yintercept = c(0.1, 0.3, 0.5), linetype = "dashed", color = "gray40") +
+  annotate("text", x = 0.5, y = 0.1, label = "Small", vjust = -0.8, size = 3) +
+  annotate("text", x = 0.5, y = 0.3, label = "Medium", vjust = -0.8, size = 3) +
+  annotate("text", x = 0.5, y = 0.5, label = "Large", vjust = -0.8, size = 3) +
+  coord_flip() +
+  scale_fill_manual(
+    values = c("Negligible" = "#d0d1e6", "Small" = "#74a9cf",
+               "Medium" = "#2b8cbe", "Large" = "#045a8d")
+  ) +
+  labs(
+    title = "Effect Sizes (r) from Dunn's Post Hoc Tests",
+    x = "Comparison", y = "Effect Size (|r|)", fill = "Magnitude"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    axis.text = element_text(size = 10),
+    plot.title = element_text(size = 12, face = "bold"),
+    axis.title = element_text(size = 11),
+    legend.position = "bottom"
+  )
+
+dev.off()
+
+
+#Create box-plot of participant responses
+library(tidyverse)
+
+df_long <- df %>%
+  pivot_longer(cols = c(cumbersome, intensity, enjoyable, enhance),
+               names_to = "question",
+               values_to = "response")
+
+# Convert to factors with readable labels
+df_long$mode <- factor(df_long$mode, levels = c(1, 2, 3), labels = c("Phone", "Static", "Adaptive"))
+df_long$question <- factor(df_long$question,
+                           levels = c("cumbersome", "intensity", "enjoyable", "enhance"),
+                           labels = c("Q1:Cumbersome", "Q2:Intensity", "Q3:Enjoyable", "Q4:Enhance"))
+
+# Save as PDF
+pdf("participant_responses_boxplot.pdf", width = 8, height = 4)
+
+ggplot(df_long, aes(x = mode, y = response, fill = mode)) +
+  geom_boxplot(outlier.shape = 21, outlier.size = 1.5, width = 0.6) +
+  facet_wrap(~question, scales = "free_y") +
+  labs(
+    title = "Participant Ratings by Mode and Question",
+    x = "Viewing Mode", y = "Response (Likert 1–7)"
+  ) +
+  scale_fill_manual(values = c("Phone" = "#1b9e77", "Static" = "#7570b3", "Adaptive" = "#d95f02")) +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "none",
+    axis.text = element_text(size = 10),
+    strip.text = element_text(size = 12, face = "bold"),
+    plot.title = element_text(size = 13, face = "bold"),
+    axis.title = element_text(size = 11)
+  )
+
+dev.off()
+
+
+
+#Analysis of viewing mode rankings
+
+df <- read.csv("C:/Users/Marti/Documents/GitHub/ARCH/Data/StudyData/csv/rankings.csv")
+
+library(dplyr)
+library(tidyr)
+
+long_df <- df %>%
+  pivot_longer(cols = c(phoneRank, staticRank, AdaptiveRank),
+               names_to = "mode",
+               values_to = "rank") %>%
+  mutate(mode = recode(mode,
+                       "phoneRank" = "Phone",
+                       "staticRank" = "Static",
+                       "AdaptiveRank" = "Adaptive"),
+         machine = factor(machine, labels = c("Treadmill", "Elliptical", "Rowing")))
+
+long_df$group <- interaction(long_df$machine, long_df$mode)
+
+kruskal.test(rank ~ machine, data = long_df)
+
+kruskal.test(rank ~ mode, data = long_df)
+
+kruskal.test(rank ~ group, data = long_df)
+
+#Dunns test of significant values:
+library(FSA)
+dunnTest(rank ~ group, data = long_df, method = "bonferroni")
+
+dunnTest(rank ~ mode, data = long_df, method = "bonferroni")

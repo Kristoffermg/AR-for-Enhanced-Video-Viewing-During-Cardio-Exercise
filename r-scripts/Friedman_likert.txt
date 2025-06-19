@@ -1,0 +1,393 @@
+library(dplyr)
+library(tidyr)
+
+df <- read.csv("C:/Users/Marti/Documents/GitHub/ARCH/Data/StudyData/csv/between.csv")
+
+machines <- unique(df$machine)
+
+#Friedman and wilcox tests on Q1: cumbersome
+
+for (m in machines) {
+  cat("Machine:", m, "\n")
+  
+  # Friedman test
+  wide_cumbersome <- df %>%
+    filter(machine == m) %>%
+    select(participant, mode, cumbersome) %>%
+    pivot_wider(names_from = mode, values_from = cumbersome)
+  
+  test_matrix <- as.matrix(wide_cumbersome[ , -1])
+  result <- friedman.test(test_matrix)
+  print(result)
+  
+  # Post hoc pairwise Wilcoxon tests
+  cat("Post hoc pairwise Wilcoxon tests (with Bonferroni correction):\n")
+  long_data <- df %>%
+    filter(machine == m) %>%
+    select(participant, mode, cumbersome)
+  
+  pairwise_result <- pairwise.wilcox.test(long_data$cumbersome, long_data$mode,
+                                          paired = TRUE, p.adjust.method = "bonferroni")
+  
+  print(pairwise_result)
+  cat("\n-------------------------------\n\n")
+}
+
+
+##Results
+
+Machine: Treadmill 
+
+        Friedman rank sum test
+
+data:  test_matrix
+Friedman chi-squared = 14.115, df = 2, p-value = 0.0008608
+
+Post hoc pairwise Wilcoxon tests (with Bonferroni correction):
+
+        Pairwise comparisons using Wilcoxon signed rank test with continuity correction 
+
+data:  long_data$cumbersome and long_data$mode 
+
+         Phone Static
+Static   0.007 -     
+Adaptive 0.048 1.000 
+
+P value adjustment method: bonferroni 
+
+-------------------------------
+
+Machine: Elliptical 
+
+        Friedman rank sum test
+
+data:  test_matrix
+Friedman chi-squared = 7.8909, df = 2, p-value = 0.01934
+
+Post hoc pairwise Wilcoxon tests (with Bonferroni correction):
+
+        Pairwise comparisons using Wilcoxon signed rank test with continuity correction 
+
+data:  long_data$cumbersome and long_data$mode 
+
+         Phone Static
+Static   0.012 -     
+Adaptive 0.015 1.000 
+
+P value adjustment method: bonferroni 
+
+-------------------------------
+
+Machine: Rowing 
+
+        Friedman rank sum test
+
+data:  test_matrix
+Friedman chi-squared = 11.684, df = 2, p-value = 0.002903
+
+Post hoc pairwise Wilcoxon tests (with Bonferroni correction):
+
+        Pairwise comparisons using Wilcoxon signed rank test with continuity correction 
+
+data:  long_data$cumbersome and long_data$mode 
+
+         Phone Static
+Static   0.042 -     
+Adaptive 0.015 1.000 
+
+P value adjustment method: bonferroni 
+
+##
+
+
+
+
+#Friedman and wilcox tests on Q2: intensity
+
+for (m in machines) {
+  cat("Machine:", m, "\n")
+  
+  # Friedman test
+  wide_intensity <- df %>%
+    filter(machine == m) %>%
+    select(participant, mode, intensity) %>%
+    pivot_wider(names_from = mode, values_from = intensity)
+  
+  test_matrix <- as.matrix(wide_intensity[ , -1])
+  result <- friedman.test(test_matrix)
+  print(result)
+  
+  # Post hoc pairwise Wilcoxon tests
+  cat("Post hoc pairwise Wilcoxon tests (with Bonferroni correction):\n")
+  long_data <- df %>%
+    filter(machine == m) %>%
+    select(participant, mode, intensity)
+  
+  pairwise_result <- pairwise.wilcox.test(long_data$intensity, long_data$mode,
+                                          paired = TRUE, p.adjust.method = "bonferroni")
+  
+  print(pairwise_result)
+  cat("\n-------------------------------\n\n")
+}
+
+##Results
+
+Machine: Treadmill 
+
+        Friedman rank sum test
+
+data:  test_matrix
+Friedman chi-squared = 9.0943, df = 2, p-value = 0.0106
+
+Post hoc pairwise Wilcoxon tests (with Bonferroni correction):
+
+        Pairwise comparisons using Wilcoxon signed rank test with continuity correction 
+
+data:  long_data$intensity and long_data$mode 
+
+         Phone Static
+Static   0.50  -     
+Adaptive 0.22  0.53  
+
+P value adjustment method: bonferroni 
+
+-------------------------------
+
+Machine: Elliptical 
+
+        Friedman rank sum test
+
+data:  test_matrix
+Friedman chi-squared = 4.2745, df = 2, p-value = 0.118
+
+Post hoc pairwise Wilcoxon tests (with Bonferroni correction):
+
+        Pairwise comparisons using Wilcoxon signed rank test with continuity correction 
+
+data:  long_data$intensity and long_data$mode 
+
+         Phone Static
+Static   0.56  -     
+Adaptive 0.18  1.00  
+
+P value adjustment method: bonferroni 
+
+-------------------------------
+
+Machine: Rowing 
+
+        Friedman rank sum test
+
+data:  test_matrix
+Friedman chi-squared = 15.75, df = 2, p-value = 0.0003801
+
+Post hoc pairwise Wilcoxon tests (with Bonferroni correction):
+
+        Pairwise comparisons using Wilcoxon signed rank test with continuity correction 
+
+data:  long_data$intensity and long_data$mode 
+
+         Phone  Static
+Static   0.0167 -     
+Adaptive 0.0031 0.9145
+
+P value adjustment method: bonferroni 
+
+##
+
+#Friedman and wilcox tests on Q3: enjoyable
+
+for (m in machines) {
+  cat("Machine:", m, "\n")
+  
+  # Friedman test
+  wide_enjoyable <- df %>%
+    filter(machine == m) %>%
+    select(participant, mode, enjoyable) %>%
+    pivot_wider(names_from = mode, values_from = enjoyable)
+  
+  test_matrix <- as.matrix(wide_enjoyable[ , -1])
+  result <- friedman.test(test_matrix)
+  print(result)
+  
+  # Post hoc pairwise Wilcoxon tests
+  cat("Post hoc pairwise Wilcoxon tests (with Bonferroni correction):\n")
+  long_data <- df %>%
+    filter(machine == m) %>%
+    select(participant, mode, enjoyable)
+  
+  pairwise_result <- pairwise.wilcox.test(long_data$enjoyable, long_data$mode,
+                                          paired = TRUE, p.adjust.method = "bonferroni")
+  
+  print(pairwise_result)
+  cat("\n-------------------------------\n\n")
+}
+
+##Results
+
+Machine: Treadmill 
+
+        Friedman rank sum test
+
+data:  test_matrix
+Friedman chi-squared = 12.056, df = 2, p-value = 0.002411
+
+Post hoc pairwise Wilcoxon tests (with Bonferroni correction):
+
+        Pairwise comparisons using Wilcoxon signed rank test with continuity correction 
+
+data:  long_data$enjoyable and long_data$mode 
+
+         Phone Static
+Static   0.022 -     
+Adaptive 0.019 1.000 
+
+P value adjustment method: bonferroni 
+
+-------------------------------
+
+Machine: Elliptical 
+
+        Friedman rank sum test
+
+data:  test_matrix
+Friedman chi-squared = 9.5417, df = 2, p-value = 0.008473
+
+Post hoc pairwise Wilcoxon tests (with Bonferroni correction):
+
+        Pairwise comparisons using Wilcoxon signed rank test with continuity correction 
+
+data:  long_data$enjoyable and long_data$mode 
+
+         Phone Static
+Static   0.024 -     
+Adaptive 0.018 0.826 
+
+P value adjustment method: bonferroni 
+
+-------------------------------
+
+Machine: Rowing 
+
+        Friedman rank sum test
+
+data:  test_matrix
+Friedman chi-squared = 10.08, df = 2, p-value = 0.006474
+
+Post hoc pairwise Wilcoxon tests (with Bonferroni correction):
+
+        Pairwise comparisons using Wilcoxon signed rank test with continuity correction 
+
+data:  long_data$enjoyable and long_data$mode 
+
+         Phone Static
+Static   0.032 -     
+Adaptive 0.060 1.000 
+
+P value adjustment method: bonferroni 
+
+##
+
+
+#Friedman and wilcox tests on Q4: enhance
+
+for (m in machines) {
+  cat("Machine:", m, "\n")
+  
+  # Friedman test
+  wide_enhance <- df %>%
+    filter(machine == m) %>%
+    select(participant, mode, enhance) %>%
+    pivot_wider(names_from = mode, values_from = enhance)
+  
+  test_matrix <- as.matrix(wide_enhance[ , -1])
+  result <- friedman.test(test_matrix)
+  print(result)
+  
+  # Post hoc pairwise Wilcoxon tests
+  cat("Post hoc pairwise Wilcoxon tests (with Bonferroni correction):\n")
+  long_data <- df %>%
+    filter(machine == m) %>%
+    select(participant, mode, enhance)
+  
+  pairwise_result <- pairwise.wilcox.test(long_data$enhance, long_data$mode,
+                                          paired = TRUE, p.adjust.method = "bonferroni")
+  
+  print(pairwise_result)
+  cat("\n-------------------------------\n\n")
+}
+
+
+##Results
+
+Machine: Treadmill 
+
+        Friedman rank sum test
+
+data:  test_matrix
+Friedman chi-squared = 9.4348, df = 2, p-value = 0.008938
+
+Post hoc pairwise Wilcoxon tests (with Bonferroni correction):
+
+        Pairwise comparisons using Wilcoxon signed rank test with continuity correction 
+
+data:  long_data$enhance and long_data$mode 
+
+         Phone Static
+Static   0.028 -     
+Adaptive 0.022 1.000 
+
+P value adjustment method: bonferroni 
+
+-------------------------------
+
+Machine: Elliptical 
+
+        Friedman rank sum test
+
+data:  test_matrix
+Friedman chi-squared = 9.8974, df = 2, p-value = 0.007092
+
+Post hoc pairwise Wilcoxon tests (with Bonferroni correction):
+
+        Pairwise comparisons using Wilcoxon signed rank test with continuity correction 
+
+data:  long_data$enhance and long_data$mode 
+
+         Phone Static
+Static   0.019 -     
+Adaptive 0.032 1.000 
+
+P value adjustment method: bonferroni 
+
+-------------------------------
+
+Machine: Rowing 
+
+        Friedman rank sum test
+
+data:  test_matrix
+Friedman chi-squared = 4.9778, df = 2, p-value = 0.083
+
+Post hoc pairwise Wilcoxon tests (with Bonferroni correction):
+
+        Pairwise comparisons using Wilcoxon signed rank test with continuity correction 
+
+data:  long_data$enhance and long_data$mode 
+
+         Phone Static
+Static   0.162 -     
+Adaptive 0.096 1.000 
+
+P value adjustment method: bonferroni 
+
+##
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,90 @@
+library(dplyr)
+
+df <- read.csv("C:/Users/Marti/Documents/GitHub/ARCH/Data/StudyData/csv/rankings.csv")
+
+for (m in unique(df$machine)) {
+  cat("Machine:", m, "\n")
+  
+  wide_machine <- df %>%
+    filter(machine == m) %>%
+    group_by(participant) %>%
+    summarise(
+      phone = mean(phoneRank),
+      static = mean(staticRank),
+      adaptive = mean(AdaptiveRank)
+    )
+  
+  print(friedman.test(as.matrix(wide_machine[ , c("phone", "static", "adaptive")])))
+  
+  cat("Post hoc:\n")
+  print(pairwise.wilcox.test(
+    x = unlist(wide_machine[ , c("phone", "static", "adaptive")]),
+    g = rep(c("phone", "static", "adaptive"), each = nrow(wide_machine)),
+    paired = TRUE,
+    p.adjust.method = "bonferroni"
+  ))
+  
+  cat("\n")
+}
+
+
+##Results
+
+Machine: Treadmill 
+
+        Friedman rank sum test
+
+data:  as.matrix(wide_machine[, c("phone", "static", "adaptive")])
+Friedman chi-squared = 12.667, df = 2, p-value = 0.001776
+
+Post hoc:
+
+        Pairwise comparisons using Wilcoxon signed rank test with continuity correction 
+
+data:  unlist(wide_machine[, c("phone", "static", "adaptive")]) and rep(c("phone", "static", "adaptive"), each = nrow(wide_machine)) 
+
+       adaptive phone 
+phone  0.0640   -     
+static 0.7157   0.0055
+
+P value adjustment method: bonferroni 
+
+Machine: Elliptical 
+
+        Friedman rank sum test
+
+data:  as.matrix(wide_machine[, c("phone", "static", "adaptive")])
+Friedman chi-squared = 10.5, df = 2, p-value = 0.005248
+
+Post hoc:
+
+        Pairwise comparisons using Wilcoxon signed rank test with continuity correction 
+
+data:  unlist(wide_machine[, c("phone", "static", "adaptive")]) and rep(c("phone", "static", "adaptive"), each = nrow(wide_machine)) 
+
+       adaptive phone
+phone  0.071    -    
+static 0.792    0.022
+
+P value adjustment method: bonferroni 
+
+Machine: Rowing 
+
+        Friedman rank sum test
+
+data:  as.matrix(wide_machine[, c("phone", "static", "adaptive")])
+Friedman chi-squared = 14.323, df = 2, p-value = 0.0007761
+
+Post hoc:
+
+        Pairwise comparisons using Wilcoxon signed rank test with continuity correction 
+
+data:  unlist(wide_machine[, c("phone", "static", "adaptive")]) and rep(c("phone", "static", "adaptive"), each = nrow(wide_machine)) 
+
+       adaptive phone 
+phone  0.0036   -     
+static 0.0951   0.0758
+
+P value adjustment method: bonferroni 
+
+##
