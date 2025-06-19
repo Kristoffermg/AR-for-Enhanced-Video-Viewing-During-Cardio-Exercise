@@ -4,7 +4,6 @@ public class IntensityManager : MonoBehaviour
 {
     public GameObject intensitySphere;
     public GameObject canvas;
-    private InferenceManager inferenceManager;
     [SerializeField] private UIManager uiManager;
 
     public static IntensityManager Instance { get; private set; }
@@ -41,7 +40,6 @@ public class IntensityManager : MonoBehaviour
 
     private void Start()
     {
-        inferenceManager = new InferenceManager();
         uiManager = new UIManager();
     }
 
