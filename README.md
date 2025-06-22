@@ -28,7 +28,7 @@ The project involved:
     * Investigation into the available space in the field of view (FOV) during cardio exercises was conducted to assess viable screen placement options.
 
 2.  **User Study**:
-    * A study with 12 participants evaluated the three viewing modes across three cardio machines: a treadmill, elliptical, and rowing machine.
+    * A study with 16 participants evaluated the three viewing modes across three cardio machines: a treadmill, elliptical, and rowing machine.
     * Participants completed surveys on perceived exertion and their experience with each viewing mode, followed by semi-structured interviews.
 
 ## Key Findings
