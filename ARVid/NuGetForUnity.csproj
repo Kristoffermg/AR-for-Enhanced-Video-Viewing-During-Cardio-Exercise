@@ -18,16 +18,18 @@
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
   </PropertyGroup>
+  <PropertyGroup>
+    <NoWarn>0169;USG0001</NoWarn>
+    <DefineConstants>UNITY_2022_3_48;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_RUNTIME_PERMISSIONS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_ONSCREEN_KEYBOARD;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_ANDROID;TEXTCORE_1_0_OR_NEWER;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;UNITY_CAN_SHOW_SPLASH_SCREEN;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO;ENABLE_SPATIALTRACKING;ENABLE_ETC_COMPRESSION;PLATFORM_EXTENDS_VULKAN_DEVICE;PLATFORM_HAS_MULTIPLE_SWAPCHAINS;UNITY_ANDROID_SUPPORTS_SHADOWFILES;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_4_6;NET_UNITY_4_8;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;ISDK_OPENXR_HAND;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER;UNITY_EDITOR_ONLY_COMPILATION</DefineConstants>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>UNITY_2022_3_48;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_RUNTIME_PERMISSIONS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_ONSCREEN_KEYBOARD;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_ANDROID;TEXTCORE_1_0_OR_NEWER;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;UNITY_CAN_SHOW_SPLASH_SCREEN;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO;ENABLE_SPATIALTRACKING;ENABLE_ETC_COMPRESSION;PLATFORM_EXTENDS_VULKAN_DEVICE;PLATFORM_HAS_MULTIPLE_SWAPCHAINS;UNITY_ANDROID_SUPPORTS_SHADOWFILES;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_4_6;NET_UNITY_4_8;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;ISDK_OPENXR_HAND;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER;UNITY_EDITOR_ONLY_COMPILATION</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <NoWarn>0169;USG0001</NoWarn>
-    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,8 +37,6 @@
     <OutputPath>Temp\bin\Release\</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <NoWarn>0169;USG0001</NoWarn>
-    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <NoConfig>true</NoConfig>
@@ -48,7 +48,7 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Package</UnityProjectGenerator>
-    <UnityProjectGeneratorVersion>2.0.22</UnityProjectGeneratorVersion>
+    <UnityProjectGeneratorVersion>2.0.23</UnityProjectGeneratorVersion>
     <UnityProjectGeneratorStyle>Legacy</UnityProjectGeneratorStyle>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
@@ -60,79 +60,80 @@
     <Analyzer Include="F:\Unity\Hub\Editor\2022.3.48f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Ui\RectHelper.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Configuration\PackageConfig.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Ui\NugetWindowTab.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Models\NugetFrameworkGroup.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Ui\NuGetForUnityUpdater.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Configuration\NativeRuntimeSettings.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Helper\PortableSymbolFileHelper.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\PackageSource\NugetPackageSourceCreator.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Configuration\ConfigurationManager.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Ui\NuspecEditor.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Ui\DependencyTreeViewer.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\PackageSource\NugetPackageSourceV2.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Helper\WebRequestHelper.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\PackageSource\NugetODataResponse.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Helper\AssemblyLoader.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Configuration\NugetForUnityPluginId.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\UnityPreImportedLibraryResolver.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Helper\CredentialProviderHelper.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\PackageSource\NugetPackageSourceV3.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\NugetPackageUninstaller.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Ui\NugetPreferences.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Models\NugetPackageIdentifier.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\PackageSource\NugetApiClientV3.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Models\INugetPackageIdentifier.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\OnLoadNugetPackageRestorer.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Models\NugetPackageIdEqualityComparer.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\NuspecFile.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Models\PackageInstallOperationResult.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Models\RepositoryType.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Ui\NugetWindow.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Helper\UnityPathHelper.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\PackageContentManager.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\PackageSource\NugetPackageSourceLocal.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Models\NugetPackageV3.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Ui\Styles.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\PackageSource\INugetPackageSource.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\NuspecContentFile.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\PackageRestorer.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\PluginSupport\NugetPluginService.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Models\INugetPackage.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Models\UnityVersion.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Helper\UnityMainThreadDispatcher.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Configuration\NativeRuntimeAssetConfiguration.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\NugetLogger.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\PackageCacheManager.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Helper\FileSystemHelper.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Helper\PathHelper.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\NugetPackageInstaller.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Helper\Md5HashHelper.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Configuration\NugetConfigFile.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Models\NugetPackageLocal.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Configuration\PackagesConfigFile.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Helper\NugetCliHelper.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\PackageSource\NugetPackageSourceCombined.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\InstalledPackagesManager.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\NugetPackageUpdater.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Configuration\PackageInstallLocation.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Models\PackageInstallOperationResultEntry.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\TargetFrameworkResolver.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Helper\NugetPackageTextureHelper.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Models\NugetPackageV2Base.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Models\NugetPackageV2.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\NugetAssetPostprocessor.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Models\SerializableNugetPackage.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Configuration\ConfigurationEncryptionHelper.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\PluginSupport\PluginRegistry.cs" />
-    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\Models\NugetPackageVersion.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Ui\RectHelper.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Configuration\PackageConfig.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Ui\NugetWindowTab.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Models\NugetFrameworkGroup.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Ui\NuGetForUnityUpdater.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Configuration\NativeRuntimeSettings.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Helper\PortableSymbolFileHelper.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Helper\AnalyzerHelper.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\PackageSource\NugetPackageSourceCreator.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Configuration\ConfigurationManager.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Ui\NuspecEditor.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Ui\DependencyTreeViewer.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\PackageSource\NugetPackageSourceV2.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Helper\WebRequestHelper.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\PackageSource\NugetODataResponse.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Helper\AssemblyLoader.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Configuration\NugetForUnityPluginId.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\UnityPreImportedLibraryResolver.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Helper\CredentialProviderHelper.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\PackageSource\NugetPackageSourceV3.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\NugetPackageUninstaller.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Ui\NugetPreferences.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Models\NugetPackageIdentifier.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\PackageSource\NugetApiClientV3.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Models\INugetPackageIdentifier.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\OnLoadNugetPackageRestorer.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Models\NugetPackageIdEqualityComparer.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\NuspecFile.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Models\PackageInstallOperationResult.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Models\RepositoryType.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Ui\NugetWindow.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Helper\UnityPathHelper.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\PackageContentManager.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\PackageSource\NugetPackageSourceLocal.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Models\NugetPackageV3.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Ui\Styles.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\PackageSource\INugetPackageSource.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\NuspecContentFile.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\PackageRestorer.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\PluginSupport\NugetPluginService.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Models\INugetPackage.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Models\UnityVersion.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Helper\UnityMainThreadDispatcher.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Configuration\NativeRuntimeAssetConfiguration.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\NugetLogger.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\PackageCacheManager.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Helper\FileSystemHelper.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Helper\PathHelper.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\NugetPackageInstaller.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Helper\Md5HashHelper.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Configuration\NugetConfigFile.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Models\NugetPackageLocal.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Configuration\PackagesConfigFile.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Helper\NugetCliHelper.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\PackageSource\NugetPackageSourceCombined.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\InstalledPackagesManager.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\NugetPackageUpdater.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Configuration\PackageInstallLocation.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Models\PackageInstallOperationResultEntry.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\TargetFrameworkResolver.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Helper\NugetPackageTextureHelper.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Models\NugetPackageV2Base.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Models\NugetPackageV2.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\NugetAssetPostprocessor.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Models\SerializableNugetPackage.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Configuration\ConfigurationEncryptionHelper.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\PluginSupport\PluginRegistry.cs" />
+    <Compile Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\Models\NugetPackageVersion.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\csc.rsp" />
-    <None Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\PluginAPI\NuGetForUnity.PluginAPI.xml" />
-    <None Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\NuGetForUnity.asmdef" />
-    <None Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\PluginAPI\NuGetForUnity.PluginAPI.dll" />
+    <None Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\csc.rsp" />
+    <None Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\PluginAPI\NuGetForUnity.PluginAPI.xml" />
+    <None Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\NuGetForUnity.asmdef" />
+    <None Include="Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\PluginAPI\NuGetForUnity.PluginAPI.dll" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -500,7 +501,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="NuGetForUnity.PluginAPI">
-      <HintPath>Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\PluginAPI\NuGetForUnity.PluginAPI.dll</HintPath>
+      <HintPath>Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\PluginAPI\NuGetForUnity.PluginAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">

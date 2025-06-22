@@ -18,16 +18,18 @@
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
   </PropertyGroup>
+  <PropertyGroup>
+    <NoWarn>0169;USG0001</NoWarn>
+    <DefineConstants>UNITY_2022_3_48;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_RUNTIME_PERMISSIONS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_ONSCREEN_KEYBOARD;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_ANDROID;TEXTCORE_1_0_OR_NEWER;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;UNITY_CAN_SHOW_SPLASH_SCREEN;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO;ENABLE_SPATIALTRACKING;ENABLE_ETC_COMPRESSION;PLATFORM_EXTENDS_VULKAN_DEVICE;PLATFORM_HAS_MULTIPLE_SWAPCHAINS;UNITY_ANDROID_SUPPORTS_SHADOWFILES;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;ISDK_OPENXR_HAND;META_INTERACTION_SDK_DEFINED;OVR_UNITY_PACKAGE_MANAGER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>UNITY_2022_3_48;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_RUNTIME_PERMISSIONS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_ONSCREEN_KEYBOARD;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_ANDROID;TEXTCORE_1_0_OR_NEWER;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;UNITY_CAN_SHOW_SPLASH_SCREEN;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO;ENABLE_SPATIALTRACKING;ENABLE_ETC_COMPRESSION;PLATFORM_EXTENDS_VULKAN_DEVICE;PLATFORM_HAS_MULTIPLE_SWAPCHAINS;UNITY_ANDROID_SUPPORTS_SHADOWFILES;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;ISDK_OPENXR_HAND;OVR_UNITY_PACKAGE_MANAGER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <NoWarn>0169;USG0001</NoWarn>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,8 +37,6 @@
     <OutputPath>Temp\bin\Release\</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <NoWarn>0169;USG0001</NoWarn>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <NoConfig>true</NoConfig>
@@ -48,7 +48,7 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Package</UnityProjectGenerator>
-    <UnityProjectGeneratorVersion>2.0.22</UnityProjectGeneratorVersion>
+    <UnityProjectGeneratorVersion>2.0.23</UnityProjectGeneratorVersion>
     <UnityProjectGeneratorStyle>Legacy</UnityProjectGeneratorStyle>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
@@ -60,106 +60,113 @@
     <Analyzer Include="F:\Unity\Hub\Editor\2022.3.48f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Pool\SingletonMonoBehavior.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\MRUKStart.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Masks\RandomMask.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\Utilities.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Masks\AnchorDistanceMask.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\AnchorPrefabSpawner.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Masks\CompositeMaskMax.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\Triangulator.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Modifier\DontDestroyOnLoadModifier.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Modifier\KeepUprightWithSurfaceModifier.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Masks\Mask2D.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Masks\RayDistanceMask.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Modifier\RotationModifier.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Editor\SceneDecorationEditor.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Pool\CircularPool.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\FindSpawnPositions.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Pool\Pool.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\DestructibleMeshComponent.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Modifier\RotationModifierSpaceMap.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\EnvironmentRaycastManager.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\SceneDecoratorTypes.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Masks\CompositeMaskMul.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\RoomGuardian.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\MRUKAnchor.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\MRUKRoom.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SpaceMapGPU.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\LabelFilter.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SerializationHelpers.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\EnableUnpremultipliedAlpha.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Masks\CellularNoiseMask.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Masks\NotInsideMask.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Distributions\RandomDistribution.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Masks\ColliderMask.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneNavigation.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Masks\Mask.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Pool\PoolManager.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\GridSliceResizer.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Pool\FixedPool.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\TelemetryConstants.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\SceneDecoration.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Masks\CompositeMaskAdd.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Masks\StochasticMask.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\MRUK.Trackers.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Distributions\StaggeredConcentricDistribution.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\DestructibleGlobalMeshSpawner.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\EffectMesh.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Masks\AnchorComponentDistanceMask.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Modifier\ScaleUniformModifier.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Modifier\Modifier.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Modifier\KeepUprightWithAnchorModifier.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Masks\HeightMask.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Masks\ConstantMask.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\EnvironmentDepthManagerRaycastExtensions.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\MRUKNative.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SpaceMap.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Distributions\SimplexDistribution.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\SceneDecorator.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\Generated\MRUKNativeFuncs.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Masks\SimplexNoiseMask.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\Extensions\Vector3Extensions.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Masks\CompositeMaskMin.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Pool\PoolManagerSingleton.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Masks\SlopeMask.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\Data.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\Extensions\Vector2Extensions.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Masks\CookieMask.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Pool\PoolManagerComponent.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\MRUK.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Masks\InsideCurrentRoomMask.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Editor\MaskEditor.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Masks\SpaceMapGPUMask.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\ICustomAnchorPrefabSpawner.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Masks\CompositeMaskAvg.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\MRUKTrackable.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Distributions\GridDistribution.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDebugger.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Modifier\ScaleModifier.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Editor\ModifierEditor.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\SceneDecorator\Masks\SpaceMapMask.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Scripts\AnchorPrefabSpawnerUtilities.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Pool\SingletonMonoBehavior.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\MRUKStart.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Masks\RandomMask.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\Utilities.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Masks\AnchorDistanceMask.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\ImmersiveSceneDebugger.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\AnchorPrefabSpawner.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Masks\CompositeMaskMax.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\Triangulator.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\BuildingBlocks\AssemblyInfo.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Modifier\DontDestroyOnLoadModifier.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Modifier\KeepUprightWithSurfaceModifier.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Masks\Mask2D.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Masks\RayDistanceMask.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Modifier\RotationModifier.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Editor\SceneDecorationEditor.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Pool\CircularPool.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\FindSpawnPositions.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Pool\Pool.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\DestructibleMeshComponent.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Modifier\RotationModifierSpaceMap.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\EnvironmentRaycastManager.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\SceneDecoratorTypes.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Masks\CompositeMaskMul.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\MRUKAssert.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\RoomGuardian.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\MRUKAnchor.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\MRUKRoom.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SpaceMapGPU.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\LabelFilter.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SerializationHelpers.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Masks\CellularNoiseMask.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\BuildingBlocks\InstantContentPlacement\Scripts\SpaceLocator.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\BuildingBlocks\InstantContentPlacement\Scripts\PlaceWithAnchor.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Masks\NotInsideMask.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Distributions\RandomDistribution.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Masks\ColliderMask.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneNavigation.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Masks\Mask.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Pool\PoolManager.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\GridSliceResizer.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Pool\FixedPool.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\TelemetryConstants.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\SceneDecoration.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Masks\CompositeMaskAdd.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Masks\StochasticMask.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\MRUK.Trackers.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Distributions\StaggeredConcentricDistribution.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\DestructibleGlobalMeshSpawner.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\EffectMesh.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Masks\AnchorComponentDistanceMask.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Modifier\ScaleUniformModifier.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Modifier\Modifier.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Modifier\KeepUprightWithAnchorModifier.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Masks\HeightMask.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Masks\ConstantMask.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\EnvironmentDepthManagerRaycastExtensions.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\MRUKNative.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SpaceMap.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Distributions\SimplexDistribution.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\SceneDecorator.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\Generated\MRUKNativeFuncs.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Masks\SimplexNoiseMask.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\Extensions\Vector3Extensions.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Masks\CompositeMaskMin.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Masks\SlopeMask.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Pool\PoolManagerSingleton.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\Data.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\Extensions\Vector2Extensions.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Masks\CookieMask.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Pool\PoolManagerComponent.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\MRUK.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Masks\InsideCurrentRoomMask.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\BuildingBlocks\InstantContentPlacement\Scripts\GrabAndLocate.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Editor\MaskEditor.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Masks\SpaceMapGPUMask.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\ICustomAnchorPrefabSpawner.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Masks\CompositeMaskAvg.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\BuildingBlocks\InstantContentPlacement\Scripts\PointAndLocate.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\MRUKTrackable.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Distributions\GridDistribution.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDebugger.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Modifier\ScaleModifier.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\BuildingBlocks\InstantContentPlacement\Scripts\VisualizeEnvRaycast.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Editor\ModifierEditor.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\SceneDecorator\Masks\SpaceMapMask.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Scripts\AnchorPrefabSpawnerUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Plugins\Win64\mrutilitykitshared.dll" />
-    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Shaders\DestructibleMesh.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Shaders\SceneMeshOutline.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\NOTICE.txt" />
-    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Shaders\VertexFadedPassthrough.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\meta.xr.mrutilitykit.asmdef" />
-    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Shaders\HighlightsAndShadows.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Shaders\SpaceMapGradient.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Shaders\Wireframe.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Shaders\InvisibleOccluder.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Shaders\SceneMeshDefault.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Shaders\TransparentTexture.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Shaders\SpaceMap.compute" />
-    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Resources\CopyDepthTexture.compute" />
-    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Shaders\MRUKLit.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Shaders\FakeGuardian.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Shaders\PassthroughReveal.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@71.0.0\Core\Shaders\BlobShadow.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Plugins\Win64\mrutilitykitshared.dll" />
+    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Shaders\DestructibleMesh.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Shaders\SceneMeshOutline.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\NOTICE.txt" />
+    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Shaders\VertexFadedPassthrough.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\meta.xr.mrutilitykit.asmdef" />
+    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Shaders\HighlightsAndShadows.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Shaders\SpaceMapGradient.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Shaders\Wireframe.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Shaders\InvisibleOccluder.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Shaders\SceneMeshDefault.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Shaders\TransparentTexture.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Shaders\SpaceMap.compute" />
+    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Resources\CopyDepthTexture.compute" />
+    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Shaders\MRUKLit.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Shaders\FakeGuardian.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Shaders\PassthroughReveal.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.mrutilitykit@74.0.2\Core\Shaders\BlobShadow.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -506,68 +513,60 @@
       <HintPath>F:\Unity\Hub\Editor\2022.3.48f1\Editor\Data\PlaybackEngines\MetroSupport\UnityEditor.UWP.Extensions.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="MathNet.Numerics">
+      <HintPath>Assets\Packages\MathNet.Numerics.5.0.0\lib\netstandard2.0\MathNet.Numerics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.YamlDotNet">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.6\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Accord">
       <HintPath>Assets\Packages\Accord.3.8.0\lib\netstandard2.0\Accord.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Accord.Statistics">
-      <HintPath>Assets\Packages\Accord.Statistics.3.8.0\lib\netstandard2.0\Accord.Statistics.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="unityplastic">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.6.0\Lib\Editor\unityplastic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Plastic.Antlr3.Runtime">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.6.0\Lib\Editor\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Plastic.Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.6.0\Lib\Editor\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="log4netPlastic">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.6.0\Lib\Editor\log4netPlastic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.IonicZip">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="NuGetForUnity.PluginAPI">
-      <HintPath>Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\PluginAPI\NuGetForUnity.PluginAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.1\Runtime\Newtonsoft.Json.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Accord.Audio">
-      <HintPath>Assets\Packages\Accord.Audio.3.8.0\lib\netstandard2.0\Accord.Audio.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.TextureAssets">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
+    <Reference Include="Accord.Math">
+      <HintPath>Assets\Packages\Accord.Math.3.8.0\lib\netstandard2.0\Accord.Math.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Accord.Math.Core">
       <HintPath>Assets\Packages\Accord.Math.3.8.0\lib\netstandard2.0\Accord.Math.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="MathNet.Numerics">
-      <HintPath>Assets\Packages\MathNet.Numerics.5.0.0\lib\netstandard2.0\MathNet.Numerics.dll</HintPath>
+    <Reference Include="Accord.Statistics">
+      <HintPath>Assets\Packages\Accord.Statistics.3.8.0\lib\netstandard2.0\Accord.Statistics.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Accord.Math">
-      <HintPath>Assets\Packages\Accord.Math.3.8.0\lib\netstandard2.0\Accord.Math.dll</HintPath>
+    <Reference Include="Unity.VisualScripting.IonicZip">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.6\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.6\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Google.Protobuf">
+      <HintPath>Library\PackageCache\com.unity.barracuda@eefb8cb01e\Barracuda\Runtime\Plugins\ProtoBuffer\Google.Protobuf.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NuGetForUnity.PluginAPI">
+      <HintPath>Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\PluginAPI\NuGetForUnity.PluginAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.1\Runtime\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.TextureAssets">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.6\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MathNet.Filtering">
+      <HintPath>Assets\Packages\MathNet.Filtering.0.7.0\lib\netstandard2.0\MathNet.Filtering.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Accord.Audio">
+      <HintPath>Assets\Packages\Accord.Audio.3.8.0\lib\netstandard2.0\Accord.Audio.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
@@ -1095,6 +1094,14 @@
     <ProjectReference Include="Meta.XR.EnvironmentDepth.csproj">
       <Project>{31AF4A22-1F78-0171-C5DC-041E5CD753DB}</Project>
       <Name>Meta.XR.EnvironmentDepth</Name>
+    </ProjectReference>
+    <ProjectReference Include="Oculus.Interaction.csproj">
+      <Project>{9BBCB863-D25F-C41A-EEBB-81048E66B78F}</Project>
+      <Name>Oculus.Interaction</Name>
+    </ProjectReference>
+    <ProjectReference Include="Meta.XR.ImmersiveDebugger.csproj">
+      <Project>{61F54879-5D13-EB77-7A1E-F6C5E279B7A0}</Project>
+      <Name>Meta.XR.ImmersiveDebugger</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{0DCDCFB5-3B0A-4171-99DC-05E63C5FE730}</Project>

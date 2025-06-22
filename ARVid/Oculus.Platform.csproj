@@ -18,16 +18,18 @@
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
   </PropertyGroup>
+  <PropertyGroup>
+    <NoWarn>0169;USG0001</NoWarn>
+    <DefineConstants>UNITY_2022_3_48;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_RUNTIME_PERMISSIONS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_ONSCREEN_KEYBOARD;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_ANDROID;TEXTCORE_1_0_OR_NEWER;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;UNITY_CAN_SHOW_SPLASH_SCREEN;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO;ENABLE_SPATIALTRACKING;ENABLE_ETC_COMPRESSION;PLATFORM_EXTENDS_VULKAN_DEVICE;PLATFORM_HAS_MULTIPLE_SWAPCHAINS;UNITY_ANDROID_SUPPORTS_SHADOWFILES;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;ISDK_OPENXR_HAND;USING_XR_MANAGEMENT;OVR_UNITY_PACKAGE_MANAGER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>UNITY_2022_3_48;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_RUNTIME_PERMISSIONS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_ONSCREEN_KEYBOARD;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_ANDROID;TEXTCORE_1_0_OR_NEWER;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;UNITY_CAN_SHOW_SPLASH_SCREEN;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO;ENABLE_SPATIALTRACKING;ENABLE_ETC_COMPRESSION;PLATFORM_EXTENDS_VULKAN_DEVICE;PLATFORM_HAS_MULTIPLE_SWAPCHAINS;UNITY_ANDROID_SUPPORTS_SHADOWFILES;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;ISDK_OPENXR_HAND;USING_XR_MANAGEMENT;USING_XR_SDK_OCULUS;OVR_UNITY_PACKAGE_MANAGER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <NoWarn>0169;USG0001</NoWarn>
-    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,8 +37,6 @@
     <OutputPath>Temp\bin\Release\</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <NoWarn>0169;USG0001</NoWarn>
-    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <NoConfig>true</NoConfig>
@@ -48,7 +48,7 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Package</UnityProjectGenerator>
-    <UnityProjectGeneratorVersion>2.0.22</UnityProjectGeneratorVersion>
+    <UnityProjectGeneratorVersion>2.0.23</UnityProjectGeneratorVersion>
     <UnityProjectGeneratorStyle>Legacy</UnityProjectGeneratorStyle>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
@@ -60,196 +60,203 @@
     <Analyzer Include="F:\Unity\Hub\Editor\2022.3.48f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\LivestreamingVideoStats.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\MultiplayerErrorErrorKey.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\RoomJoinability.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\VoipSampleRate.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\BlockedUser.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\RoomJoinPolicy.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\VoipBitrate.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\WindowsPlatform.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\ChallengeCreationType.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\ReportRequestResponse.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\PlatformInternal.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\AchievementProgress.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\VoipInput.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\PartyID.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\Price.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\PlatformInitialize.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\AssetFileDownloadCancelResult.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\VoipAudioSourceHiLevel.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\AssetFileDeleteResult.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\AppDownloadProgressResult.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\SendInvitesResult.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\MediaContentType.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\UserCapability.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\InviteOptions.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\ShareMediaResult.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\AppDownloadResult.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\VoipDtxState.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\MicrophoneAvailabilityState.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\CloudStorageUpdateStatus.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\KeyValuePairType.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\NetSyncDisconnectReason.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\SystemPermission.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\CowatchingState.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\ChallengeViewerFilter.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\Pid.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\RoomInviteNotification.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\SdkAccount.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\MatchmakingEnqueueResult.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\NetSyncSessionsChangedNotification.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\LaunchBlockFlowResult.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\MatchmakingAdminSnapshotCandidate.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Packet.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\LivestreamingStatus.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\LanguagePackInfo.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\CalApplicationSuggestion.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\InstalledApplication.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\SupplementaryMetric.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Request.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\UserDataStoreUpdateResponse.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\NetSyncSetSessionPropertyResult.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Decoder.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\BufferedAudioStream.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\LaunchUnblockFlowResult.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\ChallengeVisibility.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\CloudStorageDataStatus.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\SystemVoipStatus.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\NetSyncVoipMicSource.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\PlatformInitializeResult.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\AccountAgeCategory.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\LaunchReportFlowResult.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\PartyMicState.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\LogEventName.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\AssetFileDownloadUpdate.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\AvatarEditorOptions.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\MatchmakingOptions.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\PermissionType.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\VoipOptions.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\Destination.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\ServiceProvider.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\CloudStorageUpdateResponse.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\NetSyncSession.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\PingResult.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\NetSyncVoipStreamMode.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\ManagedInfo.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\LeaderboardEntry.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\NetSyncConnection.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\RoomType.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\RichPresenceExtraContext.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\PeerConnectionState.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\LeaderboardStartAt.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\AppStatus.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\LogEventParameter.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\AppInstallResult.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\SdkAccountType.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\UserProof.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\MicrophoneInputNative.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Platform.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\ApplicationOptions.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Callback.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\Purchase.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\CloudStorageData.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\AbuseReportRecording.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\LinkedAccount.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\PartyUpdateAction.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\GroupPresenceLeaveIntent.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\MatchmakingAdminSnapshot.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\UserAccountAgeCategory.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\UserReportID.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\ChallengeOptions.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\NetworkingPeer.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\StandalonePlatform.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\HttpTransferUpdate.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\PlatformSettings.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\AbuseReportVideoMode.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Message.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\AbuseReportOptions.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\RosterOptions.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\ApplicationInvite.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\MicrophoneInput.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\SendPolicy.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\GroupPresenceJoinIntent.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\RejoinDialogResult.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\Party.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\IMicrophone.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\AssetDetails.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\UserAndRoom.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\VoipMuteState.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\AchievementUpdate.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\CloudStorageConflictMetadata.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\AndroidPlatform.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\AchievementType.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\PermissionGrantStatus.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\User.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\GroupPresenceOptions.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\RoomMembershipLockStatus.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\AbuseReportType.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\LivestreamingAudience.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\CloudStorageMetadata.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\LaunchDetails.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\LivestreamingStartResult.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\IVoipPCMSource.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\AchievementDefinition.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\Error.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\MatchmakingEnqueuedUser.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\Challenge.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\Room.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\VoipAudioSource.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\AdvancedAbuseReportOptions.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\MatchmakingBrowseResult.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\CallbackRunner.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Encoder.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\RoomOptions.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\ShareMediaStatus.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\CowatchViewer.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\LivestreamingApplicationStatus.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\ApplicationVersion.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\Team.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\BuildingBlocks\EntitlementCheck\EntitlementCheck.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\LaunchFriendRequestFlowResult.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\LaunchResult.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\UserOrdering.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\AppAgeCategory.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\MatchmakingEnqueueResultAndRoom.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\LivestreamingMicrophoneStatus.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\ChallengeEntry.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\CowatchViewerUpdate.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\Leaderboard.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\Product.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\CalApplicationProposed.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\InvitePanelResultInfo.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\PartyUpdateNotification.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\LaunchType.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\AssetFileDownloadResult.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\CalApplicationFinalized.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\StandalonePlatformSettings.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\UserPresenceStatus.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\RichPresenceOptions.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\NetSyncVoipAttenuationValue.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\UserOptions.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\MatchmakingStatApproach.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\OrgScopedID.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\InitConfigOptions.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\MultiplayerErrorOptions.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\MatchmakingCriterionImportance.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\MatchmakingStats.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\LeaderboardFilterType.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\AvatarEditorResult.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\VoipPCMSourceNative.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\DeserializeableList.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\LivestreamingStartStatus.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\NetSyncOptions.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\NetSyncConnectionStatus.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\SystemVoipState.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\CAPI.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\Models\LaunchInvitePanelFlowResult.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\TimeWindow.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Scripts\ProductType.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\LivestreamingVideoStats.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\MultiplayerErrorErrorKey.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\RoomJoinability.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\VoipSampleRate.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\BlockedUser.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\RoomJoinPolicy.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\VoipBitrate.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\WindowsPlatform.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\ChallengeCreationType.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\ReportRequestResponse.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\PlatformInternal.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\AchievementProgress.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\VoipInput.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\PartyID.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\Price.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\PlatformInitialize.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\AssetFileDownloadCancelResult.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\VoipAudioSourceHiLevel.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\AssetFileDeleteResult.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\AppDownloadProgressResult.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\SendInvitesResult.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\MediaContentType.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\UserCapability.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\InviteOptions.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\ShareMediaResult.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\AppDownloadResult.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\VoipDtxState.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\MicrophoneAvailabilityState.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\CloudStorageUpdateStatus.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\KeyValuePairType.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\NetSyncDisconnectReason.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\TrialOffer.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\SystemPermission.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\CowatchingState.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\ChallengeViewerFilter.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\Pid.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\RoomInviteNotification.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\SdkAccount.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\MatchmakingEnqueueResult.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\NetSyncSessionsChangedNotification.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\LaunchBlockFlowResult.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\MatchmakingAdminSnapshotCandidate.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Packet.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\LivestreamingStatus.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\LanguagePackInfo.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\CalApplicationSuggestion.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\InstalledApplication.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\OfferTerm.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\SupplementaryMetric.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Request.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\UserDataStoreUpdateResponse.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\NetSyncSetSessionPropertyResult.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Decoder.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\BufferedAudioStream.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\LaunchUnblockFlowResult.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\ChallengeVisibility.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\CloudStorageDataStatus.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\SystemVoipStatus.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\NetSyncVoipMicSource.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\PlatformInitializeResult.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\AccountAgeCategory.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\LaunchReportFlowResult.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\PartyMicState.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\LogEventName.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\AssetFileDownloadUpdate.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\AvatarEditorOptions.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\MatchmakingOptions.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\PermissionType.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\VoipOptions.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\PaidOffer.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\Destination.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\ServiceProvider.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\CloudStorageUpdateResponse.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\NetSyncSession.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\PingResult.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\NetSyncVoipStreamMode.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\LeaderboardEntry.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\NetSyncConnection.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\ManagedInfo.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\RoomType.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\RichPresenceExtraContext.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\PeerConnectionState.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\LeaderboardStartAt.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\AppStatus.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\LogEventParameter.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\AppInstallResult.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\SdkAccountType.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\UserProof.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\MicrophoneInputNative.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Platform.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\ApplicationOptions.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Callback.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\Purchase.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\OfferType.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\CloudStorageData.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\AbuseReportRecording.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\LinkedAccount.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\PartyUpdateAction.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\GroupPresenceLeaveIntent.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\MatchmakingAdminSnapshot.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\UserAccountAgeCategory.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\UserReportID.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\ChallengeOptions.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\NetworkingPeer.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\StandalonePlatform.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\HttpTransferUpdate.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\PushNotificationResult.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\PlatformSettings.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\AbuseReportVideoMode.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Message.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\AbuseReportOptions.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\RosterOptions.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\ApplicationInvite.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\MicrophoneInput.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\SendPolicy.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\GroupPresenceJoinIntent.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\RejoinDialogResult.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\Party.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\IMicrophone.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\AssetDetails.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\UserAndRoom.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\VoipMuteState.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\AchievementUpdate.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\CloudStorageConflictMetadata.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\AndroidPlatform.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\AchievementType.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\PermissionGrantStatus.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\User.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\GroupPresenceOptions.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\RoomMembershipLockStatus.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\AbuseReportType.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\LivestreamingAudience.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\CloudStorageMetadata.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\LaunchDetails.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\LivestreamingStartResult.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\IVoipPCMSource.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\AchievementDefinition.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\Error.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\MatchmakingEnqueuedUser.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\Challenge.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\Room.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\VoipAudioSource.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\AdvancedAbuseReportOptions.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\MatchmakingBrowseResult.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\CallbackRunner.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Encoder.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\RoomOptions.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\ShareMediaStatus.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\CowatchViewer.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\LivestreamingApplicationStatus.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\ApplicationVersion.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\Team.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\BuildingBlocks\EntitlementCheck\EntitlementCheck.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\LaunchFriendRequestFlowResult.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\LaunchResult.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\UserOrdering.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\AppAgeCategory.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\MatchmakingEnqueueResultAndRoom.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\LivestreamingMicrophoneStatus.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\ChallengeEntry.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\CowatchViewerUpdate.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\Leaderboard.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\Product.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\CalApplicationProposed.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\InvitePanelResultInfo.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\PartyUpdateNotification.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\LaunchType.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\AssetFileDownloadResult.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\CalApplicationFinalized.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\StandalonePlatformSettings.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\UserPresenceStatus.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\RichPresenceOptions.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\NetSyncVoipAttenuationValue.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\UserOptions.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\BillingPlan.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\MatchmakingStatApproach.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\OrgScopedID.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\MultiplayerErrorOptions.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\InitConfigOptions.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\MatchmakingCriterionImportance.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\MatchmakingStats.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\LeaderboardFilterType.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\AvatarEditorResult.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\VoipPCMSourceNative.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\DeserializeableList.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\LivestreamingStartStatus.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\NetSyncOptions.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\NetSyncConnectionStatus.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\SystemVoipState.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\CAPI.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\LaunchInvitePanelFlowResult.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\Models\ContentRating.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\TimeWindow.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Scripts\ProductType.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Library\PackageCache\com.meta.xr.sdk.platform@71.0.0\Oculus.Platform.asmdef" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.platform@74.0.0\Oculus.Platform.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -596,68 +603,60 @@
       <HintPath>F:\Unity\Hub\Editor\2022.3.48f1\Editor\Data\PlaybackEngines\MetroSupport\UnityEditor.UWP.Extensions.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="MathNet.Numerics">
+      <HintPath>Assets\Packages\MathNet.Numerics.5.0.0\lib\netstandard2.0\MathNet.Numerics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.YamlDotNet">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.6\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Accord">
       <HintPath>Assets\Packages\Accord.3.8.0\lib\netstandard2.0\Accord.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Accord.Statistics">
-      <HintPath>Assets\Packages\Accord.Statistics.3.8.0\lib\netstandard2.0\Accord.Statistics.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="unityplastic">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.6.0\Lib\Editor\unityplastic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Plastic.Antlr3.Runtime">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.6.0\Lib\Editor\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Plastic.Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.6.0\Lib\Editor\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="log4netPlastic">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.6.0\Lib\Editor\log4netPlastic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.IonicZip">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="NuGetForUnity.PluginAPI">
-      <HintPath>Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\PluginAPI\NuGetForUnity.PluginAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.1\Runtime\Newtonsoft.Json.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Accord.Audio">
-      <HintPath>Assets\Packages\Accord.Audio.3.8.0\lib\netstandard2.0\Accord.Audio.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.TextureAssets">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
+    <Reference Include="Accord.Math">
+      <HintPath>Assets\Packages\Accord.Math.3.8.0\lib\netstandard2.0\Accord.Math.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Accord.Math.Core">
       <HintPath>Assets\Packages\Accord.Math.3.8.0\lib\netstandard2.0\Accord.Math.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="MathNet.Numerics">
-      <HintPath>Assets\Packages\MathNet.Numerics.5.0.0\lib\netstandard2.0\MathNet.Numerics.dll</HintPath>
+    <Reference Include="Accord.Statistics">
+      <HintPath>Assets\Packages\Accord.Statistics.3.8.0\lib\netstandard2.0\Accord.Statistics.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Accord.Math">
-      <HintPath>Assets\Packages\Accord.Math.3.8.0\lib\netstandard2.0\Accord.Math.dll</HintPath>
+    <Reference Include="Unity.VisualScripting.IonicZip">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.6\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.6\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Google.Protobuf">
+      <HintPath>Library\PackageCache\com.unity.barracuda@eefb8cb01e\Barracuda\Runtime\Plugins\ProtoBuffer\Google.Protobuf.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NuGetForUnity.PluginAPI">
+      <HintPath>Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\PluginAPI\NuGetForUnity.PluginAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.1\Runtime\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.TextureAssets">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.6\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MathNet.Filtering">
+      <HintPath>Assets\Packages\MathNet.Filtering.0.7.0\lib\netstandard2.0\MathNet.Filtering.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Accord.Audio">
+      <HintPath>Assets\Packages\Accord.Audio.3.8.0\lib\netstandard2.0\Accord.Audio.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">

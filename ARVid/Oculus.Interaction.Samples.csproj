@@ -18,16 +18,18 @@
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
   </PropertyGroup>
+  <PropertyGroup>
+    <NoWarn>0169;USG0001</NoWarn>
+    <DefineConstants>UNITY_2022_3_48;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_RUNTIME_PERMISSIONS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_ONSCREEN_KEYBOARD;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_ANDROID;TEXTCORE_1_0_OR_NEWER;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;UNITY_CAN_SHOW_SPLASH_SCREEN;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO;ENABLE_SPATIALTRACKING;ENABLE_ETC_COMPRESSION;PLATFORM_EXTENDS_VULKAN_DEVICE;PLATFORM_HAS_MULTIPLE_SWAPCHAINS;UNITY_ANDROID_SUPPORTS_SHADOWFILES;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;ISDK_OPENXR_HAND;OVR_UNITY_PACKAGE_MANAGER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>UNITY_2022_3_48;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_RUNTIME_PERMISSIONS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_ONSCREEN_KEYBOARD;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_ANDROID;TEXTCORE_1_0_OR_NEWER;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;UNITY_CAN_SHOW_SPLASH_SCREEN;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO;ENABLE_SPATIALTRACKING;ENABLE_ETC_COMPRESSION;PLATFORM_EXTENDS_VULKAN_DEVICE;PLATFORM_HAS_MULTIPLE_SWAPCHAINS;UNITY_ANDROID_SUPPORTS_SHADOWFILES;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;ISDK_OPENXR_HAND;OVR_UNITY_PACKAGE_MANAGER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <NoWarn>0169;USG0001</NoWarn>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,8 +37,6 @@
     <OutputPath>Temp\bin\Release\</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <NoWarn>0169;USG0001</NoWarn>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <NoConfig>true</NoConfig>
@@ -48,7 +48,7 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Package</UnityProjectGenerator>
-    <UnityProjectGeneratorVersion>2.0.22</UnityProjectGeneratorVersion>
+    <UnityProjectGeneratorVersion>2.0.23</UnityProjectGeneratorVersion>
     <UnityProjectGeneratorStyle>Legacy</UnityProjectGeneratorStyle>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
@@ -60,109 +60,110 @@
     <Analyzer Include="F:\Unity\Hub\Editor\2022.3.48f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\HandGrabRecord\TimerUIControl.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Objects\UISet\Scripts\UITheme.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\Locomotion\LocomotionTutorialTurnVisual.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\Locomotion\LocomotionSettings\LocomotionComfortVignetteSetting.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Objects\UISet\Scripts\DisableRaycaster.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\PanelWithManipulators\UpdateRoundedBoxAnchorConstraint.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\PalmMenu\MatchNonDominantPalmWorldSpaceTransform.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\Snap\ListSnapPoseDelegateRoundedBoxVisual.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\PanelWithManipulators\OpacityFromAnimatedTransformController.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\PanelWithManipulators\ColliderSizeConstraint.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\ComprehensiveRigExampleUI\RectSizeConstraint.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\CanvasConstantWidthScaler.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\HandGrabUse\Effects\MeshBlit.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\ComprehensiveRigExampleUI\CanvasGroupAlphaToggle.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\ComprehensiveRigExampleUI\PageScroll.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\ComprehensiveRigExampleUI\GridSpacingScaler.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\HandGrabUse\Effects\WaterSpray\WaterSprayNozzleTransformer.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\PanelWithManipulators\CanvasSizeConstraint.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\Locomotion\LocomotionSettings\MenuToggler.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\Body\BodyPoseSwitcher.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\SceneLoader.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\PanelWithManipulators\ManipulatorAffordanceController.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\CarouselView.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\InteractableObjectLabel.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\Locomotion\LocomotionSettings\TogglerActiveState.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\CountdownTimer.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\RotationAudioEvents.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\PanelWithManipulators\AnchoredWorldSpaceDistanceScaler.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\Body\PoseCaptureCountdown.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\UseGrabPressure\PressureBreakable.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\PalmMenu\DominantHandGameObjectFilter.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\ScaleAudioEvents.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\ComprehensiveRigExampleUI\VirtualLayout.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\Body\LockedBodyPose.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\FadeTextAfterActive.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\PanelWithManipulators\ParentScaleInverter.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\ComprehensiveRigExampleUI\RoundedBoxVideoController.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\EnableTargetOnStart.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\PanelWithManipulators\PanelWithManipulatorsStateSignaler.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\LookAtTarget.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\PalmMenu\PalmMenuExampleButtonHandlers.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\PanelWithManipulators\OneGrabScaleTransformer.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\UseGrabPressure\PressureSquishable.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\RespawnOnDrop.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\PanelWithManipulators\PanelSetup.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\HideHandVisualOnGrab.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\PalmMenu\PalmMenuExample.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\Locomotion\LocomotionSettings\LocomotionTurnSliderSetting.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\PanelWithManipulators\PanelHoverState.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\PanelWithManipulators\PanelWithManipulatorsBorderAffordanceController.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\Locomotion\AdjustableAudio.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\Locomotion\LocomotionSettings\LocomotionSeatedSetting.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\Locomotion\LocomotionTutorialAnimationUnityEventWrapper.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\AudioPhysics.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\PanelWithManipulators\UnionClippedPlaneSurface.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\PanelWithManipulators\SkinnedRoundedBoxMesh.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\HandGrabUse\Effects\WaterSpray\WaterSpray.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\ComprehensiveRigExampleUI\AnimatorOverrideLayerWeigth.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\Locomotion\LocomotionTutorialProgressTracker.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Objects\UISet\Scripts\DropDownGroup.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\AudioTrigger.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\PoseUseSample.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\Snap\ConstantRotation.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\ScaleModifier.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\StayInView.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\MoveRelativeToTargetProvider.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\SamplesInfoPanel.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\ComprehensiveRigExampleUI\SwipeGesture.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\PanelWithManipulators\ArcAffordanceController.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\HandGrabUse\Rendering\BasicPBRGlobals.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\ShouldHideHandOnGrab.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\HandGrabRecord\HandGrabPoseLiveRecorder.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Objects\UISet\Scripts\UIThemeManager.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\ComprehensiveRigExampleUI\RoundedBoxUIProperties.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\MultiModal\SlingshotPellet.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\Locomotion\LocomotorSound.cs" />
-    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\ColorChanger.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\HandGrabRecord\TimerUIControl.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Objects\UISet\Scripts\UITheme.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\Locomotion\LocomotionTutorialTurnVisual.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\Locomotion\LocomotionSettings\LocomotionComfortVignetteSetting.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Objects\UISet\Scripts\DisableRaycaster.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\PanelWithManipulators\UpdateRoundedBoxAnchorConstraint.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\PalmMenu\MatchNonDominantPalmWorldSpaceTransform.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\Snap\ListSnapPoseDelegateRoundedBoxVisual.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\PanelWithManipulators\OpacityFromAnimatedTransformController.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\PanelWithManipulators\ColliderSizeConstraint.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\ComprehensiveRigExampleUI\RectSizeConstraint.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\CanvasConstantWidthScaler.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\HandGrabUse\Effects\MeshBlit.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\ComprehensiveRigExampleUI\CanvasGroupAlphaToggle.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\ComprehensiveRigExampleUI\PageScroll.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\ComprehensiveRigExampleUI\GridSpacingScaler.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\HandGrabUse\Effects\WaterSpray\WaterSprayNozzleTransformer.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\PanelWithManipulators\CanvasSizeConstraint.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\Locomotion\LocomotionSettings\MenuToggler.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\Body\BodyPoseSwitcher.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\SceneLoader.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\PanelWithManipulators\ManipulatorAffordanceController.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\CarouselView.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\InteractableObjectLabel.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\Locomotion\LocomotionSettings\TogglerActiveState.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\CountdownTimer.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\RotationAudioEvents.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\PanelWithManipulators\AnchoredWorldSpaceDistanceScaler.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\Body\PoseCaptureCountdown.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\UseGrabPressure\PressureBreakable.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\PalmMenu\DominantHandGameObjectFilter.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\ScaleAudioEvents.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\ComprehensiveRigExampleUI\VirtualLayout.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\Body\LockedBodyPose.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\FadeTextAfterActive.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\PanelWithManipulators\ParentScaleInverter.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\ComprehensiveRigExampleUI\RoundedBoxVideoController.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\EnableTargetOnStart.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\PanelWithManipulators\PanelWithManipulatorsStateSignaler.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\LookAtTarget.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\PalmMenu\PalmMenuExampleButtonHandlers.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\PanelWithManipulators\OneGrabScaleTransformer.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\UseGrabPressure\PressureSquishable.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\RespawnOnDrop.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\PanelWithManipulators\PanelSetup.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\HideHandVisualOnGrab.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\PalmMenu\PalmMenuExample.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\Locomotion\LocomotionSettings\LocomotionTurnSliderSetting.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\PanelWithManipulators\PanelHoverState.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\PanelWithManipulators\PanelWithManipulatorsBorderAffordanceController.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\Locomotion\AdjustableAudio.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\Locomotion\LocomotionSettings\LocomotionSeatedSetting.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\Locomotion\LocomotionTutorialAnimationUnityEventWrapper.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\AudioPhysics.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\PanelWithManipulators\UnionClippedPlaneSurface.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\PanelWithManipulators\SkinnedRoundedBoxMesh.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\HandGrabUse\Effects\WaterSpray\WaterSpray.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\ComprehensiveRigExampleUI\AnimatorOverrideLayerWeigth.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\Locomotion\LocomotionTutorialProgressTracker.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Objects\UISet\Scripts\DropDownGroup.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\AudioTrigger.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\PoseUseSample.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\Snap\ConstantRotation.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\ScaleModifier.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\StayInView.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\MoveRelativeToTargetProvider.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\SamplesInfoPanel.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\ComprehensiveRigExampleUI\SwipeGesture.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\PanelWithManipulators\ArcAffordanceController.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\HandGrabUse\Rendering\BasicPBRGlobals.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\ShouldHideHandOnGrab.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\HandGrabRecord\HandGrabPoseLiveRecorder.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Objects\UISet\Scripts\UIThemeManager.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\ComprehensiveRigExampleUI\RoundedBoxUIProperties.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\MultiModal\SlingshotPellet.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\Locomotion\LocomotorSound.cs" />
+    <Compile Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\ColorChanger.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Materials\Shaders\RoundedBoxUI.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Shaders\StencilSky.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Materials\Shaders\InteractionLabel.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Materials\Shaders\VideoPlayerAnimBackground.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\ThirdParty\Box2DSignedDistance.cginc" />
-    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Materials\Shaders\PanelAffordance.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Materials\Shaders\UIDepthWriter.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Materials\Shaders\ParticleAdditive.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Shaders\floor.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Shaders\room.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Materials\Shaders\PanelHandleAffordance.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\ThirdParty\Textures\EnvironmentMaps\license.txt" />
-    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Scripts\HandGrabUse\Effects\WaterSpray\MeshBlitStamp.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Shaders\InteractionCG.cginc" />
-    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Materials\Shaders\MultiGradientUI.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Shaders\RoomTransparent.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\ThirdParty\Textures\ComprehensiveGrabMapTextureCredit.txt" />
-    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Oculus.Interaction.Samples.asmdef" />
-    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Shaders\SkyboxGradient.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Shaders\StencilWriter.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Materials\Shaders\BasicPBR.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Materials\Shaders\PanelBorderAffordanceSimplified.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Materials\Shaders\StencilClear.shader" />
-    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@71.0.0\Runtime\Sample\Shaders\MRDeskShadow.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Materials\Shaders\RoundedBoxUI.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Shaders\StencilSky.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Materials\Shaders\InteractionLabel.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Materials\Shaders\VideoPlayerAnimBackground.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\ThirdParty\Box2DSignedDistance.cginc" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Materials\Shaders\PanelAffordance.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Materials\Shaders\UIDepthWriter.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Materials\Shaders\ParticleAdditive.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Materials\Shaders\LinearGradientUI.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Shaders\floor.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Shaders\room.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Materials\Shaders\PanelHandleAffordance.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\ThirdParty\Textures\EnvironmentMaps\license.txt" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Scripts\HandGrabUse\Effects\WaterSpray\MeshBlitStamp.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Shaders\InteractionCG.cginc" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Materials\Shaders\MultiGradientUI.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Shaders\RoomTransparent.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\ThirdParty\Textures\ComprehensiveGrabMapTextureCredit.txt" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Oculus.Interaction.Samples.asmdef" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Shaders\SkyboxGradient.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Shaders\StencilWriter.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Materials\Shaders\BasicPBR.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Materials\Shaders\PanelBorderAffordanceSimplified.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Materials\Shaders\StencilClear.shader" />
+    <None Include="Library\PackageCache\com.meta.xr.sdk.interaction@74.0.2\Runtime\Sample\Shaders\MRDeskShadow.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -509,68 +510,60 @@
       <HintPath>F:\Unity\Hub\Editor\2022.3.48f1\Editor\Data\PlaybackEngines\MetroSupport\UnityEditor.UWP.Extensions.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="MathNet.Numerics">
+      <HintPath>Assets\Packages\MathNet.Numerics.5.0.0\lib\netstandard2.0\MathNet.Numerics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.YamlDotNet">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.6\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Accord">
       <HintPath>Assets\Packages\Accord.3.8.0\lib\netstandard2.0\Accord.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Accord.Statistics">
-      <HintPath>Assets\Packages\Accord.Statistics.3.8.0\lib\netstandard2.0\Accord.Statistics.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="unityplastic">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.6.0\Lib\Editor\unityplastic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Plastic.Antlr3.Runtime">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.6.0\Lib\Editor\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Plastic.Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.6.0\Lib\Editor\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="log4netPlastic">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.6.0\Lib\Editor\log4netPlastic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.IonicZip">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="NuGetForUnity.PluginAPI">
-      <HintPath>Library\PackageCache\com.github-glitchenzo.nugetforunity@46e771daa4\Editor\PluginAPI\NuGetForUnity.PluginAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.1\Runtime\Newtonsoft.Json.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Accord.Audio">
-      <HintPath>Assets\Packages\Accord.Audio.3.8.0\lib\netstandard2.0\Accord.Audio.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.TextureAssets">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
+    <Reference Include="Accord.Math">
+      <HintPath>Assets\Packages\Accord.Math.3.8.0\lib\netstandard2.0\Accord.Math.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Accord.Math.Core">
       <HintPath>Assets\Packages\Accord.Math.3.8.0\lib\netstandard2.0\Accord.Math.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="MathNet.Numerics">
-      <HintPath>Assets\Packages\MathNet.Numerics.5.0.0\lib\netstandard2.0\MathNet.Numerics.dll</HintPath>
+    <Reference Include="Accord.Statistics">
+      <HintPath>Assets\Packages\Accord.Statistics.3.8.0\lib\netstandard2.0\Accord.Statistics.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Accord.Math">
-      <HintPath>Assets\Packages\Accord.Math.3.8.0\lib\netstandard2.0\Accord.Math.dll</HintPath>
+    <Reference Include="Unity.VisualScripting.IonicZip">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.6\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.6\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Google.Protobuf">
+      <HintPath>Library\PackageCache\com.unity.barracuda@eefb8cb01e\Barracuda\Runtime\Plugins\ProtoBuffer\Google.Protobuf.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NuGetForUnity.PluginAPI">
+      <HintPath>Library\PackageCache\com.github-glitchenzo.nugetforunity@fe31ad0904\Editor\PluginAPI\NuGetForUnity.PluginAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.1\Runtime\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.TextureAssets">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.6\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MathNet.Filtering">
+      <HintPath>Assets\Packages\MathNet.Filtering.0.7.0\lib\netstandard2.0\MathNet.Filtering.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Accord.Audio">
+      <HintPath>Assets\Packages\Accord.Audio.3.8.0\lib\netstandard2.0\Accord.Audio.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
