@@ -49,7 +49,7 @@ The project involved:
 
 Future research should focus on trying this on lighter and more stable headsets, investigating more accurate exertion tracking methods, and refining adaptive interfaces to better accommodate diverse user preferences and workout conditions.
 
-## Project Packages
+## Prerequisites
 1.  **Meta SDK**:
 Add this to your Unity Assets: https://assetstore.unity.com/packages/tools/integration/meta-xr-all-in-one-sdk-269657
 After installing, inside Unity: Window -> Package Manager -> Select "My Assets" -> Install the Unity XR All-in-One SDK
@@ -59,6 +59,9 @@ Inside Unity: Window -> Package Manager -> Select "Unity Registry" -> Search "Te
 
 3.  **NUnit**:
 Inside Unity: Window -> Package Manager -> Select "Unity Registry" -> Search "Test Framework" and install
+
+4. **Android Build Tool**
+Inside Unity: File -> Build Settings -> Android -> Install
 
 ## Videos
 As of right now, the implementation in VideoScript.cs is only set up for our study use case (playing a specific set of series).
