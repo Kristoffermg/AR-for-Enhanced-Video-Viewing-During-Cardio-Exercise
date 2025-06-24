@@ -58,7 +58,7 @@ After installing, inside Unity: Window -> Package Manager -> Select "My Assets" 
 Inside Unity: Window -> Package Manager -> Select "Unity Registry" -> Search "TextMeshPro" and install
 
 3.  **NUnit**:
-Inside Unity: Window -> Package Manager -> Select "Unity Registry" -> Search "NUnit" and install
+Inside Unity: Window -> Package Manager -> Select "Unity Registry" -> Search "Test Framework" and install
 
 ## Videos
 As of right now, the implementation in VideoScript.cs is only set up for our study use case (playing a specific set of series).
